@@ -11,7 +11,7 @@ module.exports = {
         "text-dark": "#2632A",
       },
       fontFamily: {
-        primary: "'Manrope', sans-serif ",
+        primary: "Manrope, sans-serif ",
       },
       fontSize: {
         "fz-16": "16px",

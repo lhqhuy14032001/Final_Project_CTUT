@@ -13,8 +13,8 @@ import AsideMenu from "@/components/admins/AsideMenu.vue";
 import FooterBar from "@/components/admins/FooterBar.vue";
 
 useMainStore().setUser({
-  name: "John Doe",
-  email: "john@example.com",
+  name: "Huy Le",
+  email: "huyle@example.com",
   avatar:
     "https://avatars.dicebear.com/api/avataaars/example.svg?options[top][]=shortHair&options[accessoriesChance]=93",
 });
@@ -52,7 +52,7 @@ const menuClick = (event, item) => {
     }"
   >
     <div
-      :class="[layoutAsidePadding, { 'ml-60 lg:ml-0': isAsideMobileExpanded }]"
+      :class="[layoutAsidePadding, { 'ml-60 lg:ml-0': k }]"
       class="pt-14 min-h-screen w-screen transition-position lg:w-auto bg-gray-50 dark:bg-slate-800 dark:text-slate-100"
     >
       <NavBar
@@ -84,9 +84,9 @@ const menuClick = (event, item) => {
         :is-aside-lg-active="isAsideLgActive"
         :menu="menuAside"
         @menu-click="menuClick"
-        @aside-lg-close-click="isAsideLgActive = false"
+        @aside-lg-close-click="isAsideLgActive = true"
       />
-      <slot />
+      <router-view></router-view>
       <FooterBar></FooterBar>
     </div>
   </div>

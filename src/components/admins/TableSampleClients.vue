@@ -103,11 +103,11 @@ const checked = (isChecked, client) => {
       <tr>
         <th v-if="checkable" />
         <th />
-        <th>Name</th>
-        <th>Company</th>
-        <th>City</th>
-        <th>Progress</th>
-        <th>Created</th>
+        <th>Họ tên</th>
+        <th>Công ty</th>
+        <th>Địa chỉ</th>
+        <th>Phân hệ</th>
+        <th>Ngày tạo</th>
         <th />
       </tr>
     </thead>
@@ -123,25 +123,19 @@ const checked = (isChecked, client) => {
             class="w-24 h-24 mx-auto lg:w-6 lg:h-6"
           />
         </td>
-        <td data-label="Name">
+        <td>
           {{ client.name }}
         </td>
-        <td data-label="Company">
+        <td>
           {{ client.company }}
         </td>
-        <td data-label="City">
+        <td>
           {{ client.city }}
         </td>
-        <td data-label="Progress" class="lg:w-32">
-          <progress
-            class="flex w-2/5 self-center lg:w-full"
-            max="100"
-            :value="client.progress"
-          >
-            {{ client.progress }}
-          </progress>
+        <td class="lg:w-32">
+          {{ client.role }}
         </td>
-        <td data-label="Created" class="lg:w-1 whitespace-nowrap">
+        <td class="lg:w-1 whitespace-nowrap">
           <small
             class="text-gray-500 dark:text-slate-400"
             :title="client.created"

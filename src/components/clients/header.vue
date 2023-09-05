@@ -4,8 +4,9 @@
   </Transition>
   <div class="container">
     <nav class="z-0 flex justify-between items-center mx-4 p-0 h-14">
+      <!-- :to="{ name: 'home', params: {} } -->
       <div class="w-12 left-nav">
-        <router-link :to="{ name: 'home', params: {} }"
+        <router-link to="/"
           ><img
             class="w-full"
             src="../../assets/logo.png"

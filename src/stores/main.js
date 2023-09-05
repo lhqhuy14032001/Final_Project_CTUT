@@ -7,11 +7,8 @@ export const useMainStore = defineStore("main", {
     userName: null,
     userEmail: null,
     userAvatar: null,
-
-    /* Field focus with ctrl+k (to register only once) */
     isFieldFocusRegistered: false,
 
-    /* Sample data (commonly used) */
     clients: [
       {
         id: 19,
@@ -252,19 +249,5 @@ export const useMainStore = defineStore("main", {
         this.userAvatar = payload.avatar;
       }
     },
-    // fetch(sampleDataKey) {
-    //   axios
-    //     .get(`data-sources/${sampleDataKey}.json`)
-    //     .then((r) => {
-    //       console.log(r);
-    //       if (r.data && r.data.data) {
-    //         console.log(r.data);
-    //         this[sampleDataKey] = r.data.data;
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       alert(error.message);
-    //     });
-    // },
   },
 });

@@ -4,6 +4,11 @@ import { HOME_PAGE } from "@/router/import/clientCoponents";
 import {
   HOME_PAGE_ADMIN,
   ACCOUNT_MANAGE,
+  BLOG_MANAGE,
+  CAR_MANAGE,
+  SALE_MANAGE,
+  CONSTRACT_MANAGE,
+  STATISTIS_MANAGE,
 } from "@/router/import/adminComponents";
 
 const routes = [
@@ -16,16 +21,8 @@ const routes = [
     },
   },
   {
-    path: "/about",
-    name: "about",
-    meta: {
-      layout: "administration",
-    },
-    component: HOME_PAGE,
-  },
-  {
-    path: "/admin-dashboard",
-    name: "home_admin",
+    path: "/tong-quan",
+    name: "home-admin",
     component: HOME_PAGE_ADMIN,
     meta: {
       layout: "administration",
@@ -33,10 +30,62 @@ const routes = [
   },
   {
     path: "/quan-ly-tai-khoan",
-    name: "account_manage",
+    name: "account-manage",
     component: ACCOUNT_MANAGE,
     meta: {
       layout: "administration",
+      title: "Tables",
+    },
+  },
+  {
+    path: "/blogs",
+    name: "blog",
+    component: BLOG_MANAGE,
+    meta: {
+      layout: "administration",
+      title: "Tables",
+    },
+  },
+  {
+    path: "/quan-ly-xe",
+    name: "car-manage",
+    component: CAR_MANAGE,
+    meta: {
+      layout: "administration",
+      title: "Tables",
+    },
+  },
+  {
+    path: "/quan-ly-khuyen-mai",
+    name: "sale-manage",
+    component: SALE_MANAGE,
+    meta: {
+      layout: "administration",
+      title: "Tables",
+    },
+  },
+  {
+    path: "/quan-ly-hop-dong",
+    name: "constracts-manage",
+    component: CONSTRACT_MANAGE,
+    meta: {
+      layout: "administration",
+      title: "Tables",
+    },
+  },
+  {
+    path: "/thong-ke",
+    name: "statistic",
+    component: STATISTIS_MANAGE,
+    meta: {
+      layout: "administration",
+      title: "Tables",
+    },
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    component: () => {
+      import("@/components/admins/NotFound");
     },
   },
 ];

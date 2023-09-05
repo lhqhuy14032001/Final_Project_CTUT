@@ -3,8 +3,8 @@ import { computed, ref, onMounted } from "vue";
 import { useMainStore } from "@/stores/main";
 import {
   mdiAccountMultiple,
-  mdiCartOutline,
-  mdiChartTimelineVariant,
+  mdiCar,
+  mdiSale,
   mdiReload,
   mdiChartPie,
 } from "@mdi/js";
@@ -13,7 +13,6 @@ import LineChart from "@/components/admins/Charts/LineChart.vue";
 import SectionMain from "@/components/admins/SectionMain.vue";
 import CardBoxWidget from "@/components/admins/CardBoxWidget.vue";
 import CardBox from "@/components/admins/CardBox.vue";
-import TableSampleClients from "@/components/admins/TableSampleClients.vue";
 import BaseButton from "@/components/admins/BaseButton.vue";
 import CardBoxTransaction from "@/components/admins/CardBoxTransaction.vue";
 // import CardBoxClient from "@/components/admins/CardBoxClient.vue";
@@ -52,25 +51,25 @@ const transactionBarItems = computed(() => mainStore.history);
         color="text-emerald-500"
         :icon="mdiAccountMultiple"
         :number="512"
-        label="Clients"
+        label="Tài khoản"
       />
       <CardBoxWidget
         trend="12%"
         trend-type="down"
         color="text-blue-500"
-        :icon="mdiCartOutline"
+        :icon="mdiCar"
         :number="7770"
-        prefix="$"
-        label="Sales"
+        suffix="xe"
+        label="Xe"
       />
       <CardBoxWidget
         trend="Overflow"
         trend-type="alert"
         color="text-red-500"
-        :icon="mdiChartTimelineVariant"
-        :number="256"
-        suffix="%"
-        label="Performance"
+        :icon="mdiSale"
+        :number="20"
+        suffix=" mã"
+        label="Mã giảm giá"
       />
     </div>
 
@@ -108,10 +107,6 @@ const transactionBarItems = computed(() => mainStore.history);
       <div v-if="chartData">
         <line-chart :data="chartData" class="h-96" />
       </div>
-    </CardBox>
-
-    <CardBox has-table>
-      <TableSampleClients />
     </CardBox>
   </SectionMain>
 </template>

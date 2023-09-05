@@ -5,7 +5,7 @@ import CardBox from "@/components/admins/CardBox.vue";
 import NumberDynamic from "@/components/admins/NumberDynamic.vue";
 import BaseIcon from "@/components/admins/BaseIcon.vue";
 import BaseLevel from "@/components/admins/BaseLevel.vue";
-import PillTagTrend from "@/components/admins/PillTagTrend.vue";
+// import PillTagTrend from "@/components/admins/PillTagTrend.vue";
 import BaseButton from "@/components/admins/BaseButton.vue";
 
 defineProps({
@@ -47,7 +47,7 @@ defineProps({
 <template>
   <CardBox>
     <BaseLevel v-if="trend" class="mb-3" mobile>
-      <PillTagTrend :trend="trend" :trend-type="trendType" small />
+      <!-- <PillTagTrend :trend="trend" :trend-type="trendType" small /> -->
       <BaseButton
         :icon="mdiCog"
         icon-w="w-4"

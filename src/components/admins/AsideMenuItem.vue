@@ -1,8 +1,8 @@
 <script setup>
-import { ref, computed, defineEmits, defineProps } from "vue";
 import { RouterLink } from "vue-router";
+import { computed, defineProps, defineEmits, ref } from "vue";
 import { useStyleStore } from "@/stores/style.js";
-import { mdiMinus, mdiPlus } from "@mdi/js";
+// import { mdiMinus, mdiPlus } from "@mdi/js";
 import { getButtonColor } from "@/colors.js";
 import BaseIcon from "@/components/admins/BaseIcon.vue";
 // import AsideMenuList from "@/components/admins/AsideMenuList.vue";
@@ -38,23 +38,22 @@ const hasDropdown = computed(() => !!props.item.menu);
 
 const menuClick = (event) => {
   emit("menu-click", event, props.item);
-
   if (hasDropdown.value) {
     isDropdownActive.value = !isDropdownActive.value;
   }
 };
 </script>
-
+<!-- :is="item.to ? RouterLink : 'a'" -->
+<!-- :href="item.href ?? null" -->
+<!-- :to="{ name: item.name, params: item.params }" -->
 <template>
-  <li class="hover:bg-primary hover:text-white rounded-lg">
+  <li class="menu-item my-1 rounded-lg">
     <component
-      :is="item.to ? RouterLink : 'a'"
-      v-slot="vSlot"
-      :to="item.to ?? null"
-      :href="item.href ?? null"
-      :target="item.target ?? null"
+      :is="item.name ? RouterLink : a"
+      :to="{ name: item.name, params: item.params }"
       class="flex cursor-pointer"
       :class="componentClass"
+      v-slot="vSlot"
       @click="menuClick"
     >
       <BaseIcon
@@ -73,14 +72,15 @@ const menuClick = (event) => {
         ]"
         >{{ item.label }}</span
       >
-      <BaseIcon
+    </component>
+    <!-- <BaseIcon
         v-if="hasDropdown"
         :path="isDropdownActive ? mdiMinus : mdiPlus"
         class="flex-none"
         :class="[vSlot && vSlot.isExactActive ? asideMenuItemActiveStyle : '']"
         w="w-12"
-      />
-    </component>
+      /> -->
+    <!-- </component> -->
     <!-- <AsideMenuList
       v-if="hasDropdown"
       :menu="item.menu"

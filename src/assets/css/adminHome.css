@@ -1,0 +1,25 @@
+.menu-item {
+  position: relative;
+}
+
+.menu-item:hover {
+  @apply text-white;
+}
+
+.menu-item:hover::before {
+  width: 100%;
+}
+
+.menu-item::before {
+  content: "";
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  @apply bg-primary;
+  transition: width .2s linear;
+  border-radius: .5rem;
+  z-index: -1;
+}
