@@ -19,18 +19,6 @@ const props = defineProps({
 
 const emit = defineEmits(["menu-click"]);
 
-const is = computed(() => {
-  if (props.item.href) {
-    return "a";
-  }
-
-  if (props.item.to) {
-    return RouterLink;
-  }
-
-  return "div";
-});
-
 const styleStore = useStyleStore();
 
 const componentClass = computed(() => {
@@ -90,14 +78,11 @@ onBeforeUnmount(() => {
 <template>
   <BaseDivider v-if="item.isDivider" nav-bar />
   <component
-    :is="is"
+    :is="RouterLink"
     v-else
-    ref="root"
     class="block lg:flex items-center relative cursor-pointer"
     :class="componentClass"
-    :to="item.to ?? null"
-    :href="item.href ?? null"
-    :target="item.target ?? null"
+    :to="{ name: item.name, params: item.params }"
     @click="menuClick"
   >
     <div
@@ -113,7 +98,7 @@ onBeforeUnmount(() => {
       />
 
       <span
-        class="px-2 transition-colors"
+        class="px-2 transition-colors text-black"
         :class="{ 'lg:hidden': item.isDesktopNoLabel && item.icon }"
         >{{ itemLabel }}</span
       >

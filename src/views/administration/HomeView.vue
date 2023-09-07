@@ -37,11 +37,8 @@ const transactionBarItems = computed(() => mainStore.history);
 
 <template>
   <SectionMain>
-    <SectionTitleLineWithButton
-      :icon="mdiChartTimelineVariant"
-      title="Tổng quan"
-      main
-    >
+    <SectionTitleLineWithButton :icon="mdi" title="Tổng quan" main>
+      <p></p>
     </SectionTitleLineWithButton>
 
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">

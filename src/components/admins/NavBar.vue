@@ -37,6 +37,7 @@ const isMenuNavBarActive = ref(false);
           <BaseIcon
             :path="isMenuNavBarActive ? mdiClose : mdiDotsVertical"
             size="24"
+            class="mb-6"
           />
         </NavBarItemPlain>
       </div>

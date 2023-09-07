@@ -1,11 +1,12 @@
 <script setup>
-import { computed, defineProps, defineEmits } from "vue";
+import { computed, defineProps, defineEmits, ref } from "vue";
 import { mdiClose } from "@mdi/js";
 import BaseButton from "@/components/admins/BaseButton.vue";
 import BaseButtons from "@/components/admins/BaseButtons.vue";
 import CardBox from "@/components/admins/CardBox.vue";
 import OverlayLayer from "@/components/admins/OverlayLayer.vue";
 import CardBoxComponentTitle from "@/components/admins/CardBoxComponentTitle.vue";
+import VueBasicAlert from "vue-basic-alert";
 
 const props = defineProps({
   title: {
@@ -20,10 +21,30 @@ const props = defineProps({
     type: String,
     default: "Done",
   },
+  hasButtonConfirm: Boolean,
   hasCancel: Boolean,
   modelValue: {
     type: [String, Number, Boolean],
     default: null,
+  },
+  alertTitle: {
+    type: [String, Number],
+    default: null,
+  },
+  alertContent: {
+    type: [String, Number],
+    default: null,
+  },
+  alertType: {
+    type: String,
+  },
+  alertDuration: {
+    type: Number,
+    default: 2000,
+  },
+  alertCloseIn: {
+    type: Number,
+    default: 3000,
   },
 });
 
@@ -39,7 +60,15 @@ const confirmCancel = (mode) => {
   emit(mode);
 };
 
-const confirm = () => confirmCancel("confirm");
+const notification = ref(null);
+const confirm = () => {
+  notification.value.showAlert(
+    props.alertType,
+    props.alertTitle,
+    props.alertContent
+  );
+  confirmCancel("confirm");
+};
 
 const cancel = () => confirmCancel("cancel");
 
@@ -51,6 +80,11 @@ window.addEventListener("keydown", (e) => {
 </script>
 
 <template>
+  <VueBasicAlert
+    :duration="alertDuration"
+    :close-in="alertCloseIn"
+    ref="notification"
+  ></VueBasicAlert>
   <OverlayLayer v-show="value" @overlay-click="cancel">
     <CardBox
       v-show="value"
@@ -73,11 +107,16 @@ window.addEventListener("keydown", (e) => {
       </div>
 
       <template #footer>
-        <BaseButtons>
-          <BaseButton :label="buttonLabel" :color="button" @click="confirm" />
+        <BaseButtons class="flex justify-end">
+          <BaseButton
+            v-if="hasButtonConfirm"
+            :label="buttonLabel"
+            :color="button"
+            @click="confirm"
+          />
           <BaseButton
             v-if="hasCancel"
-            label="Cancel"
+            label="Huỷ"
             :color="button"
             outline
             @click="cancel"

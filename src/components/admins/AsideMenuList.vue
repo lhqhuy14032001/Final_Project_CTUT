@@ -28,3 +28,10 @@ const menuClick = (event, item) => {
     />
   </ul>
 </template>
+<style lang="css">
+.router-link-active.router-link-exact-active {
+  @apply bg-primary;
+  @apply text-white;
+  @apply rounded-lg;
+}
+</style>

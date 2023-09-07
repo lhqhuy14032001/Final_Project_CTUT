@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref, defineProps } from "vue";
 import { useMainStore } from "@/stores/main";
-import { mdiEye, mdiTrashCan } from "@mdi/js";
+import { mdiEye, mdiTrashCan, mdiUpdate } from "@mdi/js";
 import CardBoxModal from "@/components/admins/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/admins/TableCheckboxCell.vue";
 import BaseLevel from "@/components/admins/BaseLevel.vue";
@@ -17,9 +17,11 @@ const mainStore = useMainStore();
 
 const items = computed(() => mainStore.clients);
 
-const isModalActive = ref(false);
+const isModalDetailActive = ref(false);
 
-const isModalDangerActive = ref(false);
+const isModalUpdateActive = ref(false);
+
+const isModalDeleteActive = ref(false);
 
 const perPage = ref(5);
 
@@ -70,23 +72,179 @@ const checked = (isChecked, client) => {
     );
   }
 };
+
+// Status of API return to alert
+const stateDeleteAccount = ref(false);
+const stateUpdateAccount = ref(false);
 </script>
 
 <template>
-  <CardBoxModal v-model="isModalActive" title="Sample modal">
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
-  </CardBoxModal>
-
+  <!-- START: MODAL DETAIL ACCOUNT -->
   <CardBoxModal
-    v-model="isModalDangerActive"
-    title="Please confirm"
-    button="danger"
+    v-model="isModalDetailActive"
+    title="Chi tiết tài khoản"
     has-cancel
   >
-    <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-    <p>This is sample modal</p>
+    <form class="flex flex-col justify-start space-y-6">
+      <div class="row flex flex-col">
+        <label for="email" class="mr-auto font-semibold">Email</label>
+        <div class="border-b-2">
+          <input
+            class="focus:ring-0 border-none w-full text-fz-16 pl-0"
+            type="email"
+            id="email"
+          />
+        </div>
+      </div>
+
+      <div class="row flex xl:justify-between">
+        <div class="mr-2 w-full">
+          <label for="lastname" class="block text-left font-semibold">Họ</label>
+          <div class="border-b-2">
+            <input
+              class="focus:ring-0 border-none w-full text-fz-16 pl-0"
+              type="text"
+              id="lastname"
+            />
+          </div>
+        </div>
+        <div class="w-full">
+          <label for="firstname" class="block text-left font-semibold"
+            >Tên</label
+          >
+          <div class="border-b-2">
+            <input
+              class="focus:ring-0 border-none w-full text-fz-16 pl-0"
+              type="text"
+              id="firstname"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row flex flex-col">
+        <label for="phonenumber" class="mr-auto font-semibold"
+          >Số điện thoại</label
+        >
+        <div class="border-b-2">
+          <input
+            class="focus:ring-0 border-none w-full text-fz-16 pl-0"
+            type="text"
+            id="phonenumber"
+          />
+        </div>
+      </div>
+      <div class="row flex flex-col">
+        <label for="address" class="mr-auto font-semibold"> Địa chỉ </label>
+        <div class="border-b-2">
+          <input
+            class="focus:ring-0 border-none w-full text-fz-16 pl-0"
+            type="text"
+            id="address"
+          />
+        </div>
+      </div>
+    </form>
   </CardBoxModal>
+  <!-- END: MODAL DETAIL ACCOUNT -->
+
+  <!-- START: MODAL UPDATE ACCOUNT -->
+  <CardBoxModal
+    v-model="isModalUpdateActive"
+    title="Cập nhật tài khoản"
+    has-cancel
+    has-button-confirm
+    button="info"
+    button-label="Cập nhật"
+    :alert-type="stateUpdateAccount ? 'success' : 'error'"
+    alert-title="Cập nhật người dùng"
+    :alert-content="
+      stateUpdateAccount
+        ? 'Cập nhật người dùng thành công!'
+        : 'Cập nhật người dùng thất bại!'
+    "
+  >
+    <form class="flex flex-col justify-start space-y-6">
+      <div class="row flex flex-col">
+        <label for="email" class="mr-auto font-semibold">Email</label>
+        <div class="border-b-2">
+          <input
+            class="focus:ring-0 border-none w-full text-fz-16 pl-0"
+            type="email"
+            id="email"
+          />
+        </div>
+      </div>
+
+      <div class="row flex xl:justify-between">
+        <div class="mr-2 w-full">
+          <label for="lastname" class="block text-left font-semibold">Họ</label>
+          <div class="border-b-2">
+            <input
+              class="focus:ring-0 border-none w-full text-fz-16 pl-0"
+              type="text"
+              id="lastname"
+            />
+          </div>
+        </div>
+        <div class="w-full">
+          <label for="firstname" class="block text-left font-semibold"
+            >Tên</label
+          >
+          <div class="border-b-2">
+            <input
+              class="focus:ring-0 border-none w-full text-fz-16 pl-0"
+              type="text"
+              id="firstname"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row flex flex-col">
+        <label for="phonenumber" class="mr-auto font-semibold"
+          >Số điện thoại</label
+        >
+        <div class="border-b-2">
+          <input
+            class="focus:ring-0 border-none w-full text-fz-16 pl-0"
+            type="text"
+            id="phonenumber"
+          />
+        </div>
+      </div>
+      <div class="row flex flex-col">
+        <label for="address" class="mr-auto font-semibold"> Địa chỉ </label>
+        <div class="border-b-2">
+          <input
+            class="focus:ring-0 border-none w-full text-fz-16 pl-0"
+            type="text"
+            id="address"
+          />
+        </div>
+      </div>
+    </form>
+  </CardBoxModal>
+  <!-- END: MODAL UPDATE ACCOUNT -->
+
+  <!-- START: CONFIRM DELETE -->
+  <CardBoxModal
+    v-model="isModalDeleteActive"
+    title="Xác nhận xoá"
+    button="danger"
+    button-label="Xác nhận"
+    has-cancel
+    has-button-confirm
+    :alert-type="stateDeleteAccount ? 'success' : 'error'"
+    alert-title="Xoá người dùng"
+    :alert-content="
+      stateDeleteAccount
+        ? 'Xoá người dùng thành công!'
+        : 'Xoá người dùng thất bại!'
+    "
+  >
+    <p>Bạn có chắc chắn muốn xoá tài khoản này?</p>
+    <p>Lưu ý: KHÔNG thể khôi phục dữ liệu tài khoản sau khi đã xoá.</p>
+  </CardBoxModal>
+  <!-- END: CONFIRM DELETE -->
 
   <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
     <span
@@ -148,13 +306,19 @@ const checked = (isChecked, client) => {
               color="info"
               :icon="mdiEye"
               small
-              @click="isModalActive = true"
+              @click="isModalDetailActive = !isModalDetailActive"
+            />
+            <BaseButton
+              color="danger"
+              :icon="mdiUpdate"
+              small
+              @click="isModalUpdateActive = !isModalUpdateActive"
             />
             <BaseButton
               color="danger"
               :icon="mdiTrashCan"
               small
-              @click="isModalDangerActive = true"
+              @click="isModalDeleteActive = !isModalDeleteActive"
             />
           </BaseButtons>
         </td>

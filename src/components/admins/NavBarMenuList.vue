@@ -22,5 +22,6 @@ const menuClick = (event, item) => {
     :key="index"
     :item="item"
     @menu-click="menuClick"
+    class="bg-white"
   />
 </template>

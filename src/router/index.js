@@ -1,15 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import { HOME_PAGE } from "@/router/import/clientCoponents";
-import {
-  HOME_PAGE_ADMIN,
-  ACCOUNT_MANAGE,
-  BLOG_MANAGE,
-  CAR_MANAGE,
-  SALE_MANAGE,
-  CONSTRACT_MANAGE,
-  STATISTIS_MANAGE,
-} from "@/router/import/adminComponents";
+import * as ADMIN from "./import/adminComponents";
 
 const routes = [
   {
@@ -23,7 +15,7 @@ const routes = [
   {
     path: "/tong-quan",
     name: "home-admin",
-    component: HOME_PAGE_ADMIN,
+    component: ADMIN.HOME_PAGE_ADMIN,
     meta: {
       layout: "administration",
     },
@@ -31,7 +23,7 @@ const routes = [
   {
     path: "/quan-ly-tai-khoan",
     name: "account-manage",
-    component: ACCOUNT_MANAGE,
+    component: ADMIN.ACCOUNT_MANAGE,
     meta: {
       layout: "administration",
       title: "Tables",
@@ -40,7 +32,7 @@ const routes = [
   {
     path: "/blogs",
     name: "blog",
-    component: BLOG_MANAGE,
+    component: ADMIN.BLOG_MANAGE,
     meta: {
       layout: "administration",
       title: "Tables",
@@ -49,7 +41,7 @@ const routes = [
   {
     path: "/quan-ly-xe",
     name: "car-manage",
-    component: CAR_MANAGE,
+    component: ADMIN.CAR_MANAGE,
     meta: {
       layout: "administration",
       title: "Tables",
@@ -58,7 +50,7 @@ const routes = [
   {
     path: "/quan-ly-khuyen-mai",
     name: "sale-manage",
-    component: SALE_MANAGE,
+    component: ADMIN.SALE_MANAGE,
     meta: {
       layout: "administration",
       title: "Tables",
@@ -67,7 +59,7 @@ const routes = [
   {
     path: "/quan-ly-hop-dong",
     name: "constracts-manage",
-    component: CONSTRACT_MANAGE,
+    component: ADMIN.CONSTRACT_MANAGE,
     meta: {
       layout: "administration",
       title: "Tables",
@@ -76,7 +68,7 @@ const routes = [
   {
     path: "/thong-ke",
     name: "statistic",
-    component: STATISTIS_MANAGE,
+    component: ADMIN.STATISTIS_MANAGE,
     meta: {
       layout: "administration",
       title: "Tables",
@@ -84,8 +76,9 @@ const routes = [
   },
   {
     path: "/:pathMatch(.*)*",
-    component: () => {
-      import("@/components/admins/NotFound");
+    component: () => import("@/views/NotFound.vue"),
+    meta: {
+      layout: "client",
     },
   },
 ];

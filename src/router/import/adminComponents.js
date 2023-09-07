@@ -9,18 +9,20 @@ const ACCOUNT_MANAGE = () =>
 
 const BLOG_MANAGE = () =>
   import(
-    /*webpackChunkName: "blog_manage"*/ "@/views/administration/ErrorView"
+    /*webpackChunkName: "blog_manage"*/ "@/views/administration/TableBlogs"
   );
 const CAR_MANAGE = () =>
-  import(/*webpackChunkName: "car_manage"*/ "@/views/administration/ErrorView");
+  import(
+    /*webpackChunkName: "car_manage"*/ "@/views/administration/VehiclesManage"
+  );
 
 const SALE_MANAGE = () =>
   import(
-    /*webpackChunkName: "sale_manage"*/ "@/views/administration/ErrorView"
+    /*webpackChunkName: "sale_manage"*/ "@/views/administration/VouchersManage"
   );
 const CONSTRACT_MANAGE = () =>
   import(
-    /*webpackChunkName: "contract_manage"*/ "@/views/administration/ErrorView"
+    /*webpackChunkName: "contract_manage"*/ "@/views/administration/ContractsManage"
   );
 const STATISTIS_MANAGE = () =>
   import(/*webpackChunkName: "statistic"*/ "@/views/administration/ErrorView");

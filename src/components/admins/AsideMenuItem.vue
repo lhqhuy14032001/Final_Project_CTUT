@@ -5,7 +5,6 @@ import { useStyleStore } from "@/stores/style.js";
 // import { mdiMinus, mdiPlus } from "@mdi/js";
 import { getButtonColor } from "@/colors.js";
 import BaseIcon from "@/components/admins/BaseIcon.vue";
-// import AsideMenuList from "@/components/admins/AsideMenuList.vue";
 
 const props = defineProps({
   item: {
@@ -43,13 +42,10 @@ const menuClick = (event) => {
   }
 };
 </script>
-<!-- :is="item.to ? RouterLink : 'a'" -->
-<!-- :href="item.href ?? null" -->
-<!-- :to="{ name: item.name, params: item.params }" -->
 <template>
   <li class="menu-item my-1 rounded-lg">
     <component
-      :is="item.name ? RouterLink : a"
+      :is="item.label ? RouterLink : a"
       :to="{ name: item.name, params: item.params }"
       class="flex cursor-pointer"
       :class="componentClass"
@@ -72,16 +68,16 @@ const menuClick = (event) => {
         ]"
         >{{ item.label }}</span
       >
-    </component>
-    <!-- <BaseIcon
+      <!-- </component> -->
+      <BaseIcon
         v-if="hasDropdown"
         :path="isDropdownActive ? mdiMinus : mdiPlus"
         class="flex-none"
         :class="[vSlot && vSlot.isExactActive ? asideMenuItemActiveStyle : '']"
         w="w-12"
-      /> -->
-    <!-- </component> -->
-    <!-- <AsideMenuList
+      />
+    </component>
+    <AsideMenuList
       v-if="hasDropdown"
       :menu="item.menu"
       :class="[
@@ -89,6 +85,6 @@ const menuClick = (event) => {
         isDropdownActive ? 'block dark:bg-slate-800/50' : 'hidden',
       ]"
       is-dropdown-list
-    /> -->
+    />
   </li>
 </template>

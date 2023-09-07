@@ -53,7 +53,10 @@ const submit = (event) => {
   >
     <slot v-if="hasComponentLayout" />
     <template v-else>
-      <CardBoxComponentBody :no-padding="hasTable">
+      <CardBoxComponentBody
+        :no-padding="hasTable"
+        class="overflow-scroll xl:overflow-auto"
+      >
         <slot />
       </CardBoxComponentBody>
       <CardBoxComponentFooter v-if="hasFooterSlot">

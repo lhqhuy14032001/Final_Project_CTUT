@@ -36,11 +36,15 @@ const datasetObject = (color, points) => {
   };
 };
 
-export const sampleChartData = (points = 9) => {
+export const sampleChartData = (points = 8) => {
   const labels = [];
 
-  for (let i = 1; i <= points; i++) {
-    labels.push(`0${i}`);
+  for (let i = 2; i <= points; i++) {
+    if (i == 8) {
+      labels.push("Chủ nhật");
+      break;
+    }
+    labels.push(`Thứ ${i}`);
   }
 
   return {

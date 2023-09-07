@@ -58,14 +58,7 @@ const asideLgCloseClick = (event) => {
           <BaseIcon :path="mdiClose" />
         </button>
       </div>
-      <div
-        :class="
-          styleStore.darkMode
-            ? 'aside-scrollbars-[slate]'
-            : styleStore.asideScrollbarsStyle
-        "
-        class="flex-1 overflow-y-auto overflow-x-hidden"
-      >
+      <div class="flex-1 overflow-y-auto overflow-x-hidden">
         <AsideMenuList :menu="menu" @menu-click="menuClick" />
       </div>
       <ul>

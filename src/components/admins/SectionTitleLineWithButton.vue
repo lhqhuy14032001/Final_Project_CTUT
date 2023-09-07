@@ -1,25 +1,3 @@
-<script setup>
-import { mdiCog } from "@mdi/js";
-import { useSlots, computed, defineProps } from "vue";
-import BaseIcon from "@/components/admins/BaseIcon.vue";
-import BaseButton from "@/components/admins/BaseButton.vue";
-import IconRounded from "@/components/admins/IconRounded.vue";
-
-defineProps({
-  icon: {
-    type: String,
-    default: null,
-  },
-  title: {
-    type: String,
-    required: true,
-  },
-  main: Boolean,
-});
-
-const hasSlot = computed(() => useSlots().default);
-</script>
-
 <template>
   <section
     :class="{ 'pt-6': !main }"
@@ -39,6 +17,35 @@ const hasSlot = computed(() => useSlots().default);
       </h1>
     </div>
     <slot v-if="hasSlot" />
-    <BaseButton v-else :icon="mdiCog" color="whiteDark" />
+    <BaseButton
+      v-else
+      :icon="mdiPlusBox"
+      color="whiteDark"
+      @click="toggleModalCreate"
+    />
   </section>
 </template>
+<script setup>
+// import { mdiCog } from "@mdi/js";
+import { useSlots, computed, defineProps, defineEmits } from "vue";
+import BaseIcon from "@/components/admins/BaseIcon.vue";
+import BaseButton from "@/components/admins/BaseButton.vue";
+import IconRounded from "@/components/admins/IconRounded.vue";
+import { mdiPlusBox } from "@mdi/js";
+
+defineProps({
+  icon: {
+    type: String,
+    default: null,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  main: Boolean,
+});
+const emit = defineEmits(["toggleModalCreateAccount"]);
+const hasSlot = computed(() => useSlots().default);
+
+const toggleModalCreate = () => emit("toggleModalCreateAccount");
+</script>

@@ -5,7 +5,7 @@ import { useRouter } from "vue-router";
 import menuAside from "@/ultils/menuAside";
 import menuNavBar from "@/ultils/menuNavBar.js";
 import { useMainStore } from "@/stores/main.js";
-import { useStyleStore } from "@/stores/style.js";
+// import { useStyleStore } from "@/stores/style.js";
 import BaseIcon from "@/components/admins/BaseIcon.vue";
 import NavBar from "@/components/admins/NavBar.vue";
 import NavBarItemPlain from "@/components/admins/NavBarItemPlain.vue";
@@ -21,7 +21,7 @@ useMainStore().setUser({
 
 const layoutAsidePadding = "xl:pl-60";
 
-const styleStore = useStyleStore();
+// const styleStore = useStyleStore();
 
 const router = useRouter();
 
@@ -34,9 +34,9 @@ router.beforeEach(() => {
 });
 
 const menuClick = (event, item) => {
-  if (item.isToggleLightDark) {
-    styleStore.setDarkMode();
-  }
+  // if (item.isToggleLightDark) {
+  //   styleStore.setDarkMode();
+  // }
 
   if (item.isLogout) {
     //
@@ -47,7 +47,6 @@ const menuClick = (event, item) => {
 <template>
   <div
     :class="{
-      dark: styleStore.darkMode,
       'overflow-hidden lg:overflow-visible': isAsideMobileExpanded,
     }"
   >
@@ -59,8 +58,9 @@ const menuClick = (event, item) => {
         :menu="menuNavBar"
         :class="[
           layoutAsidePadding,
-          { 'ml-60 lg:ml-0': isAsideMobileExpanded },
+          { 'ml-60 mt-4 lg:ml-0': isAsideMobileExpanded },
         ]"
+        class="lg:hidden"
         @menu-click="menuClick"
       >
         <NavBarItemPlain

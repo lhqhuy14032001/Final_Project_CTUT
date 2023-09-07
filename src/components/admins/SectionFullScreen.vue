@@ -1,34 +1,33 @@
 <script setup>
-import { computed, defineProps } from "vue";
-import { useStyleStore } from "@/stores/style";
-import {
-  gradientBgPurplePink,
-  gradientBgDark,
-  gradientBgPinkRed,
-} from "@/colors";
+// import { useStyleStore } from "@/stores/style";
+// import {
+//   gradientBgPurplePink,
+//   gradientBgDark,
+//   gradientBgPinkRed,
+// } from "@/colors";
 
-const props = defineProps({
-  bg: {
-    type: String,
-    required: true,
-    validator: (value) => ["purplePink", "pinkRed"].includes(value),
-  },
-});
+// const props = defineProps({
+//   bg: {
+//     type: String,
+//     required: true,
+//     validator: (value) => ["purplePink", "pinkRed"].includes(value),
+//   },
+// });
 
-const colorClass = computed(() => {
-  if (useStyleStore().darkMode) {
-    return gradientBgDark;
-  }
+// const colorClass = computed(() => {
+//   if (useStyleStore().darkMode) {
+//     return gradientBgDark;
+//   }
 
-  switch (props.bg) {
-    case "purplePink":
-      return gradientBgPurplePink;
-    case "pinkRed":
-      return gradientBgPinkRed;
-  }
+//   switch (props.bg) {
+//     case "purplePink":
+//       return gradientBgPurplePink;
+//     case "pinkRed":
+//       return gradientBgPinkRed;
+//   }
 
-  return "";
-});
+//   return "";
+// });
 </script>
 
 <template>
