@@ -18,6 +18,7 @@ const emit = defineEmits(["menu-click", "aside-lg-close-click"]);
 const styleStore = useStyleStore();
 
 const logoutItem = computed(() => ({
+  path: "/tong-quan",
   label: "Đăng xuất",
   icon: mdiLogout,
   color: "bg-transparent",

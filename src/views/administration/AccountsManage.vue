@@ -13,7 +13,7 @@
       :icon="mdiTableBorder"
       title="Danh sách tài khoản"
       main
-      @toggleModalCreateAccount="toggleModalCreateAccount"
+      @toggleModal="toggleModalCreateAccount"
     >
     </SectionTitleLineWithButton>
     <CardBox class="mb-6" has-table>

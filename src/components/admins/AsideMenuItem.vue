@@ -2,9 +2,10 @@
 import { RouterLink } from "vue-router";
 import { computed, defineProps, defineEmits, ref } from "vue";
 import { useStyleStore } from "@/stores/style.js";
-// import { mdiMinus, mdiPlus } from "@mdi/js";
+import { mdiMinus, mdiPlus } from "@mdi/js";
 import { getButtonColor } from "@/colors.js";
 import BaseIcon from "@/components/admins/BaseIcon.vue";
+import AsideMenuList from "@/components/admins/AsideMenuList.vue";
 
 const props = defineProps({
   item: {
@@ -34,7 +35,6 @@ const componentClass = computed(() => [
 ]);
 
 const hasDropdown = computed(() => !!props.item.menu);
-
 const menuClick = (event) => {
   emit("menu-click", event, props.item);
   if (hasDropdown.value) {
@@ -43,13 +43,15 @@ const menuClick = (event) => {
 };
 </script>
 <template>
-  <li class="menu-item my-1 rounded-lg">
+  <li class="my-1 rounded-lg">
     <component
-      :is="item.label ? RouterLink : a"
-      :to="{ name: item.name, params: item.params }"
-      class="flex cursor-pointer"
-      :class="componentClass"
+      :is="item.name ? RouterLink : 'a'"
       v-slot="vSlot"
+      :to="{ name: item.name, params: item.params }"
+      :href="item.href ?? null"
+      :target="item.target ?? null"
+      class="flex cursor-pointer menu-item"
+      :class="componentClass"
       @click="menuClick"
     >
       <BaseIcon
@@ -61,14 +63,13 @@ const menuClick = (event) => {
         :size="18"
       />
       <span
-        class="grow text-ellipsis line-clamp-1"
+        class="grow text-ellipsis line-clamp-1 text-left"
         :class="[
-          { 'pr-12': !hasDropdown },
+          { 'pr-0': !hasDropdown },
           vSlot && vSlot.isExactActive ? asideMenuItemActiveStyle : '',
         ]"
         >{{ item.label }}</span
       >
-      <!-- </component> -->
       <BaseIcon
         v-if="hasDropdown"
         :path="isDropdownActive ? mdiMinus : mdiPlus"

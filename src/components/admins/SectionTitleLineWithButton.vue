@@ -21,7 +21,7 @@
       v-else
       :icon="mdiPlusBox"
       color="whiteDark"
-      @click="toggleModalCreate"
+      @click="toggleModal"
     />
   </section>
 </template>
@@ -44,8 +44,8 @@ defineProps({
   },
   main: Boolean,
 });
-const emit = defineEmits(["toggleModalCreateAccount"]);
+const emit = defineEmits(["toggleModal"]);
 const hasSlot = computed(() => useSlots().default);
 
-const toggleModalCreate = () => emit("toggleModalCreateAccount");
+const toggleModal = () => emit("toggleModal");
 </script>

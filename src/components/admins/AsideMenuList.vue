@@ -19,12 +19,12 @@ const menuClick = (event, item) => {
 
 <template>
   <ul>
-    <!-- :is-dropdown-list="isDropdownList" -->
     <AsideMenuItem
       v-for="(item, index) in menu"
       :key="index"
       :item="item"
       @menu-click="menuClick"
+      :is-dropdown-list="isDropdownList"
     />
   </ul>
 </template>

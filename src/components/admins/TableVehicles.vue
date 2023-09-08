@@ -125,7 +125,7 @@ const checked = (isChecked, client) => {
               :icon="mdiEye"
               small
               @click="isModalActive = true"
-            />
+            ></BaseButton>
             <BaseButton
               color="danger"
               :icon="mdiTrashCan"

@@ -2,9 +2,11 @@ import {
   mdiAccountCircle,
   mdiCar,
   mdiChartBar,
+  mdiMenu,
   mdiMonitor,
   mdiNewspaper,
   mdiNoteText,
+  mdiPlus,
   mdiSale,
 } from "@mdi/js";
 
@@ -31,11 +33,25 @@ export default [
     icon: mdiNewspaper,
   },
   {
-    name: "car-manage",
-    path: "/quan-ly-xe",
-    params: {},
+    // name: "car-manage",
+    // path: "/quan-ly-xe",
+    // params: {},
     label: "Quản lý xe",
     icon: mdiCar,
+    menu: [
+      {
+        label: "Danh sách xe",
+        icon: mdiMenu,
+        name: "car-manage",
+        params: {},
+      },
+      {
+        label: "Thêm xe",
+        icon: mdiPlus,
+        name: "car-create",
+        params: {},
+      },
+    ],
   },
   {
     name: "sale-manage",

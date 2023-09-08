@@ -48,6 +48,22 @@ const routes = [
     },
   },
   {
+    path: "/them-xe",
+    name: "car-create",
+    component: ADMIN.CREATE_CAR,
+    meta: {
+      layout: "administration",
+    },
+  },
+  {
+    path: "/chi-tiet-xe/:id",
+    name: "car-detail",
+    component: ADMIN.CAR_DETAIL,
+    meta: {
+      layout: "administration",
+    },
+  },
+  {
     path: "/quan-ly-khuyen-mai",
     name: "sale-manage",
     component: ADMIN.SALE_MANAGE,

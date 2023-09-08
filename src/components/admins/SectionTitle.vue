@@ -1,20 +1,39 @@
-<script setup>
-import { defineProps } from "vue";
-defineProps({
-  custom: Boolean,
-  first: Boolean,
-  last: Boolean,
-});
-</script>
-
 <template>
   <section
-    class="py-24 px-6 lg:px-0 lg:max-w-2xl lg:mx-auto text-center"
-    :class="{ '-mb-6': first, '-mt-6': last, '-my-6': !first && !last }"
+    :class="{ 'pt-6': !main }"
+    class="mb-6 flex items-center justify-between"
   >
-    <slot v-if="custom" />
-    <h1 v-else class="text-2xl text-gray-500 dark:text-slate-400">
-      <slot />
-    </h1>
+    <div class="flex items-center justify-start">
+      <IconRounded
+        v-if="icon && main"
+        :icon="icon"
+        color="light"
+        class="mr-3"
+        bg
+      />
+      <BaseIcon v-else-if="icon" :path="icon" class="mr-2" size="20" />
+      <h1 :class="main ? 'text-3xl' : 'text-2xl'" class="leading-tight">
+        {{ title }}
+      </h1>
+    </div>
+    <slot v-if="hasSlot" />
   </section>
 </template>
+<script setup>
+// import { mdiCog } from "@mdi/js";
+import { defineProps } from "vue";
+import BaseIcon from "@/components/admins/BaseIcon.vue";
+import IconRounded from "@/components/admins/IconRounded.vue";
+
+defineProps({
+  icon: {
+    type: String,
+    default: null,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  main: Boolean,
+});
+</script>

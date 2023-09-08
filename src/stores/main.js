@@ -236,6 +236,13 @@ export const useMainStore = defineStore("main", {
       },
     ],
     history: [],
+    gearBox: [1, 2, 3, 4],
+    deposit: [
+      { value: 0, label: "Không thế chấp" },
+      { value: 1, label: "Tiền mặt" },
+      { value: 2, label: "Xe máy chính chủ" },
+      { value: 3, label: "Tất cả" },
+    ],
   }),
   actions: {
     setUser(payload) {
