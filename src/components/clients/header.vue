@@ -1,9 +1,9 @@
 <template>
-  <Transition @beforeEnter="onBeforeEnter" @enter="onEnter" :css="false">
-    <login v-if="isShowLogin" @closeLogin="toggleMenu" />
+  <Transition name="slide-fade" class="lg:hidden z-50">
+    <MenuMobile v-if="isShowMenu"></MenuMobile>
   </Transition>
-  <div class="container">
-    <nav class="z-0 flex justify-between items-center mx-4 p-0 h-14">
+  <div class="container mx-auto">
+    <nav class="z-0 flex justify-between items-center p-0 h-14">
       <!-- :to="{ name: 'home', params: {} } -->
       <div class="w-12 left-nav">
         <router-link to="/"
@@ -13,46 +13,42 @@
             alt="logo MiAUTO-logo"
         /></router-link>
       </div>
-      <div @click="toggleMenu" class="right-nav p-2">
-        <Bars3Icon class="h-6 w-6 text-black"></Bars3Icon>
+      <div class="right-nav p-2 lg:hidden">
+        <Bars3Icon @click="toggleMenu" class="h-6 w-6 text-black"></Bars3Icon>
       </div>
     </nav>
   </div>
 </template>
 <script setup>
+import MenuMobile from "@/components/clients/MenuMobile";
+import { useState } from "@/stores/state.store";
 import { Bars3Icon } from "@heroicons/vue/24/outline";
-import gsap from "gsap";
-import Login from "@/components/login.vue";
-import { ref } from "vue";
+import { computed } from "vue";
 
-const isShowLogin = ref(false);
+const stateStore = useState();
 const toggleMenu = () => {
-  isShowLogin.value = !isShowLogin.value;
-};
-const onBeforeEnter = (el) => {
-  gsap.set(el, {
-    xPercent: -100,
-  });
-};
-const onEnter = (el) => {
-  if (!isShowLogin.value) {
-    gsap.to(el, {
-      xPercent: -100,
-    });
-  } else {
-    gsap.to(el, {
-      xPercent: 0,
-    });
+  try {
+    stateStore.onToggleMenuMobile();
+  } catch (error) {
+    console.error("Faile to toggle menu", error);
   }
 };
-// const onLeave = (el) => {
-//   console.log("leave", isShowLogin.value);
-//   watch(isShowLogin, (newValue) => {
-//     console.log(newValue);
-//     gsap.from(el, {
-//       xPercent: -100,
-//     });
-//   });
-// };
+let isShowMenu = computed(() => stateStore.isShowMobileMenu);
+
+stateStore.$subscribe((mutation, { isShowMobileMenu }) => {
+  isShowMenu.value = isShowMobileMenu;
+});
 </script>
-<style lang="css" scoped></style>
+<style lang="css">
+.slide-fade-leave-to,
+.slide-fade-enter-from {
+  transform: translateX(-100%);
+}
+.slide-fade-leave-active,
+.slide-fade-enter-active {
+  transition: transform 0.5s ease-in;
+}
+.slide-fade-enter-to {
+  transform: translateX(0);
+}
+</style>

@@ -13,3 +13,6 @@
     @apply text-fz-16;
 }
 
+.ck-editor__editable {
+    min-height: 300px;
+}

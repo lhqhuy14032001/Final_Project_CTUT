@@ -1,0 +1,23 @@
+.loading-show-hide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.loading-show-hide div {
+  margin: 0 12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 100rem;
+  background-color: #5fcf86;
+  animation: showHide 0.5s infinite linear alternate;
+  animation-delay: calc(-0.125 * var(--delay));
+}
+
+@keyframes showHide {
+  0% {
+    transform: scale(0);
+  }
+  50%, 100% {
+    transform: scale(20px);
+  }
+}/*# sourceMappingURL=style.css.map */

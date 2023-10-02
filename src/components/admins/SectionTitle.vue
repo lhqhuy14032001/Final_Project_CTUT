@@ -35,5 +35,8 @@ defineProps({
     required: true,
   },
   main: Boolean,
+  hasSlot: {
+    type: String,
+  },
 });
 </script>

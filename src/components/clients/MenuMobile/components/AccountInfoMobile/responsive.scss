@@ -1,0 +1,10 @@
+.responsive {
+  & li {
+    & span {
+      @apply text-base;
+      @apply sm:text-xl;
+    }
+    @apply text-base;
+    @apply sm:text-xl;
+  }
+}

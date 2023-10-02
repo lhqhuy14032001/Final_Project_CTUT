@@ -1,42 +1,45 @@
+const ADMIN = () =>
+  import(/* webpackChunkName: "admin" */ "@/features/administration");
 const HOME_PAGE_ADMIN = () =>
   import(
-    /* webpackChunkName: "ad_homepage" */ "@/views/administration/HomeView"
+    /* webpackChunkName: "ad_homepage" */ "@/features/administration/HomeView"
   );
 const ACCOUNT_MANAGE = () =>
   import(
-    /*webpackChunkName: "acc_manage"*/ "@/views/administration/AccountsManage"
+    /*webpackChunkName: "acc_manage"*/ "@/features/administration/AccountsManage"
   );
 
 const BLOG_MANAGE = () =>
   import(
-    /*webpackChunkName: "blog_manage"*/ "@/views/administration/TableBlogs"
+    /*webpackChunkName: "blog_manage"*/ "@/features/administration/BlogsManage/views/BlogsList"
   );
 const CAR_MANAGE = () =>
-  import(
-    /*webpackChunkName: "car_manage"*/ "@/views/administration/VehiclesManage/VehiclesManage"
-  );
+  import(/*webpackChunkName: "car_manage"*/ "@/features/VehiclesManage");
 
 const CAR_DETAIL = () =>
   import(
-    /*webpackChunkName: "car_detail"*/ "@/views/administration/VehiclesManage/VehicleDetail"
+    /*webpackChunkName: "car_detail"*/ "@/features/VehiclesManage/components/VehicleDetail"
   );
 
 const CREATE_CAR = () =>
   import(
-    /*webpackChunkName: "create_car"*/ "@/views/administration/VehiclesManage/CreateVehicleView"
+    /*webpackChunkName: "create_car"*/ "@/features/VehiclesManage/components/CreateVehicleView"
   );
 const SALE_MANAGE = () =>
   import(
-    /*webpackChunkName: "sale_manage"*/ "@/views/administration/VouchersManage"
+    /*webpackChunkName: "sale_manage"*/ "@/features/administration/VouchersManage"
   );
 const CONSTRACT_MANAGE = () =>
   import(
-    /*webpackChunkName: "contract_manage"*/ "@/views/administration/ContractsManage"
+    /*webpackChunkName: "contract_manage"*/ "@/features/administration/ContractsManage"
   );
 const STATISTIS_MANAGE = () =>
-  import(/*webpackChunkName: "statistic"*/ "@/views/administration/ErrorView");
+  import(
+    /*webpackChunkName: "statistic"*/ "@/features/administration/ErrorView"
+  );
 
 export {
+  ADMIN,
   HOME_PAGE_ADMIN,
   ACCOUNT_MANAGE,
   BLOG_MANAGE,

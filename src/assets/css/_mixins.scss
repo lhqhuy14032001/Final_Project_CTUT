@@ -1,0 +1,13 @@
+@use "sass:meta";
+@mixin menu-mobile-margin-responsive($resposive...) {
+  @each $break-point, $margin-left in meta.keywords($resposive) {
+    @if #{$break-point} == "mobile" {
+      .responsive-menu-mobile {
+        @apply ml-[$margin-left];
+      }
+    }
+    .responsive-menu-mobile {
+      @apply ml-[$margin-left];
+    }
+  }
+}

@@ -1,0 +1,6 @@
+.responsive {
+  & li {
+    @apply text-base;
+    @apply sm:text-xl;
+  }
+}

@@ -26,11 +26,18 @@ export default [
     icon: mdiAccountCircle,
   },
   {
-    name: "blog",
-    params: {},
+    // name: "blog",
+    // params: {},
     path: "/blogs",
     label: "Blogs",
     icon: mdiNewspaper,
+    menu: [
+      { label: "Danh sách bài", icon: mdiMenu, name: "blog", params: {} },
+      {
+        label: "Thêm bài viết",
+        icon: mdiNewspaper,
+      },
+    ],
   },
   {
     // name: "car-manage",

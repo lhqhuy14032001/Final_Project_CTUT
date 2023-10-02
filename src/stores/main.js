@@ -236,7 +236,6 @@ export const useMainStore = defineStore("main", {
       },
     ],
     history: [],
-    gearBox: [1, 2, 3, 4],
     deposit: [
       { value: 0, label: "Không thế chấp" },
       { value: 1, label: "Tiền mặt" },

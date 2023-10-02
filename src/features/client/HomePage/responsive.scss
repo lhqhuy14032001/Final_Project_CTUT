@@ -1,0 +1,9 @@
+.responsive {
+  @apply mx-[16px];
+  @apply sm:mx-[50px];
+}
+@media (max-width: 639px) {
+  .wrapper {
+    
+  }
+}

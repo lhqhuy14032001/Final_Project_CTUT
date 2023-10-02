@@ -1,0 +1,13 @@
+.banner {
+  background-image: url(https://www.mioto.vn/static/media/bg-landingpage-3.6011c96f.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  & .content {
+    margin: 0;
+    top: 10%;
+    @apply md:left-[5%] 2xl:left-[10%];
+  }
+}
+.banner-responsive {
+  @apply min-w-[21.438rem] min-h-[26.25rem] mx-auto sm:min-w-[33.75rem] sm:min-h-[29.375rem] md:min-w-[45rem] md:min-h-[32.5rem] lg:min-w-[60rem] lg:min-h-[45rem] xl:min-w-[80rem] xl:min-h-[45rem];
+}

@@ -1,0 +1,9 @@
+.wrapper {
+  .left-btn,
+  .right-btn {
+    @apply flex justify-center w-full text-gray-300 text-fz-16 font-bold py-4 px-2;
+  }
+  .active {
+    @apply text-white bg-primary;
+  }
+}

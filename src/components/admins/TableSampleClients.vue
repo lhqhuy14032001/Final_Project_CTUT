@@ -1,83 +1,3 @@
-<script setup>
-import { computed, ref, defineProps } from "vue";
-import { useMainStore } from "@/stores/main";
-import { mdiEye, mdiTrashCan, mdiUpdate } from "@mdi/js";
-import CardBoxModal from "@/components/admins/CardBoxModal.vue";
-import TableCheckboxCell from "@/components/admins/TableCheckboxCell.vue";
-import BaseLevel from "@/components/admins/BaseLevel.vue";
-import BaseButtons from "@/components/admins/BaseButtons.vue";
-import BaseButton from "@/components/admins/BaseButton.vue";
-import UserAvatar from "@/components/admins/UserAvatar.vue";
-
-defineProps({
-  checkable: Boolean,
-});
-
-const mainStore = useMainStore();
-
-const items = computed(() => mainStore.clients);
-
-const isModalDetailActive = ref(false);
-
-const isModalUpdateActive = ref(false);
-
-const isModalDeleteActive = ref(false);
-
-const perPage = ref(5);
-
-const currentPage = ref(0);
-
-const checkedRows = ref([]);
-
-const itemsPaginated = computed(() =>
-  items.value.slice(
-    perPage.value * currentPage.value,
-    perPage.value * (currentPage.value + 1)
-  )
-);
-
-const numPages = computed(() => Math.ceil(items.value.length / perPage.value));
-
-const currentPageHuman = computed(() => currentPage.value + 1);
-
-const pagesList = computed(() => {
-  const pagesList = [];
-
-  for (let i = 0; i < numPages.value; i++) {
-    pagesList.push(i);
-  }
-
-  return pagesList;
-});
-
-const remove = (arr, cb) => {
-  const newArr = [];
-
-  arr.forEach((item) => {
-    if (!cb(item)) {
-      newArr.push(item);
-    }
-  });
-
-  return newArr;
-};
-
-const checked = (isChecked, client) => {
-  if (isChecked) {
-    checkedRows.value.push(client);
-  } else {
-    checkedRows.value = remove(
-      checkedRows.value,
-      (row) => row.id === client.id
-    );
-  }
-};
-
-// Status of API return to alert
-const stateDeleteAccount = ref(false);
-const stateUpdateAccount = ref(false);
-</script>
-
 <template>
   <!-- START: MODAL DETAIL ACCOUNT -->
   <CardBoxModal
@@ -342,3 +262,82 @@ const stateUpdateAccount = ref(false);
     </BaseLevel>
   </div>
 </template>
+<script setup>
+import { computed, ref, defineProps } from "vue";
+import { useMainStore } from "@/stores/main";
+import { mdiEye, mdiTrashCan, mdiUpdate } from "@mdi/js";
+import CardBoxModal from "@/components/admins/CardBoxModal.vue";
+import TableCheckboxCell from "@/components/admins/TableCheckboxCell.vue";
+import BaseLevel from "@/components/admins/BaseLevel.vue";
+import BaseButtons from "@/components/admins/BaseButtons.vue";
+import BaseButton from "@/components/admins/BaseButton.vue";
+import UserAvatar from "@/components/admins/UserAvatar.vue";
+
+defineProps({
+  checkable: Boolean,
+});
+
+const mainStore = useMainStore();
+
+const items = computed(() => mainStore.clients);
+
+const isModalDetailActive = ref(false);
+
+const isModalUpdateActive = ref(false);
+
+const isModalDeleteActive = ref(false);
+
+const perPage = ref(5);
+
+const currentPage = ref(0);
+
+const checkedRows = ref([]);
+
+const itemsPaginated = computed(() =>
+  items.value.slice(
+    perPage.value * currentPage.value,
+    perPage.value * (currentPage.value + 1)
+  )
+);
+
+const numPages = computed(() => Math.ceil(items.value.length / perPage.value));
+
+const currentPageHuman = computed(() => currentPage.value + 1);
+
+const pagesList = computed(() => {
+  const pagesList = [];
+
+  for (let i = 0; i < numPages.value; i++) {
+    pagesList.push(i);
+  }
+
+  return pagesList;
+});
+
+const remove = (arr, cb) => {
+  const newArr = [];
+
+  arr.forEach((item) => {
+    if (!cb(item)) {
+      newArr.push(item);
+    }
+  });
+
+  return newArr;
+};
+
+const checked = (isChecked, client) => {
+  if (isChecked) {
+    checkedRows.value.push(client);
+  } else {
+    checkedRows.value = remove(
+      checkedRows.value,
+      (row) => row.id === client.id
+    );
+  }
+};
+
+// Status of API return to alert
+const stateDeleteAccount = ref(false);
+const stateUpdateAccount = ref(false);
+</script>

@@ -1,0 +1,10 @@
+.responsive-content {
+  & h2 {
+    @apply sm:text-[40px];
+    @apply lg:text-[64px] lg:min-w-[600px];
+  }
+  & p,
+  span {
+    @apply sm:text-[20px];
+  }
+}

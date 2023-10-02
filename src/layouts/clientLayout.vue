@@ -1,7 +1,21 @@
 <template>
-  <Header></Header>
-  <slot />
+  <div class="wrapper">
+    <div
+      class="loading h-screen w-full flex justify-center items-center"
+      v-if="isLoading"
+    >
+      <Loading></Loading>
+    </div>
+    <div class="content" v-else>
+      <router-view></router-view>
+    </div>
+  </div>
 </template>
 <script setup>
-import Header from "@/components/clients/header.vue";
+import Loading from "@/components/Loading";
+import { useState } from "@/stores/state.store";
+import { storeToRefs } from "pinia";
+
+const stateStore = useState();
+let { isLoading } = storeToRefs(stateStore);
 </script>
