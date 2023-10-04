@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper flex text-center min-w-full">
+  <div class="wrapper flex text-center min-w-full border-b border-gray-300">
     <div
       class="left-btn rounded-tl-2xl"
       :class="{ active: isActiveButton === 'left' }"
@@ -9,7 +9,7 @@
       <span class="ml-1">Xe tự lái</span>
     </div>
     <div
-      class="right-btn border-l-2 border-gray-200 rounded-tr-2xl"
+      class="right-btn border-l border-gray-300 rounded-tr-2xl"
       :class="{ active: isActiveButton === 'right' }"
       @click="onToggle('right')"
     >

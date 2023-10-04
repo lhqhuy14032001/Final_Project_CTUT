@@ -7,7 +7,7 @@ import CLIENT_ROUTE from "./clientRoutes";
 
 const routes = [
   {
-    path: "/",
+    path: "",
     component: CLIENT,
     children: CLIENT_ROUTE,
     meta: {

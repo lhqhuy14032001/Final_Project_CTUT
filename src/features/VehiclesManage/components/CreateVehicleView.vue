@@ -10,7 +10,7 @@
               <label for="car-name" class="mr-auto font-semibold">
                 Hãng xe
               </label>
-              <VueMultiselect
+              <Multiselect
                 class="mt-2"
                 v-model="selectedBrand"
                 :options="carBrands"
@@ -21,13 +21,13 @@
                 label="label"
                 track-by="brand_id"
                 @select="getBrand"
-              ></VueMultiselect>
+              ></Multiselect>
             </div>
             <div class="flex flex-col">
               <label for="car-name" class="mr-auto font-semibold">
                 Loại xe
               </label>
-              <VueMultiselect
+              <Multiselect
                 class="mt-2"
                 v-model="selectedType"
                 :options="carTypes"
@@ -38,7 +38,7 @@
                 label="label"
                 track-by="type_id"
                 @select="getType"
-              ></VueMultiselect>
+              ></Multiselect>
             </div>
           </div>
           <div class="flex flex-col">
@@ -88,7 +88,7 @@
                 <label for="car-name" class="mr-auto font-semibold">
                   Tài sản thế chấp
                 </label>
-                <VueMultiselect
+                <Multiselect
                   class="mt-2"
                   v-model="selectedDeposit"
                   :options="deposit"
@@ -99,7 +99,7 @@
                   label="label"
                   track-by="value"
                   @select="getDeposit"
-                ></VueMultiselect>
+                ></Multiselect>
               </div>
             </div>
             <div>
@@ -165,7 +165,7 @@
               <label for="car-name" class="mr-auto font-semibold">
                 Hộp số
               </label>
-              <VueMultiselect
+              <Multiselect
                 class="mt-2"
                 v-model="selectedGearbox"
                 :options="gearBoxes"
@@ -176,13 +176,13 @@
                 label="label"
                 track-by="gearbox_id"
                 @select="getGearbox"
-              ></VueMultiselect>
+              ></Multiselect>
             </div>
             <div class="flex flex-col">
               <label for="car-name" class="mr-auto font-semibold">
                 Loại nhiên liệu
               </label>
-              <VueMultiselect
+              <Multiselect
                 class="mt-2"
                 v-model="selectedFuel"
                 :options="fuels"
@@ -193,7 +193,7 @@
                 label="label"
                 track-by="fuel_id"
                 @select="getFuel"
-              ></VueMultiselect>
+              ></Multiselect>
             </div>
           </div>
           <div class="flex flex-col">
@@ -218,7 +218,7 @@
             <label for="car-name" class="mr-auto font-semibold">
               Năm sản xuất
             </label>
-            <VueMultiselect
+            <Multiselect
               class="mt-2"
               v-model="selectedDate"
               :options="manufactureYearList"
@@ -229,13 +229,13 @@
               label="label"
               track-by="value"
               @select="getYear"
-            ></VueMultiselect>
+            ></Multiselect>
           </div>
           <div class="flex flex-col">
             <label for="car-name" class="mr-auto font-semibold">
               Tính năng
             </label>
-            <VueMultiselect
+            <Multiselect
               class="mt-2"
               v-model="selectedFeature"
               :options="features"
@@ -246,7 +246,7 @@
               label="label"
               track-by="feature_id"
               :multiple="true"
-            ></VueMultiselect>
+            ></Multiselect>
           </div>
         </div>
         <div class="row grid grid-cols-2 gap-4">
@@ -266,7 +266,7 @@
               <label for="car-name" class="mr-auto font-semibold">
                 Tỉnh/Thành Phố
               </label>
-              <VueMultiselect
+              <Multiselect
                 class="mt-2"
                 v-model="selectedProvince"
                 :options="provinces"
@@ -277,13 +277,13 @@
                 label="prov_name"
                 track-by="prov_id"
                 @select="getProvince"
-              ></VueMultiselect>
+              ></Multiselect>
             </div>
             <div class="flex flex-col">
               <label for="car-name" class="mr-auto font-semibold">
                 Quận/Huyện
               </label>
-              <VueMultiselect
+              <Multiselect
                 class="mt-2"
                 v-model="selectedDistrict"
                 :options="districts"
@@ -294,7 +294,7 @@
                 label="district_name"
                 track-by="district_id"
                 @select="getDistrict"
-              ></VueMultiselect>
+              ></Multiselect>
             </div>
           </div>
         </div>
@@ -320,7 +320,7 @@
 <script setup>
 import { computed, ref, watch, watchEffect } from "vue";
 import VueBasicAlert from "vue-basic-alert";
-import VueMultiselect from "vue-multiselect";
+import Multiselect from "vue-multiselect";
 import SectionMain from "@/components/admins/SectionMain.vue";
 import SectionTitle from "@/components/admins/SectionTitle.vue";
 import { mdiPlus } from "@mdi/js";

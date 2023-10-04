@@ -1,0 +1,17 @@
+.section-location {
+  & .section-title {
+    @apply flex text-gray-400 font-medium;
+    & .location-icon {
+      @apply mr-4;
+    }
+  }
+  & .section-body {
+    margin-left: 40px;
+    @apply text-left font-semibold;
+    p::before {
+      content: url(https://www.mioto.vn/static/media/arrow-down.d8b3609e.svg);
+      position: absolute;
+      right: 0;
+    }
+  }
+}

@@ -1,13 +1,16 @@
 <template>
-  <div class="wrapper responsive">
+  <div class="responsive">
     <section>
       <Header></Header>
     </section>
-    <section class="relative">
+    <section class="section-banner relative">
       <Banner></Banner>
-      <div class="absolute w-full bottom-[-50%]">
+      <div class="absolute w-full bottom-[-40%]">
         <VehicleSearch></VehicleSearch>
       </div>
+    </section>
+    <section class="section-voucher mt-52">
+      <Vouchers></Vouchers>
     </section>
   </div>
 </template>
@@ -15,6 +18,7 @@
 import Banner from "@/components/clients/banner";
 import Header from "@/components/clients/Header.vue";
 import VehicleSearch from "@/components/clients/VehicleSearch";
+import Vouchers from "@/components/clients/Vouchers";
 </script>
 <style lang="scss" scoped>
 @import url(./responsive.scss);

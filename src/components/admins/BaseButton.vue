@@ -41,6 +41,10 @@ const props = defineProps({
     type: String,
     default: null,
   },
+  textColor: {
+    type: String,
+    default: "white",
+  },
   small: Boolean,
   outline: Boolean,
   active: Boolean,
@@ -73,7 +77,7 @@ const computedType = computed(() => {
 });
 
 const labelClass = computed(() =>
-  props.small && props.icon ? "px-1" : "px-2"
+  props.small && props.icon ? "px-1 text-white" : "px-2 text-white"
 );
 
 const componentClass = computed(() => {
