@@ -1,29 +1,30 @@
 <template>
-  <div class="voucher-item">
-    <Swiper
-      :slides-per-view="1"
-      :space-between="50"
-      @swiper="onSwiper"
-      @slideChange="onSlideChange"
+  <div class="voucher-item mt-5">
+    <vueper-slides
+      :bullets="false"
+      slideImageInside
+      slide-multiple
+      :visible-slides="1"
+      :fixed-height="true"
     >
-      <SwiperSlide
-        class="w-full"
+      <template #arrow-left> &larr; </template>
+
+      <template #arrow-right> &rarr;</template>
+      <vueper-slide
         v-for="voucher in voucherList"
         :key="voucher.id"
+        :image="voucher.img"
       >
-        <div class="w-full h-36">
-          <img class="rounded-xl" :src="voucher.img" alt="" />
-        </div>
-      </SwiperSlide>
-    </Swiper>
+      </vueper-slide>
+    </vueper-slides>
   </div>
 </template>
 
 <script setup>
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
-
 import { defineProps } from "vue";
+import { VueperSlides, VueperSlide } from "vueperslides";
+import "vueperslides/dist/vueperslides.css";
+
 const props = defineProps({
   voucherList: {
     type: Array,
@@ -34,12 +35,10 @@ const props = defineProps({
   },
 });
 const { voucherList } = props;
-const onSwiper = (swiper) => {
-  console.log(swiper);
-};
-const onSlideChange = () => {
-  console.log("slide change");
-};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.vueperslides--fixed-height {
+  @apply h-56;
+}
+</style>

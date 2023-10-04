@@ -1,0 +1,63 @@
+.car-for-you-item {
+  min-height: fit-content;
+  @apply shadow-2xl p-4 rounded-lg;
+  .img {
+    background-image: url(https://n1-pstg.mioto.vn/cho_thue_xe_o_to_tu_lai_thue_xe_du_lich_hochiminh/toyota_camry_2018/p/g/2023/03/14/11/XDP49EVi2BS3YUXbsW9i2A.jpg);
+    background-size: cover;
+    min-height: 12.5rem;
+    @apply rounded-lg relative;
+    .label-list {
+      @apply absolute top-2 left-2;
+      .label {
+        background-color: rgba(0, 0, 0, 0.5);
+        @apply flex items-center
+         w-fit py-1 px-2 mb-2 rounded-full;
+        span {
+          font-size: 12px;
+          @apply font-normal text-white;
+        }
+      }
+    }
+  }
+  .desc {
+    @apply mt-5;
+    .desc-tag {
+      @apply text-left bg-slate-100 font-medium rounded-full w-fit px-2 py-1 my-2 mr-2;
+      font-size: 10px;
+    }
+    .desc-name {
+      @apply my-2 flex text-fz-16 font-extrabold;
+      .wrap-svg {
+        margin-left: 5px;
+      }
+    }
+    .desc-address {
+      @apply flex;
+      p {
+        @apply text-sm;
+      }
+    }
+    .desc-price-info {
+      div.info {
+        .dot {
+          @apply mx-2;
+        }
+        span.info {
+          @apply mx-1;
+        }
+      }
+      .wrap-price {
+        @apply text-right;
+        .price {
+          @apply text-primary font-extrabold;
+        }
+        .total-price {
+          @apply text-[12px] text-gray-300;
+          span {
+            @apply font-bold;
+          }
+        }
+      }
+    }
+  }
+}

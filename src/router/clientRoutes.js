@@ -5,4 +5,11 @@ export default [
     name: "home",
     component: CLIENT.HOME_PAGE,
   },
+  {
+    path: ":pathMatch(.*)*",
+    component: () => import("@/features/404Page"),
+    meta: {
+      layout: "client",
+    },
+  },
 ];

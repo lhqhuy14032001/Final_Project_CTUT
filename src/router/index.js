@@ -22,13 +22,6 @@ const routes = [
       layout: "administration",
     },
   },
-  {
-    path: "/:pathMatch(.*)*",
-    component: () => import("@/features/NotFound.vue"),
-    meta: {
-      layout: "client",
-    },
-  },
 ];
 
 const router = createRouter({

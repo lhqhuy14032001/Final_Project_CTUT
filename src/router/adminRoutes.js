@@ -66,4 +66,11 @@ export default [
       title: "Tables",
     },
   },
+  {
+    path: ":pathMatch(.*)*",
+    component: () => import("@/features/404Page"),
+    meta: {
+      layout: "client",
+    },
+  },
 ];

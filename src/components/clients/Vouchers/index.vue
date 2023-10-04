@@ -1,12 +1,16 @@
 <template>
   <div class="section-voucher">
-    <Title></Title>
+    <BaseTitle
+      title="Chương trình khuyến mãi"
+      subTitle="Nhận nhiều ưu đãi hấp dẫn từ MiAUTO"
+      classProp="p-3 mb-2"
+    ></BaseTitle>
     <VoucherList :voucherList="voucherList"></VoucherList>
   </div>
 </template>
 
 <script setup>
-import Title from "./components/Title";
+import BaseTitle from "../BaseTitle.vue";
 import VoucherList from "./components/VoucherList";
 const voucherList = [
   {
