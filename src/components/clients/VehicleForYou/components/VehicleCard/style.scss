@@ -10,8 +10,8 @@
       @apply absolute top-2 left-2;
       .label {
         background-color: rgba(0, 0, 0, 0.5);
-        @apply flex items-center
-         w-fit py-1 px-2 mb-2 rounded-full;
+        @apply flex items-center 
+          w-fit py-1 px-2 mb-2 rounded-full;
         span {
           font-size: 12px;
           @apply font-normal text-white;

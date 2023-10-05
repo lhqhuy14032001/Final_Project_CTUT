@@ -77,7 +77,7 @@ const computedType = computed(() => {
 });
 
 const labelClass = computed(() =>
-  props.small && props.icon ? "px-1 text-white" : "px-2 text-white"
+  props.small && props.icon ? "px-1" : "px-2"
 );
 
 const componentClass = computed(() => {

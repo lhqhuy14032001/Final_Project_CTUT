@@ -1,5 +1,7 @@
 <template>
-  <form-search></form-search>
+  <div class="wrap-form relative">
+    <form-search></form-search>
+  </div>
 </template>
 
 <script setup>

@@ -1,28 +1,32 @@
-.section-date {
-  @apply mt-3;
-  .section-start-date {
-    @apply mb-3;
-  }
-  .section-title {
-    @apply flex text-gray-400 font-medium;
-    & .calendar-icon {
-      @apply mr-4;
+.wrap-calendar {
+  .section-date {
+    @apply mt-3 relative;
+    .section-start-date {
+      @apply mb-3;
+      .date::before {
+        content: url(https://www.mioto.vn/static/media/arrow-down.d8b3609e.svg);
+        position: absolute;
+        right: 0;
+      }
     }
-  }
-  .section-body {
-    margin-left: 40px;
-    padding-right: 20px;
-    @apply flex justify-between font-semibold;
-    .date,
-    .clock {
+    .section-end-date {
       @apply relative;
-      padding-right: 20px;
+      .date::before {
+        content: url(https://www.mioto.vn/static/media/arrow-down.d8b3609e.svg);
+        position: absolute;
+        right: 0;
+      }
     }
-    .date::before,
-    .clock::before {
-      content: url(https://www.mioto.vn/static/media/arrow-down.d8b3609e.svg);
-      position: absolute;
-      right: -20px;
+    .section-title {
+      @apply flex text-gray-400 font-medium;
+      & .calendar-icon {
+        @apply mr-4;
+      }
+    }
+    .section-body {
+      margin-left: 40px;
+      padding-right: 20px;
+      @apply flex justify-between font-semibold;
     }
   }
 }

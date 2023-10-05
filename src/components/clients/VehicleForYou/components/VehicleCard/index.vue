@@ -1,5 +1,5 @@
 <template>
-  <div class="car-for-you-item">
+  <div class="car-for-you-item border-2 border-gray-100">
     <div class="img">
       <div class="label-list">
         <div class="label">
@@ -43,7 +43,7 @@
     <div class="desc">
       <div class="desc-tag-list flex">
         <div class="desc-tag">Số tự động</div>
-        <div class="desc-tag">Số tự động</div>
+        <!-- <div class="desc-tag">Số tự động</div> -->
       </div>
       <div class="desc-name">
         <p>HONDA CITY 2014</p>
