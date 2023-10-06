@@ -2,6 +2,11 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
   const totalVehicle = ref(8000);
+  const searchInfo = ref({
+    startDate: null,
+    endDate: null,
+    location: null,
+  });
   const carInfor = ref({
     uid: null,
     carName: null,
@@ -121,6 +126,7 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
 
   return {
     totalVehicle,
+    searchInfo,
     carInfor,
     surcharge,
     deposit,

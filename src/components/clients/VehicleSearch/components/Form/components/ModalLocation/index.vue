@@ -38,11 +38,15 @@
         class="recent-search font-semibold text-left pt-2 mt-5 border-t-2 max-h-40 overflow-scroll"
       >
         <p class="text-gray-400 text-sm mb-3">Tìm kiếm gần đây</p>
-        <div class="flex" v-for="item in recentlyLocation" :key="item.id">
+        <div
+          class="flex cursor-pointer"
+          v-for="item in recentlyLocation"
+          :key="item.id"
+        >
           <div class="mr-1">
             <BaseIcon :path="mdiMapMarkerOutline" size="20"></BaseIcon>
           </div>
-          <p @click="onGetLocationFromRecent(item)">{{ item.value }}</p>
+          <p @click="onSaveLocationRecently(item)">{{ item.label }}</p>
         </div>
       </div>
       <div class="mt-2">
@@ -50,7 +54,7 @@
           class="min-w-full"
           :label="buttonLabel"
           :color="button"
-          @click="onSaveLocationRecently"
+          @click="onSaveLocationRecently(null)"
         />
       </div>
     </CardBox>
@@ -63,6 +67,7 @@ import CardBox from "@/components/admins/CardBox.vue";
 import CardBoxComponentTitle from "@/components/admins/CardBoxComponentTitle";
 import OverlayLayer from "@/components/admins/OverlayLayer.vue";
 import { mdiClose, mdiMapMarkerOutline } from "@mdi/js";
+import { watch } from "vue";
 import { computed, defineEmits, defineProps, ref } from "vue";
 
 const props = defineProps({
@@ -90,6 +95,13 @@ const props = defineProps({
       [];
     },
   },
+  currentLocation: {
+    type: Object,
+    default() {
+      {
+      }
+    },
+  },
 });
 
 const emit = defineEmits([
@@ -99,31 +111,39 @@ const emit = defineEmits([
   "onSaveLocationRecently",
 ]);
 
+const { recentlyLocation, currentLocation } = props;
 const searchValue = ref(null);
-const { recentlyLocation } = props;
+let dataLocation = ref(null);
+// searchValue.value = computed(() => {
+//   if (currentLocation) searchValue.value = currentLocation.label;
+// });
 
-const onSaveLocationRecently = () => {
-  if (!searchValue.value) {
+const onSaveLocationRecently = (location) => {
+  if (!searchValue.value && location) {
+    searchValue.value = location.label;
+    emit("onSaveLocationRecently", {
+      id: location.id,
+      label: location.label,
+    });
     confirmCancel("cancel");
-    return;
+  } else {
+    if (searchValue.value) {
+      dataLocation.value = {
+        id: recentlyLocation.length + 1,
+        label: searchValue.value,
+      };
+      emit("onSaveLocationRecently", {
+        id: recentlyLocation.length + 1,
+        label: searchValue.value,
+      });
+      confirmCancel("cancel");
+    } else {
+      dataLocation.value = undefined;
+      emit("onSaveLocationRecently", undefined);
+      confirmCancel("cancel");
+    }
   }
-  emit("onSaveLocationRecently", {
-    id: recentlyLocation.length + 1,
-    value: searchValue.value,
-  });
-  onClearSearchValue();
-  confirmCancel("cancel");
 };
-
-const onGetLocationFromRecent = (location) => {
-  emit("onSaveLocationRecently", {
-    id: recentlyLocation.length + 1,
-    value: location.value,
-  });
-  searchValue.value = location.value;
-  confirmCancel("cancel");
-};
-
 const value = computed({
   get: () => props.modelValue,
   set: (value) => emit("update:modelValue", value),
@@ -134,7 +154,12 @@ const confirmCancel = (mode) => {
   emit(mode);
 };
 
-const cancel = () => confirmCancel("cancel");
+const cancel = () => {
+  watch(dataLocation, (newDataLocation) => {
+    emit("onSaveLocationRecently", newDataLocation);
+  });
+  confirmCancel("cancel");
+};
 const onClearSearchValue = () => {
   searchValue.value = "";
 };

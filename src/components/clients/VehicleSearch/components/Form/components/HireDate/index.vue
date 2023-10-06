@@ -58,26 +58,22 @@
 <script setup>
 import BaseIcon from "@/components/admins/BaseIcon.vue";
 import { mdiCalendarMonthOutline } from "@mdi/js";
-// import { DatePicker } from "v-calendar";
-// import "v-calendar/style.css";
-import { ref } from "vue";
+import { defineEmits, ref, watch } from "vue";
+import { columns, rows } from "@/ultils/configsVCalendar";
 
-import { rows, columns } from "@/ultils/configsVCalendar";
-import { watch } from "vue";
-
+const emits = defineEmits(["submitDate"]);
 const date = ref(new Date());
 const range = ref({ start: date.value, end: null });
+const dateHire = ref({});
 watch(range, (newRange) => {
-  console.log(
-    `start >>> ${newRange.start.getDate()}/${
-      newRange.start.getMonth() + 1
-    }/${newRange.start.getFullYear()}`
-  );
-  console.log(
-    `end >>> ${newRange.end.getDate()}/${
-      newRange.end.getMonth() + 1
-    }/${newRange.end.getFullYear()}`
-  );
+  dateHire.value.startDate = `${newRange.start.getDate()}/${
+    newRange.start.getMonth() + 1
+  }/${newRange.start.getFullYear()}`;
+  dateHire.value.endDate = `${newRange.end.getDate()}/${
+    newRange.end.getMonth() + 1
+  }/${newRange.end.getFullYear()}`;
+
+  emits("submitDate", dateHire.value);
 });
 </script>
 
