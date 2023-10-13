@@ -1,42 +1,40 @@
 const ADMIN = () =>
-  import(/* webpackChunkName: "admin" */ "@/features/administration");
+  import(/* webpackChunkName: "admin" */ "@/views/administration");
 const HOME_PAGE_ADMIN = () =>
   import(
-    /* webpackChunkName: "ad_homepage" */ "@/features/administration/HomeView"
+    /* webpackChunkName: "ad_homepage" */ "@/views/administration/HomeView"
   );
 const ACCOUNT_MANAGE = () =>
   import(
-    /*webpackChunkName: "acc_manage"*/ "@/features/administration/AccountsManage"
+    /*webpackChunkName: "acc_manage"*/ "@/views/administration/AccountsManage"
   );
 
 const BLOG_MANAGE = () =>
   import(
-    /*webpackChunkName: "blog_manage"*/ "@/features/administration/BlogsManage/views/BlogsList"
+    /*webpackChunkName: "blog_manage"*/ "@/views/administration/BlogsManage/views/BlogsList"
   );
 const CAR_MANAGE = () =>
-  import(/*webpackChunkName: "car_manage"*/ "@/features/VehiclesManage");
+  import(/*webpackChunkName: "car_manage"*/ "@/views/VehiclesManage");
 
 const CAR_DETAIL = () =>
   import(
-    /*webpackChunkName: "car_detail"*/ "@/features/VehiclesManage/components/VehicleDetail"
+    /*webpackChunkName: "car_detail"*/ "@/views/VehiclesManage/components/VehicleDetail"
   );
 
 const CREATE_CAR = () =>
   import(
-    /*webpackChunkName: "create_car"*/ "@/features/VehiclesManage/components/CreateVehicleView"
+    /*webpackChunkName: "create_car"*/ "@/views/VehiclesManage/components/CreateVehicleView"
   );
 const SALE_MANAGE = () =>
   import(
-    /*webpackChunkName: "sale_manage"*/ "@/features/administration/VouchersManage"
+    /*webpackChunkName: "sale_manage"*/ "@/views/administration/VouchersManage"
   );
 const CONSTRACT_MANAGE = () =>
   import(
-    /*webpackChunkName: "contract_manage"*/ "@/features/administration/ContractsManage"
+    /*webpackChunkName: "contract_manage"*/ "@/views/administration/ContractsManage"
   );
 const STATISTIS_MANAGE = () =>
-  import(
-    /*webpackChunkName: "statistic"*/ "@/features/administration/ErrorView"
-  );
+  import(/*webpackChunkName: "statistic"*/ "@/views/administration/ErrorView");
 
 export {
   ADMIN,

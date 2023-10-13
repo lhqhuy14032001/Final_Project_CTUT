@@ -1,9 +1,9 @@
 <template>
-  <div class="section-voucher">
+  <div class="section-voucher mt-60 xl:mt-28">
     <BaseTitle
       title="Chương trình khuyến mãi"
       subTitle="Nhận nhiều ưu đãi hấp dẫn từ MiAUTO"
-      classProp="p-3 mb-2"
+      classProp="p-3"
     ></BaseTitle>
     <VoucherList :voucherList="voucherList"></VoucherList>
   </div>

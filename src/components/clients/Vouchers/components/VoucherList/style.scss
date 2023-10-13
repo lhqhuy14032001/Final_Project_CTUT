@@ -1,0 +1,9 @@
+.banner-img {
+  @apply min-w-[15.063rem] min-h-[10.063rem];
+  .image {
+    @apply rounded-lg w-full h-full;
+  }
+}
+.carousel__slide {
+  margin: 10px;
+}

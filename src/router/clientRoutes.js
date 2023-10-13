@@ -7,7 +7,7 @@ export default [
   },
   {
     path: ":pathMatch(.*)*",
-    component: () => import("@/features/404Page"),
+    component: () => import("@/views/404Page"),
     meta: {
       layout: "client",
     },

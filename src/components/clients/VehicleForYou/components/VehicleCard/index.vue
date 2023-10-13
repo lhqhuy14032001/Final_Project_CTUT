@@ -1,5 +1,5 @@
 <template>
-  <div class="car-for-you-item border-2 border-gray-100">
+  <div class="car-for-you-item border-1 w-full">
     <div class="img">
       <div class="label-list">
         <div class="label">

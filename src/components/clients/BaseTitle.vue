@@ -1,5 +1,5 @@
 <template>
-  <div class="base-title text-[32px] text-black" :class="classProp">
+  <div class="title-wrapper text-[32px] text-black" :class="classProp">
     <h1 class="font-bold">{{ title }}</h1>
     <p v-if="subTitle != ''">{{ subTitle }}</p>
   </div>
@@ -32,7 +32,16 @@ const props = defineProps({
   },
 });
 const { title, subTitle } = props;
-//  subTitleState, classState, classProp
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.title-wrapper {
+  @apply mb-8;
+  h1 {
+    @apply xl:text-5xl;
+  }
+  p {
+    @apply xl:text-2xl mt-3;
+  }
+}
+</style>

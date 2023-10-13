@@ -1,5 +1,7 @@
 <template>
-  <BaseTitle title="Xe Dành Cho Bạn"></BaseTitle>
+  <div class="mb-3">
+    <BaseTitle title="Xe Dành Cho Bạn"></BaseTitle>
+  </div>
   <VehicleList></VehicleList>
 </template>
 

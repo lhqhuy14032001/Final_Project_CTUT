@@ -2,6 +2,86 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
   const totalVehicle = ref(8000);
+  const locationFamous = ref([
+    {
+      id: 1,
+      prov_name: "Hồ Chí Minh",
+      totalVehicle: 300,
+      cityImg:
+        "https://n1-cstg.mioto.vn/1/cho_thue_xe_tu_lai_tphcm/hcm/p/m/cities_v2/HoChiMinh_v2.jpg",
+    },
+    {
+      id: 2,
+      prov_name: "Hà Nội",
+      totalVehicle: 300,
+      cityImg:
+        "https://n1-cstg.mioto.vn/1/cho_thue_xe_tu_lai_tphcm/hcm/p/m/cities_v2/HaNoi_v2.jpg",
+    },
+    {
+      id: 3,
+      prov_name: "Đà Nẵng",
+      totalVehicle: 300,
+      cityImg:
+        "https://n1-cstg.mioto.vn/1/cho_thue_xe_tu_lai_tphcm/hcm/p/m/cities_v2/DaNang_v2.jpg",
+    },
+    {
+      id: 4,
+      prov_name: "Cần Thơ",
+      totalVehicle: 300,
+      cityImg:
+        "https://n1-cstg.mioto.vn/1/cho_thue_xe_tu_lai_tphcm/hcm/p/m/cities_v2/CanTho_v2.jpg",
+    },
+    {
+      id: 5,
+      prov_name: "Đà Lạt",
+      totalVehicle: 300,
+      cityImg:
+        "https://n1-cstg.mioto.vn/cho_thue_xe_tu_lai_tphcm/hcm/p/m/cities_v2/DaLat_v2.jpg",
+    },
+
+    {
+      id: 6,
+      prov_name: "Nha Trang",
+      totalVehicle: 300,
+      cityImg:
+        "https://n1-cstg.mioto.vn/cho_thue_xe_tu_lai_tphcm/hcm/p/m/cities_v2/NhaTrang_v2.jpg",
+    },
+    {
+      id: 8,
+      prov_name: "Quy Nhơn",
+      totalVehicle: 300,
+      cityImg:
+        "https://n1-cstg.mioto.vn/cho_thue_xe_tu_lai_tphcm/hcm/p/m/cities_v2/QuyNhon_v2.jpg",
+    },
+    {
+      id: 9,
+      prov_name: "Phú Quốc",
+      totalVehicle: 300,
+      cityImg:
+        "https://n1-cstg.mioto.vn/cho_thue_xe_tu_lai_tphcm/hcm/p/m/cities_v2/PhuQuoc_v2.jpg",
+    },
+    {
+      id: 10,
+      prov_name: "Hải Phòng",
+      totalVehicle: 300,
+      cityImg:
+        "https://n1-cstg.mioto.vn/cho_thue_xe_tu_lai_tphcm/hcm/p/m/cities_v2/HaiPhong_v2.jpg",
+    },
+    {
+      id: 11,
+      prov_name: "Vũng Tàu",
+      totalVehicle: 300,
+      cityImg:
+        "https://n1-cstg.mioto.vn/cho_thue_xe_tu_lai_tphcm/hcm/p/m/cities_v2/VungTau_v2.jpg",
+    },
+    {
+      id: 12,
+      prov_name: "Bình Dương",
+      totalVehicle: 300,
+      cityImg:
+        "https://n1-cstg.mioto.vn/1/cho_thue_xe_tu_lai_tphcm/hcm/p/m/cities_v2/BinhDuong_v2.jpg",
+    },
+  ]);
   const searchInfo = ref({
     startDate: null,
     endDate: null,
@@ -137,5 +217,6 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
     features,
     provinces,
     districts,
+    locationFamous,
   };
 });

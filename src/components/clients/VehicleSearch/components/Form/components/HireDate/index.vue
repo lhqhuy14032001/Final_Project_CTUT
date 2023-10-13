@@ -59,7 +59,7 @@
 import BaseIcon from "@/components/admins/BaseIcon.vue";
 import { mdiCalendarMonthOutline } from "@mdi/js";
 import { defineEmits, ref, watch } from "vue";
-import { columns, rows } from "@/ultils/configsVCalendar";
+import { columns, rows } from "@/ultils/screenUtils";
 
 const emits = defineEmits(["submitDate"]);
 const date = ref(new Date());

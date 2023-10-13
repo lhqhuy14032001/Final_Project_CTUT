@@ -8,3 +8,5 @@ const { mapCurrent } = useScreens({
 });
 export const columns = mapCurrent({ xs: 1 }, 2);
 export const rows = mapCurrent({ xs: 2 }, 1);
+export const bannerItem = mapCurrent({ xs: 1.5, sm: 2, md: 3, lg: 4 }, 1);
+export const locationFamous = mapCurrent({ xs: 1, sm: 2, md: 3, lg: 4 }, 1);
