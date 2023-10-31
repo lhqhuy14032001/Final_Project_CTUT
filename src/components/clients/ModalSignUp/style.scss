@@ -1,0 +1,21 @@
+.signup-wrapper {
+  .btn-signup-social-media {
+    .btn-facebook,
+    .btn-google {
+      @apply border border-primary rounded-lg w-full cursor-pointer flex justify-center items-center gap-2 px-2 py-2;
+    }
+    .btn-facebook:hover,
+    .btn-google:hover {
+      @apply bg-primary text-white shadow-xl transition-all;
+    }
+  }
+}
+.error {
+  @apply border-b-red-500;
+  input {
+    @apply text-red-500;
+  }
+}
+.text-error {
+  @apply text-left text-fz-16 my-2 text-red-500;
+}

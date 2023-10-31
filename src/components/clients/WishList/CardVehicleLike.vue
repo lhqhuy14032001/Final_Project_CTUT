@@ -1,5 +1,5 @@
 <template>
-  <div>Policy Page</div>
+  <div>Xe thích</div>
 </template>
 
 <script setup></script>

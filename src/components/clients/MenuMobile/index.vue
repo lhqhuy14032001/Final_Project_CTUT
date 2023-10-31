@@ -12,6 +12,7 @@
       <AccountInfoMobile
         v-if="isLoggedIn"
         @onLogout="onLogout"
+        :fullname="fullname"
       ></AccountInfoMobile>
       <!-- End Account Info -->
 
@@ -29,9 +30,14 @@ import { XMarkIcon } from "@heroicons/vue/24/outline";
 import { computed } from "vue";
 import AccountInfoMobile from "./components/AccountInfoMobile";
 import Login from "./components/Login";
+import { storeToRefs } from "pinia";
 
 const authStore = useAuth();
 const stateStore = useState();
+
+const { signUpInfo } = storeToRefs(authStore);
+const user = signUpInfo.value.user;
+const fullname = user.fullname;
 
 const onCloseMenu = () => {
   stateStore.onToggleMenuMobile();

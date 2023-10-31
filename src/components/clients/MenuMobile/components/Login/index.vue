@@ -2,7 +2,7 @@
   <div class="mt-10 responsive">
     <div class="mx-4 text-text-dark font-semibold">
       <ul class="overflow-hidden rounded-xl bg-white p-4">
-        <li @click="onLogin" class="border-b py-3 px-4">Đăng nhập</li>
+        <li @click="onSignUp" class="border-b py-3 px-4">Đăng nhập</li>
         <li class="py-3 px-4">Đăng ký</li>
       </ul>
     </div>
@@ -15,29 +15,12 @@
   </div>
 </template>
 <script setup>
-import { defineEmits } from "vue";
-// import { XMarkIcon } from "@heroicons/vue/24/outline";
-// import gsap from "gsap";
-const emit = defineEmits(["onLogin"]);
-const onLogin = () => {
-  emit("onLogin");
+import { useState } from "@/stores/state.store";
+const stateStore = useState();
+const onSignUp = () => {
+  stateStore.onToggleModalSignUp();
+  stateStore.onToggleMenuMobile();
 };
-
-// const emit = defineEmits(["closeMenu"]);
-// const closeMenu = () => {
-//   emit("closeMenu");
-// };
-
-// const onBeforeEnter = (el) => {
-//   gsap.set(el, {
-//     xPercent: 0,
-//   });
-// };
-// const onEnter = (el) => {
-//   gsap.from(el, {
-//     xPercent: 0,
-//   });
-// };
 </script>
 <style lang="scss" scoped>
 @import url(./responsive.scss);

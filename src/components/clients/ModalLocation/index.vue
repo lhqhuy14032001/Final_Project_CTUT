@@ -97,10 +97,6 @@ const props = defineProps({
   },
   currentLocation: {
     type: Object,
-    default() {
-      {
-      }
-    },
   },
 });
 
@@ -111,7 +107,8 @@ const emit = defineEmits([
   "onSaveLocationRecently",
 ]);
 
-const { recentlyLocation, currentLocation } = props;
+// const { recentlyLocation, currentLocation } = props;
+const { recentlyLocation } = props;
 const searchValue = ref(null);
 let dataLocation = ref(null);
 // searchValue.value = computed(() => {

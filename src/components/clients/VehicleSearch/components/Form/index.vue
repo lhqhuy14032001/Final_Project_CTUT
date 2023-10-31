@@ -19,8 +19,8 @@
 
 <script setup>
 import HeaderForm from "./components/Header";
-import HireDate from "./components/HireDate";
-import LocationForm from "./components/Location";
+import HireDate from "@/components/clients/HireDate";
+import LocationForm from "@/components/clients//Location";
 import VueBasicAlert from "vue-basic-alert";
 import { ref, defineEmits } from "vue";
 const emits = defineEmits(["onSubmitForm"]);

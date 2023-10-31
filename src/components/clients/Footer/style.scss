@@ -1,0 +1,11 @@
+.footer {
+  .footer-link-list {
+    text-align: left;
+    h1 {
+      @apply text-fz-16 mb-8 font-bold;
+    }
+    ul > li {
+      @apply mb-8;
+    }
+  }
+}

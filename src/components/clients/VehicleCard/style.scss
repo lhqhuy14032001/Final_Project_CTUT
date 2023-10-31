@@ -1,6 +1,6 @@
 .car-for-you-item {
   min-height: fit-content;
-  @apply p-4 rounded-lg shadow-inner;
+  @apply p-4 rounded-lg shadow-inner border border-gray-300;
   .img {
     background-image: url(https://n1-pstg.mioto.vn/cho_thue_xe_o_to_tu_lai_thue_xe_du_lich_hochiminh/toyota_camry_2018/p/g/2023/03/14/11/XDP49EVi2BS3YUXbsW9i2A.jpg);
     background-size: cover;

@@ -6,7 +6,7 @@
     >
       <Loading></Loading>
     </div>
-    <div class="content" v-else>
+    <div class="content mx-[16px] sm:mx-[50px] xl:mx-[107px]" v-else>
       <router-view></router-view>
     </div>
   </div>

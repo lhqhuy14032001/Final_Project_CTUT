@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import VehicleCard from "../VehicleCard";
+import VehicleCard from "@/components/clients/VehicleCard";
 import { Carousel, Slide, Navigation } from "vue3-carousel";
 import { ref } from "vue";
 const settings = ref({ itemsToShow: 1, autoplay: 3000 });

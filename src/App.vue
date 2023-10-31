@@ -31,4 +31,8 @@ nav a {
 nav a.router-link-exact-active {
   color: #42b983;
 }
+
+.sidebar-account a.router-link-exact-active {
+  @apply border-l-4 border-l-primary;
+}
 </style>

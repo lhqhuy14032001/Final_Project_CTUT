@@ -1,0 +1,15 @@
+.intro-wrapper {
+  .intro-img {
+    background-image: url("https://www.mioto.vn/static/media/aboutus1.4c31a699.png");
+    background-size: cover;
+    padding-top: 35%;
+    @apply rounded-3xl;
+  }
+}
+.slogan-wrapper {
+  .slogan-img {
+    background-image: url("https://www.mioto.vn/static/media/aboutus2.18999daf.png");
+    background-size: cover;
+    @apply rounded-3xl;
+  }
+}

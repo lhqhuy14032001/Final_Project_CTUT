@@ -1,9 +1,7 @@
 <template>
   <div class="responsive">
-    <ModalSignUp v-model="isShowLoginModal" title="Đăng ký"></ModalSignUp>
-    <Header
-      @togglePcModalSignUp="isShowLoginModal = !isShowLoginModal"
-    ></Header>
+    <ModalSignUp v-model="isShowModalSignUp" has-cancel></ModalSignUp>
+    <Header></Header>
     <section class="section-banner relative">
       <Banner></Banner>
       <div class="absolute w-full top-[70%] xl:bottom-0">
@@ -22,20 +20,24 @@
     <section class="section-advantage">
       <AdvangtageMiAUTO></AdvangtageMiAUTO>
     </section>
+    <Footer></Footer>
   </div>
 </template>
 <script setup>
 import Banner from "@/components/clients/Banner";
 import Header from "@/components/clients/Header";
+import Footer from "@/components/clients/Footer";
 import VehicleSearch from "@/components/clients/VehicleSearch";
 import Vouchers from "@/components/clients/Vouchers";
 import VehicleForYou from "@/components/clients/VehicleForYou";
 import LocationFamous from "@/components/clients/LocationFamous";
 import AdvangtageMiAUTO from "@/components/clients/AdvantageMiAUTO";
 import ModalSignUp from "@/components/clients/ModalSignUp";
-import { ref } from "vue";
+import { useState } from "@/stores/state.store";
+import { storeToRefs } from "pinia";
 
-const isShowLoginModal = ref(false);
+const stateStore = useState();
+const { isShowModalSignUp } = storeToRefs(stateStore);
 </script>
 <style lang="scss" scoped>
 @import url(./responsive.scss);

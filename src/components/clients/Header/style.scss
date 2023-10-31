@@ -13,7 +13,7 @@
   .pc-nav-item {
     @apply px-3 py-4 mx-3 cursor-pointer;
     &.btn-singin {
-      @apply border border-black rounded-lg;
+      @apply border border-black rounded-lg mr-0;
     }
   }
 }

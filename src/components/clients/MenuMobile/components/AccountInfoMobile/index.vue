@@ -8,7 +8,7 @@
             alt="user's avatar"
             class="w-10 rounded-full"
           />
-          <span class="ml-2 block">Le Hoang Quoc Huy</span>
+          <span class="ml-2 block">{{ props.fullname }}</span>
         </li>
         <li class="border-b py-3 px-4">Xe của tôi</li>
         <li class="border-b py-3 px-4">Xe yêu thích</li>
@@ -27,8 +27,15 @@
 </template>
 
 <script setup>
-import { defineEmits } from "vue";
+import { defineEmits, defineProps } from "vue";
 const emit = defineEmits(["onLogout"]);
+const props = defineProps({
+  fullname: {
+    typed: String,
+    required: true,
+    default: "User name",
+  },
+});
 const onLogout = () => {
   emit("onLogout");
 };
