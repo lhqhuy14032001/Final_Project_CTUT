@@ -39,12 +39,6 @@ const sidebarList = [
   },
   {
     id: 6,
-    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.74907H18.12C18.9125 2.71374 19.6868 2.99377 20.2734 3.52788C20.86 4.06199 21.2111 4.8067 21.25 5.59907V18.3991C21.2111 19.1914 20.86 19.9362 20.2734 20.4703C19.6868 21.0044 18.9125 21.2844 18.12 21.2491H12" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14.9993 12H2.7793" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2.75 12L6.75 16" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M2.75 12L6.75 8" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
-    label: "Đăng xuất",
-    to: { name: "accountInfo", params: {} },
-  },
-  {
-    id: 7,
     icon: '<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18.6699 8.91992V18.1699C18.6699 19.8699 17.2898 21.2499 15.5898 21.2499H9.41985C7.71985 21.2499 6.33984 19.8699 6.33984 18.1699V8.91992" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M4.2793 5.83008H20.7193" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M9.41992 5.83002C9.41992 4.13002 10.7999 2.75 12.4999 2.75C14.1999 2.75 15.5799 4.13002 15.5799 5.83002" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M10.4395 12L14.5594 16.11" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14.5594 12L10.4395 16.11" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
     label: "Yêu cầu xoá tài khoản",
     to: { name: "accountInfo", params: {} },

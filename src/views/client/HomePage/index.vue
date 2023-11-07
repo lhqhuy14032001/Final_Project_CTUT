@@ -1,6 +1,7 @@
 <template>
   <div class="responsive">
     <ModalSignUp v-model="isShowModalSignUp" has-cancel></ModalSignUp>
+    <ModalSignIn v-model="isShowModalSignIn" has-cancel></ModalSignIn>
     <Header></Header>
     <section class="section-banner relative">
       <Banner></Banner>
@@ -20,6 +21,7 @@
     <section class="section-advantage">
       <AdvangtageMiAUTO></AdvangtageMiAUTO>
     </section>
+
     <Footer></Footer>
   </div>
 </template>
@@ -33,11 +35,14 @@ import VehicleForYou from "@/components/clients/VehicleForYou";
 import LocationFamous from "@/components/clients/LocationFamous";
 import AdvangtageMiAUTO from "@/components/clients/AdvantageMiAUTO";
 import ModalSignUp from "@/components/clients/ModalSignUp";
+import ModalSignIn from "@/components/clients/ModalSignIn";
+// store
 import { useState } from "@/stores/state.store";
 import { storeToRefs } from "pinia";
 
+// access to store
 const stateStore = useState();
-const { isShowModalSignUp } = storeToRefs(stateStore);
+const { isShowModalSignUp, isShowModalSignIn } = storeToRefs(stateStore);
 </script>
 <style lang="scss" scoped>
 @import url(./responsive.scss);

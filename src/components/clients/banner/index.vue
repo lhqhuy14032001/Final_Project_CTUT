@@ -1,5 +1,5 @@
 <template>
-  <div class="banner banner-responsive relative rounded-2xl">
+  <div class="banner banner-responsive relative rounded-2xl mx-auto">
     <div class="content absolute text-white">
       <BanerContent :totalVehicle="totalVehicle"></BanerContent>
     </div>

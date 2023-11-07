@@ -1,5 +1,7 @@
 const ADMIN = () =>
   import(/* webpackChunkName: "admin" */ "@/views/administration");
+const LOGIN = () =>
+  import(/* webpackChunkName: "admin" */ "@/views/administration/LoginView");
 const HOME_PAGE_ADMIN = () =>
   import(
     /* webpackChunkName: "ad_homepage" */ "@/views/administration/HomeView"
@@ -38,6 +40,7 @@ const STATISTIS_MANAGE = () =>
 
 export {
   ADMIN,
+  LOGIN,
   HOME_PAGE_ADMIN,
   ACCOUNT_MANAGE,
   BLOG_MANAGE,

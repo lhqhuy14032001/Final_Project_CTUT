@@ -36,18 +36,27 @@
             <a class="pc-nav-item btn-signup" @click="onToggleModalSignUp"
               >Đăng ký</a
             >
-            <a class="pc-nav-item btn-singin">Đăng nhập</a>
+            <a class="pc-nav-item btn-singin" @click="onToggleModalSignIn"
+              >Đăng nhập</a
+            >
           </div>
           <div v-else class="flex items-center cursor-pointer">
             <a class="pc-nav-item">Chuyến đi</a>
             <router-link
               class="account flex items-center pc-nav-item"
-              :to="{ name: 'account', params: {} }"
+              :to="{ name: 'accountInfo', params: {} }"
             >
               <div class="user-avt m-3">
-                <img :src="userAvt" alt="user avatar" class="w-6 rounded-lg" />
+                <img
+                  :src="
+                    userLoggedIn?.avatar ??
+                    'https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg'
+                  "
+                  alt="user avatar"
+                  class="w-6 rounded-lg"
+                />
               </div>
-              <div class="username cursor-pointer">{{ username }}</div>
+              <div class="username">{{ userLoggedIn.fullname }}</div>
             </router-link>
           </div>
         </div>
@@ -66,18 +75,11 @@ import { Bars3Icon } from "@heroicons/vue/24/outline";
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 
+// init store
 const stateStore = useState();
 const authStore = useAuth();
-const { isLoggedIn, signUpInfo } = storeToRefs(authStore);
-const user = signUpInfo.value.user;
-const username = user.fullname;
-const avt = user.avatar;
+const { isLoggedIn, userLoggedIn } = storeToRefs(authStore);
 
-const userAvt = computed(() => {
-  return avt
-    ? avt
-    : "https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-businessman-user-avatar-free-vector-png-image_1538405.jpg";
-});
 const toggleMenu = () => {
   try {
     stateStore.onToggleMenuMobile();
@@ -92,6 +94,10 @@ stateStore.$subscribe((mutation, { isShowMobileMenu }) => {
 });
 function onToggleModalSignUp() {
   stateStore.onToggleModalSignUp();
+}
+
+function onToggleModalSignIn() {
+  stateStore.onToggleModalSignIn();
 }
 </script>
 <style lang="scss">

@@ -6,7 +6,10 @@
     >
       <Loading></Loading>
     </div>
-    <div class="content mx-[16px] sm:mx-[50px] xl:mx-[107px]" v-else>
+    <div
+      class="content mx-[16px] sm:mx-[50px] lg:mx-[107px] xl:mx-[120px]"
+      v-else
+    >
       <router-view></router-view>
     </div>
   </div>

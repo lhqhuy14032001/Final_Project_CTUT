@@ -4,6 +4,7 @@ export const useState = defineStore("stateStore", () => {
   const isShowMobileMenu = ref(false);
   const isLoading = ref(false);
   const isShowModalSignUp = ref(false);
+  const isShowModalSignIn = ref(false);
 
   function onToggleMenuMobile() {
     this.isShowMobileMenu = !this.isShowMobileMenu;
@@ -14,6 +15,9 @@ export const useState = defineStore("stateStore", () => {
   function onToggleModalSignUp() {
     this.isShowModalSignUp = !this.isShowModalSignUp;
   }
+  function onToggleModalSignIn() {
+    this.isShowModalSignIn = !this.isShowModalSignIn;
+  }
 
   return {
     isLoading,
@@ -22,5 +26,7 @@ export const useState = defineStore("stateStore", () => {
     onToggleloading,
     isShowModalSignUp,
     onToggleModalSignUp,
+    isShowModalSignIn,
+    onToggleModalSignIn,
   };
 });

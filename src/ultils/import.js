@@ -12,5 +12,9 @@ const registerGlobalComponent = (app) => {
     "ownerLayout",
     defineAsyncComponent(() => import("@/layouts/ownerLayout"))
   );
+  app.component(
+    "blankLayout",
+    defineAsyncComponent(() => import("@/layouts/blankLayout"))
+  );
 };
 export { registerGlobalComponent };

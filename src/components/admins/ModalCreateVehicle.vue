@@ -217,7 +217,7 @@ manufactureYearList.push({
   value: currentYear,
   label: currentYear.toString(),
 });
-console.log(selected.value);
+// console.log(selected.value);
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.css"></style>
 <style lang="css" scoped>

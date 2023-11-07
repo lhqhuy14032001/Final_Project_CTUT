@@ -1,3 +1,9 @@
+export const PERMISSION = {
+  AD: "0000",
+  OW: "1111",
+  CUS: "2222",
+};
+
 export const imageURL = {
   banner_01: "https://www.mioto.vn/static/media/bg-landingpage-3.6011c96f.png",
 };

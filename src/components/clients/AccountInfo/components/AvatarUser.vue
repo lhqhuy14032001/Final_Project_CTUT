@@ -5,12 +5,8 @@
         for="user-avatar"
         class="rounded-full w-fit text-center mx-auto cursor-pointer"
       >
-        <input type="file" id="user-avatar" hidden />
-        <img
-          src="https://www.shareicon.net/data/512x512/2015/09/18/103160_man_512x512.png"
-          alt=""
-          class="img-avt w-[146px]"
-        />
+        <input @change="uploadUserAvatar" type="file" id="user-avatar" hidden />
+        <img :src="userAvatar" alt="" class="img-avt w-[146px]" />
       </label>
       <div class="username text-centery my-5">{{ props.username }}</div>
     </div>
@@ -18,7 +14,25 @@
 </template>
 
 <script setup>
+import { uploadAvatar } from "@/firebase/uploadUserAvatar";
+import { computed } from "vue";
 import { defineProps } from "vue";
+// store
+import { useAuth } from "@/stores/auth.store";
+import { storeToRefs } from "pinia";
+const authStore = useAuth();
+const { userLoggedIn } = storeToRefs(authStore);
+const tmpAvatar =
+  "https://www.shareicon.net/data/512x512/2015/09/18/103160_man_512x512.png";
+
+const userAvatar = computed(() => {
+  return userLoggedIn.avatar ? userLoggedIn.avatar : tmpAvatar;
+});
+
+const uploadUserAvatar = async (event) => {
+  let res = await uploadAvatar(event.target.files[0]);
+  userLoggedIn.value.avatar = res.data.urlAvatar;
+};
 const props = defineProps({
   username: {
     typed: String,

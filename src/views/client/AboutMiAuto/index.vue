@@ -1,6 +1,7 @@
 <template>
   <div class="about-wrapper">
     <ModalSignUp v-model="isShowModalSignUp" has-cancel></ModalSignUp>
+    <ModalSignIn v-model="isShowModalSignIn" has-cancel></ModalSignIn>
     <Header></Header>
     <div class="line border-[0.5px] -mx-[107px]"></div>
     <div id="section-intro">
@@ -15,11 +16,12 @@ import Header from "@/components/clients/Header";
 import Footer from "@/components/clients/Footer";
 import Intro from "@/components/clients/AboutMiAuto";
 import ModalSignUp from "@/components/clients/ModalSignUp";
+import ModalSignIn from "@/components/clients/ModalSignIn";
 import { useState } from "@/stores/state.store";
 import { storeToRefs } from "pinia";
 
 const stateStore = useState();
-const { isShowModalSignUp } = storeToRefs(stateStore);
+const { isShowModalSignUp, isShowModalSignIn } = storeToRefs(stateStore);
 </script>
 
 <style lang="scss" scoped></style>

@@ -17,13 +17,8 @@
 import HeaderAccount from "./components/HeaderAccount.vue";
 import AvatarUser from "./components/AvatarUser.vue";
 import InFo from "./components/Info.vue";
-// store
-import { useAuth } from "@/stores/auth.store";
-import { storeToRefs } from "pinia";
-
-const authStore = useAuth();
-const { signUpInfo } = storeToRefs(authStore);
-const user = signUpInfo.value.user;
+import { getCookie } from "@/ultils/functions";
+const user = JSON.parse(getCookie("_us"));
 </script>
 
 <style lang="scss" scoped>

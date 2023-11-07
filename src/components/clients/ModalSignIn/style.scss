@@ -1,7 +1,8 @@
 .signup-wrapper {
   .btn-signup-social-media {
+    .btn-facebook,
     .btn-google {
-      @apply border border-primary rounded-lg min-w-full cursor-pointer flex justify-center items-center gap-2 px-2 py-2;
+      @apply border border-primary rounded-lg w-full cursor-pointer flex justify-center items-center gap-2 px-2 py-2;
     }
     .btn-facebook:hover,
     .btn-google:hover {

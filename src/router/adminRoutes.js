@@ -4,8 +4,8 @@ export default [
     path: "tong-quan",
     name: "home-admin",
     component: ADMIN.HOME_PAGE_ADMIN,
+    meta: {},
   },
-
   {
     path: "quan-ly-tai-khoan",
     name: "account-manage",

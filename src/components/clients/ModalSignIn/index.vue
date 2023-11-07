@@ -10,7 +10,7 @@
         :closeIn="5000"
         ref="notificationStatusCreate"
       />
-      <CardBoxComponentTitle title="Đăng ký" class="my-5">
+      <CardBoxComponentTitle title="Đăng nhập" class="my-5">
         <BaseButton
           v-if="hasCancel"
           :icon="mdiClose"
@@ -44,29 +44,6 @@
               </span>
             </p>
           </div>
-          <div class="row flex xl:justify-between flex-col">
-            <div class="mr-2 w-full">
-              <label for="fullname" class="block text-left font-semibold"
-                >Tên hiển thị</label
-              >
-              <div
-                class="border-b-2"
-                :class="handleErrorClass(v$.fullname.$error)"
-              >
-                <input
-                  v-model="formData.fullname"
-                  class="focus:ring-0 border-none w-full text-fz-16 pl-0"
-                  type="text"
-                  id="fullname"
-                />
-              </div>
-            </div>
-            <p v-if="v$.fullname.$error" class="text-error">
-              <span v-for="error in v$.fullname.$errors" :key="error.$uid">
-                {{ error.$message }}
-              </span>
-            </p>
-          </div>
           <div class="row flex flex-col">
             <label for="password" class="mr-auto mb-2 font-semibold"
               >Mật khẩu</label
@@ -93,44 +70,6 @@
               </span>
             </p>
           </div>
-          <div class="row flex flex-col">
-            <label for="re-password" class="mr-auto mb-2 font-semibold"
-              >Nhập lại mật khẩu</label
-            >
-            <div
-              class="flex border-b-2 border-gray-300 items-center"
-              :class="handleErrorClass(v$.rePassword.$error)"
-            >
-              <input
-                v-model="formData.rePassword"
-                class="w-full border-none focus:ring-0 text-fz-16 pl-0"
-                :type="isShowPassword ? 'password' : 'text'"
-                id="re-password"
-              />
-              <BaseIcon
-                @click="isShowPassword = !isShowPassword"
-                :path="isShowPassword ? mdiEyeOff : mdiEye"
-                class="mr-2"
-              ></BaseIcon>
-            </div>
-            <p v-if="v$.rePassword.$error" class="text-error">
-              <span v-for="error in v$.phonenumber.$errors" :key="error.$uid">
-                {{ error.$message }}
-              </span>
-            </p>
-          </div>
-          <div class="accept-policy text-left">
-            <input
-              v-model="formData.acceptPolicy"
-              type="checkbox"
-              class="text-primary rounded-md focus:ring-transparent mr-2"
-              id="policy"
-            />
-            <label for="policy">
-              Tôi đồng ý với chính sách của MiAUTO.
-              <router-link to="/" class="text-primary">Chi tiết</router-link>
-            </label>
-          </div>
         </form>
       </div>
       <template #footer>
@@ -139,12 +78,10 @@
           class="btn-signup min-w-full bg-primary text-white font-semibold rounded-lg py-4 px-6 disabled:bg-gray-400"
           :disabled="!isDisableButton"
         >
-          Đăng ký
+          Đăng nhập
         </button>
-        <div class="btn-signup-social-media mt-4 grid">
-          <!-- popup-type="TOKEN" -->
-          <!-- <GoogleLogin :callback="signupWithGoogle"> -->
-          <div class="btn-google min-w-full">
+        <div class="btn-signup-social-media flex gap-2 mt-4">
+          <div class="btn-google">
             <div>
               <svg
                 width="16"
@@ -173,7 +110,6 @@
             </div>
             <div>Google</div>
           </div>
-          <!-- </GoogleLogin> -->
         </div>
       </template>
     </CardBox>
@@ -186,10 +122,10 @@ import CardBox from "@/components/admins/CardBox.vue";
 import CardBoxComponentTitle from "@/components/admins/CardBoxComponentTitle.vue";
 import OverlayLayer from "@/components/admins/OverlayLayer.vue";
 import { useAuth } from "@/stores/auth.store";
-import { regexPassword, regexPhoneNumber } from "@/ultils/constants";
+import { regexPhoneNumber } from "@/ultils/constants";
 import { mdiClose, mdiEye, mdiEyeOff } from "@mdi/js";
 import { useVuelidate } from "@vuelidate/core";
-import { helpers, required, sameAs } from "@vuelidate/validators";
+import { helpers, required } from "@vuelidate/validators";
 import { computed, defineEmits, defineProps, ref } from "vue";
 import VueBasicAlert from "vue-basic-alert";
 
@@ -221,29 +157,16 @@ window.addEventListener("keydown", (e) => {
     cancel();
   }
 });
-// googel sign up
-// test google login
-// const signupWithGoogle = (response) => {
-//   console.log(response);
-//   if (response.credential) {
-//     console.log("Call the endpoint which validates JWT credential string");
-//   } else {
-//     console.log("Call the endpoint which validates authorization code");
-//   }
-// };
+
 const isShowPassword = ref(false);
 const isDisableButton = ref(true);
 const notificationStatusCreate = ref(null);
 
 const mustBePhoneNumber = helpers.regex(regexPhoneNumber);
-const validPassword = helpers.regex(regexPassword);
 
 const formData = ref({
   phonenumber: "",
-  fullname: "",
   password: "",
-  rePassword: "",
-  acceptPolicy: false,
 });
 
 const rules = computed(() => {
@@ -258,30 +181,10 @@ const rules = computed(() => {
         mustBePhoneNumber
       ),
     },
-    fullname: {
-      required: helpers.withMessage(
-        "Vui lòng không bỏ trống họ tên.",
-        required
-      ),
-    },
     password: {
       required: helpers.withMessage(
         "Vui lòng không bỏ trống mật khẩu.",
         required
-      ),
-      validatePassword: helpers.withMessage(
-        "Mật khẩu có ít nhất 8 ký tự, có ít nhất một chữ số và một ký tự đặc biệt.",
-        validPassword
-      ),
-    },
-    rePassword: {
-      required: helpers.withMessage(
-        "Vui lòng nhập phần Nhập lại mật khẩu.",
-        required
-      ),
-      sameAsPassword: helpers.withMessage(
-        "Không khớp với mật khẩu đã nhập.",
-        sameAs(formData.value.password)
       ),
     },
   };
@@ -293,31 +196,23 @@ function handleErrorClass(condition) {
 }
 function onClearData() {
   formData.value.phonenumber = "";
-  formData.value.fullname = "";
   formData.value.password = "";
-  formData.value.rePassword = "";
-  formData.value.acceptPolicy = false;
 }
 async function onSubmitForm() {
-  try {
-    let isValidForm = await v$.value.$validate();
-    if (isValidForm) {
-      if (!formData.value.acceptPolicy) {
-        notificationStatusCreate.value.showAlert(
-          "error",
-          "Đồng ý điều khoản",
-          "Vui lòng đồng ý các điều khoản trước khi đăng ký."
-        );
-      } else {
-        // useAuthStore.onSaveSignUpInfo(formData.value);
-        useAuthStore.signUp(formData.value);
-        onClearData();
-        v$.value.$reset();
-        confirmCancel("cancel");
-      }
+  let isValidForm = await v$.value.$validate();
+  if (isValidForm) {
+    let res = await useAuthStore.signIn(formData.value);
+    if (res.errMessage) {
+      notificationStatusCreate.value.showAlert(
+        "error",
+        "Đăng nhập",
+        res.errMessage
+      );
+    } else {
+      onClearData();
+      v$.value.$reset();
+      confirmCancel("cancel");
     }
-  } catch (error) {
-    console.error("Something went wrong", error);
   }
 }
 </script>

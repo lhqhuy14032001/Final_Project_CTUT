@@ -1,4 +1,5 @@
 import * as CLIENT from "./import/clientCoponents";
+import clientMiddlewares from "@/middlewares/client.middleware";
 export default [
   {
     path: "",
@@ -14,8 +15,9 @@ export default [
   {
     path: "tai-khoan",
     name: "account",
+    beforeEnter: clientMiddlewares.handleCheckLogin,
     component: CLIENT.ACCOUNT,
-    redirect: "tai-khoan/thong-tin-tai-khoan",
+    // redirect: "tai-khoan/thong-tin-tai-khoan",
     children: [
       {
         path: "thong-tin-tai-khoan",

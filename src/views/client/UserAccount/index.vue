@@ -18,18 +18,6 @@
 import Header from "@/components/clients/Header";
 import Footer from "@/components/clients/Footer";
 import SideBarUserAccount from "@/components/clients/SidebarUserAccount";
-// store
-// import { useAuth } from "@/stores/auth.store";
-// import { storeToRefs } from "pinia";
-// build-in package
-
-// const authStore = useAuth();
-// const { signUpInfo } = storeToRefs(authStore);
-// const _uid = signUpInfo.value.user.uid;
-
-// function signOut() {
-//   authStore.signOut(_uid);
-// }
 </script>
 
 <style lang="scss" scoped></style>
