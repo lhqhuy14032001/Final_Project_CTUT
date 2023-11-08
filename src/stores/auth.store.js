@@ -53,19 +53,35 @@ export const useAuth = defineStore(
     }
     async function signOut() {
       try {
-        let _uid = JSON.parse(getCookie("_us")).uid;
+        let _uid;
+        if (userLoggedIn.value) {
+          _uid = JSON.parse(getCookie("_us")).uid;
+        } else {
+          _uid = adminLogin.value.uid;
+        }
         let res = await authAPI.signOut(_uid);
         if (res.status === 200) {
-          isLoggedIn.value = !isLoggedIn.value;
-          userLoggedIn.value = null;
-          router.push({ name: "home", params: {} });
+          if (userLoggedIn.value) {
+            isLoggedIn.value = !isLoggedIn.value;
+            userLoggedIn.value = null;
+            router.push({ name: "home", params: {} });
+          } else {
+            adminLogin.value = null;
+            router.push({ name: "home", params: {} });
+          }
         }
       } catch (error) {
-        if (error.code === 403) {
-          isLoggedIn.value = !isLoggedIn.value;
-          router.push({ name: "home", params: {} });
-          userLoggedIn.value = null;
-          expiredSession.value = error.message;
+        if (error.response.data.message.code === 403) {
+          if (userLoggedIn.value) {
+            isLoggedIn.value = false;
+            userLoggedIn.value = null;
+            router.push({ name: "home", params: {} });
+          } else {
+            adminLogin.value = null;
+            router.push({ name: "home", params: {} });
+          }
+
+          // expiredSession.value = error.message;
         } else {
           console.error(error);
         }

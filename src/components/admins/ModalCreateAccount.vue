@@ -20,7 +20,9 @@ import { useVuelidate } from "@vuelidate/core";
 import { email, helpers, required } from "@vuelidate/validators";
 // axios API
 import userAPI from "@/apis/AdminAPI/user.api";
-
+// store
+import { useUser } from "@/stores/user.store";
+const userStore = useUser();
 const props = defineProps({
   title: {
     type: String,
@@ -149,6 +151,7 @@ const handleCreateUser = async () => {
           "Tạo tài khoản",
           "Tạo tài khoản thành công"
         );
+        userStore.getUserList();
       }
       v$.value.$reset();
       onClearData();

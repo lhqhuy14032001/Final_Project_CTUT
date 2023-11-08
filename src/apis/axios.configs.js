@@ -2,8 +2,6 @@ import axios from "axios";
 import queryString from "query-string";
 import authAPI from "./auth.api";
 import { getCookie } from "@/ultils/functions";
-// import { useRouter } from "vue-router";
-// const router = useRouter();
 let _uid;
 let _user = getCookie("_us");
 if (_user && JSON.parse(_user).uid) {

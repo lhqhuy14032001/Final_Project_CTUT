@@ -5,6 +5,7 @@ import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import CKEditor from "@ckeditor/ckeditor5-vue";
 import { registerGlobalComponent } from "@/ultils/import";
+
 // calendar
 import VCalendar from "v-calendar";
 import "v-calendar/style.css";
@@ -12,13 +13,11 @@ import "v-calendar/style.css";
 import "@/assets/css/main.css";
 // google login
 import vue3GoogleLogin from "vue3-google-login";
-
 // init store
 const stores = createPinia();
 stores.use(piniaPluginPersistedstate);
 const app = createApp(App);
 registerGlobalComponent(app);
-
 app.use(vue3GoogleLogin, {
   clientId:
     "52032724170-22h6tkkf6s2emrh5utj1m2msa96p6h0t.apps.googleusercontent.com",

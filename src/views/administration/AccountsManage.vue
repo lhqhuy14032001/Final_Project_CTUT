@@ -17,18 +17,17 @@
     >
     </SectionTitleLineWithButton>
     <CardBox class="mb-6" has-table>
-      <TableSampleClients checkable />
+      <TableClients />
     </CardBox>
   </SectionMain>
 </template>
 <script setup>
 import { mdiTableBorder } from "@mdi/js";
 import SectionMain from "@/components/admins/SectionMain.vue";
-import TableSampleClients from "@/components/admins/TableSampleClients.vue";
+import TableClients from "@/components/admins/TableClients.vue";
 import CardBox from "@/components/admins/CardBox.vue";
 import SectionTitleLineWithButton from "@/components/admins/SectionTitleLineWithButton.vue";
 import ModalCreateAccount from "@/components/admins/ModalCreateAccount.vue";
-
 import { ref } from "vue";
 
 const isModalCreateAccountActive = ref(false);

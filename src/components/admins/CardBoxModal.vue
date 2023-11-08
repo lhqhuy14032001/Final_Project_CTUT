@@ -48,7 +48,12 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["update:modelValue", "cancel", "confirm"]);
+const emit = defineEmits([
+  "update:modelValue",
+  "cancel",
+  "confirm",
+  "deleteUser",
+]);
 
 const value = computed({
   get: () => props.modelValue,
@@ -62,12 +67,8 @@ const confirmCancel = (mode) => {
 
 const notification = ref(null);
 const confirm = () => {
-  notification.value.showAlert(
-    props.alertType,
-    props.alertTitle,
-    props.alertContent
-  );
-  confirmCancel("confirm");
+  emit("deleteUser");
+  cancel();
 };
 
 const cancel = () => confirmCancel("cancel");
