@@ -6,10 +6,19 @@ export const getCookie = function getCookieValue(name) {
   }
 };
 
-export const handleCheckSeesstion = (router, nameRoute) => {
+export const handleCheckSession = (router, nameRoute) => {
   router.push(nameRoute);
 };
 
 export const handleDeleteCookie = (name) => {
   document.cookie = `${name}=`;
+};
+
+export const getUIDFromCookies = () => {
+  let _uid;
+  let _user = getCookie("_us");
+  if (_user && JSON.parse(_user).uid) {
+    _uid = JSON.parse(_user).uid;
+    return _uid;
+  }
 };

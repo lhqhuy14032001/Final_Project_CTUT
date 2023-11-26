@@ -5,7 +5,7 @@ const clientMiddlewares = {
     try {
       const authStore = useAuth();
       const { userLoggedIn } = storeToRefs(authStore);
-      if (userLoggedIn) {
+      if (userLoggedIn.value) {
         next();
       } else {
         next({ name: "home", params: {} });

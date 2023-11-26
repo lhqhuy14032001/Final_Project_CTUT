@@ -7,6 +7,11 @@ export default [
     component: CLIENT.HOME_PAGE,
   },
   {
+    path: ":vehicle_name/:id",
+    name: "vehicle-detail",
+    component: CLIENT.VEHICLE_DETAIL,
+  },
+  {
     path: "chinh-sach",
     name: "policy",
     component: CLIENT.POLICY_PAGE,
@@ -29,7 +34,22 @@ export default [
         name: "wishList",
         component: CLIENT.WISH_LIST,
       },
+      {
+        path: "them-xe",
+        name: "car-create",
+        component: CLIENT.CREATE_CAR,
+      },
+      {
+        path: "xe-cua-toi",
+        name: "myVehicles",
+        component: CLIENT.VEHICLE_MANAGE,
+      },
     ],
+  },
+  {
+    path: "/verify-gmail/:email",
+    name: "verifyEmail",
+    component: () => import("@/views/owner/verifyEmail"),
   },
   {
     path: ":pathMatch(.*)*",

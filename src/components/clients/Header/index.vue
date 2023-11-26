@@ -27,9 +27,9 @@
             >
               Về MiAUTO
             </router-link>
-            <router-link class="pc-nav-item" to="/test"
+            <!-- <router-link class="pc-nav-item" to="/test"
               >Trở thành chủ xe</router-link
-            >
+            > -->
           </div>
           <div class="line border-l-2 border-gray-300"></div>
           <div v-if="!isLoggedIn" class="second-right-nav">
@@ -41,7 +41,7 @@
             >
           </div>
           <div v-else class="flex items-center cursor-pointer">
-            <a class="pc-nav-item">Chuyến đi</a>
+            <!-- <a class="pc-nav-item">Chuyến đi</a> -->
             <router-link
               class="account flex items-center pc-nav-item"
               :to="{ name: 'accountInfo', params: {} }"

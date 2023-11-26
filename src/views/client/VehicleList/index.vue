@@ -1,5 +1,7 @@
 <template>
   <div class="vehicle-list">
+    <ModalSignUp v-model="isShowModalSignUp" has-cancel></ModalSignUp>
+    <ModalSignIn v-model="isShowModalSignIn" has-cancel></ModalSignIn>
     <Header></Header>
     <VehicleFilter></VehicleFilter>
     <div
@@ -16,6 +18,15 @@
 import Header from "@/components/clients/Header";
 import VehicleFilter from "@/components/clients/VehicleFilter";
 import VehicleCard from "@/components/clients/VehicleCard";
+import ModalSignUp from "@/components/clients/ModalSignUp";
+import ModalSignIn from "@/components/clients/ModalSignIn";
+// store
+import { useState } from "@/stores/state.store";
+import { storeToRefs } from "pinia";
+
+// access to store
+const stateStore = useState();
+const { isShowModalSignUp, isShowModalSignIn } = storeToRefs(stateStore);
 </script>
 
 <style lang="scss" scoped></style>

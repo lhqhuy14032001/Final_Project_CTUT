@@ -1,6 +1,14 @@
-import { defineStore } from "pinia";
+import vehicleAPI from "@/apis/vehicle.api";
+import { vehicleStatus } from "@/ultils/constants";
+import { defineStore, storeToRefs } from "pinia";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useAuth } from "./auth.store";
+
 export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
+  const authStore = useAuth();
+  const router = useRouter();
+  const { userLoggedIn, isLoggedIn, adminLogin } = storeToRefs(authStore);
   const totalVehicle = ref(8000);
   const locationFamous = ref([
     {
@@ -87,29 +95,31 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
     endDate: null,
     location: null,
   });
+  const hirePrice = ref(900000);
+  const serviceFee = hirePrice.value * 0.01;
+  const PDCfee = hirePrice.value * 0.01;
   const carInfor = ref({
     uid: null,
     carName: null,
     hirePrice: null,
     numberPlate: null,
-    brand_id: null,
-    carType_id: null,
-    gearbox_id: null,
-    fuel_id: null,
-    physicalDamageCoverageState: false,
+    brand: null,
+    carType: null,
+    gearbox: null,
+    fuel: null,
+    year: null,
+    physicalDamageCoverageState: 0,
     physicalDamageCoverageFee: null,
     physicalDamageCoverageBrand: null,
-    features_id: [],
-    state: "Trống",
-    policy: null,
+    features: [],
+    state: vehicleStatus.CD,
     desc: null,
     deposit: null,
     averageFuel: null,
-    address: {
-      prov_id: null,
-      district_id: null,
-      addressDetail: null,
-    },
+    prov: null,
+    prov_id: null,
+    district: null,
+    addressDetail: null,
   });
   const surcharge = ref([
     {
@@ -140,33 +150,10 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
     { value: 2, label: "Xe máy chính chủ" },
     { value: 3, label: "Tất cả" },
   ]);
-  const gearboxes = ref([
-    { gearbox_id: 1, label: "Số sàn" },
-    { gearbox_id: 2, label: "Số số tự động" },
-    { gearbox_id: 3, label: "Tất cả" },
-  ]);
-  const car_types = ref([
-    { type_id: 1, label: "4 chỗ mini (Hạng A)" },
-    { type_id: 2, label: "4 chỗ Sedan" },
-    { type_id: 3, label: "4 chỗ Hatchback" },
-    { type_id: 4, label: "4 chỗ gầm cao" },
-    { type_id: 5, label: "7 chỗ gầm cao" },
-    { type_id: 6, label: "7 chỗ gầm gầm thấp" },
-    { type_id: 7, label: "Bán tải" },
-  ]);
-  const fuels = ref([
-    { fuel_id: 1, label: "Xăng" },
-    { fuel_id: 2, label: "Diesel" },
-    { fuel_id: 3, label: "Điện" },
-    { fuel_id: 4, label: "Tất cả" },
-  ]);
-  const brands = ref([
-    { brand_id: 1, label: "Toyota" },
-    { brand_id: 2, label: "Hyundai" },
-    { brand_id: 3, label: "KIA" },
-    { brand_id: 4, label: "Mitsubishi" },
-    { brand_id: 5, label: "Vinfast" },
-  ]);
+  const gearboxes = ref(new Array());
+  const car_types = ref([]);
+  const fuels = ref([]);
+  const brands = ref([]);
   const features = ref([
     {
       feature_id: 1,
@@ -184,25 +171,186 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
       feature_id: 4,
       label: "Camera cập lề",
     },
+    {
+      feature_id: 5,
+      label: "Camera hành trình",
+    },
+    {
+      feature_id: 6,
+      label: "Camera lùi",
+    },
+    {
+      feature_id: 7,
+      label: "Cảm biến va chạm",
+    },
+    {
+      feature_id: 8,
+      label: "Cảnh báo tốc độ",
+    },
+    {
+      feature_id: 9,
+      label: "Định vị GPS",
+    },
+    {
+      feature_id: 10,
+      label: "Khe cắm USB",
+    },
+    {
+      feature_id: 11,
+      label: "Lốp dự phòng",
+    },
+    {
+      feature_id: 12,
+      label: "Màn hình DVD",
+    },
+    {
+      feature_id: 13,
+      label: "ETC",
+    },
+    {
+      feature_id: 14,
+      label: "Túi khí an toàn",
+    },
   ]);
-  const provinces = ref([
-    { prov_id: 1, prov_name: "An Giang" },
-    { prov_id: 2, prov_name: "Hậu Giang" },
-    { prov_id: 3, prov_name: "Kiên Giang" },
-    { prov_id: 4, prov_name: "Cần Thơ" },
-    { prov_id: 5, prov_name: "Cà Mau" },
-    { prov_id: 6, prov_name: "Bạc Liêu" },
-    { prov_id: 7, prov_name: "Sóc Trăng" },
-    { prov_id: 8, prov_name: "Trà Vinh" },
-    { prov_id: 9, prov_name: "Bến Tre" },
-  ]);
-  const districts = ref([
-    { district_id: 1, prov_id: 1, district_name: "Châu Thành" },
-    { district_id: 2, prov_id: 1, district_name: "Châu Phú" },
-    { district_id: 3, prov_id: 1, district_name: "TP.Long Xuyên" },
-    { district_id: 4, prov_id: 1, district_name: "TP.Châu Đốc" },
-    { district_id: 5, prov_id: 1, district_name: "Thoại Sơn" },
-  ]);
+  const provinces = ref([]);
+  const districts = ref([]);
+  // call API to get vehicle info
+  async function getType() {
+    try {
+      let response = await vehicleAPI.getType();
+      if (response.status === 200) {
+        car_types.value = response.metadata;
+      }
+    } catch (error) {
+      if (error.response.data.message.code === 403) {
+        if (userLoggedIn.value) {
+          isLoggedIn.value = false;
+          userLoggedIn.value = null;
+          router.push({ name: "home", params: {} });
+        }
+      }
+      console.error(error);
+    }
+  }
+  async function getGearboxes() {
+    try {
+      let response = await vehicleAPI.getGearboxes();
+      if (response.status === 200) {
+        gearboxes.value = response.metadata;
+      }
+    } catch (error) {
+      if (error.response.data.message.code === 403) {
+        if (userLoggedIn.value) {
+          isLoggedIn.value = false;
+          userLoggedIn.value = null;
+          router.push({ name: "home", params: {} });
+        }
+      }
+      console.error(error);
+    }
+  }
+  async function getBrands() {
+    try {
+      let response = await vehicleAPI.getBrands();
+      if (response.status === 200) {
+        brands.value = response.metadata;
+      }
+    } catch (error) {
+      if (error.response.data.message.code === 403) {
+        if (userLoggedIn.value) {
+          isLoggedIn.value = false;
+          userLoggedIn.value = null;
+          router.push({ name: "home", params: {} });
+        }
+      }
+      console.error(error);
+    }
+  }
+  async function getFuels() {
+    try {
+      let response = await vehicleAPI.getFuels();
+      if (response.status === 200) {
+        fuels.value = response.metadata;
+      }
+    } catch (error) {
+      if (error.response.data.message.code === 403) {
+        if (userLoggedIn.value) {
+          isLoggedIn.value = false;
+          userLoggedIn.value = null;
+          router.push({ name: "home", params: {} });
+        }
+      }
+      console.error(error);
+    }
+  }
+  async function getProvinces() {
+    try {
+      let response = await vehicleAPI.getProvinces();
+      if (response.status === 200) {
+        provinces.value = response.metadata;
+      }
+    } catch (error) {
+      if (error.response.data.message.code === 403) {
+        if (userLoggedIn.value) {
+          isLoggedIn.value = false;
+          userLoggedIn.value = null;
+          router.push({ name: "home", params: {} });
+        }
+        console.error(error);
+      }
+    }
+  }
+  async function getDistricts(prov_id) {
+    try {
+      let response = await vehicleAPI.getDistricts(prov_id);
+      if (response.status === 200) {
+        districts.value = response.metadata;
+      } else {
+        districts.value = [];
+      }
+    } catch (error) {
+      if (error.response.data.message.code === 403) {
+        if (userLoggedIn.value) {
+          isLoggedIn.value = false;
+          userLoggedIn.value = null;
+          router.push({ name: "home", params: {} });
+        }
+      }
+      console.error(error);
+    }
+  }
+
+  async function registerVehicle(carInfo) {
+    try {
+      let res = await vehicleAPI.registerVehicle(carInfo);
+      console.log(res);
+    } catch (error) {
+      if (error.response.data.message.code === 403) {
+        if (userLoggedIn.value) {
+          isLoggedIn.value = false;
+          userLoggedIn.value = null;
+          router.push({ name: "home", params: {} });
+        }
+      } else {
+        console.error(error);
+      }
+    }
+  }
+  async function getVehicleWithStatus(status) {
+    try {
+      let result = await vehicleAPI.getVehicleWithStatus(status);
+      console.log(result);
+    } catch (error) {
+      if (error.response.data.message.code === 403) {
+        if (adminLogin.value) {
+          adminLogin.value = null;
+          router.push({ name: "admin-login", params: {} });
+        }
+      } else {
+        console.error(error);
+      }
+    }
+  }
 
   return {
     totalVehicle,
@@ -218,5 +366,16 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
     provinces,
     districts,
     locationFamous,
+    hirePrice,
+    serviceFee,
+    PDCfee,
+    getType,
+    getGearboxes,
+    getBrands,
+    getFuels,
+    getProvinces,
+    getDistricts,
+    registerVehicle,
+    getVehicleWithStatus,
   };
 });

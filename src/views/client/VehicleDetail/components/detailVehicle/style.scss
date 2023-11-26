@@ -1,0 +1,134 @@
+.vehicle-info-wrapper {
+  @apply grid grid-cols-12 gap-5 my-5 flex-col;
+  h2 {
+    @apply text-left text-xl font-semibold;
+  }
+  .vehicle-info {
+    .vehicle-name {
+      @apply text-5xl text-black font-bold text-left my-3;
+    }
+    .vehicle-hire-info {
+      @apply flex gap-3;
+      .address {
+        @apply flex text-2xl items-center;
+      }
+      .total-tours {
+        @apply flex text-2xl items-center;
+      }
+    }
+    .hire-condition {
+      .hire-condition-tag {
+        @apply text-left text-xs bg-green-100 font-medium rounded-full w-fit px-2 py-1 my-2 mr-2;
+      }
+    }
+  }
+  .vehicle-characteristic {
+    @apply border-y my-8 py-3;
+    .characteristics-list {
+      @apply flex justify-around my-5;
+      .characteristic-item {
+        @apply flex items-center gap-3;
+        div {
+          @apply flex flex-col gap-3 text-xl font-semibold text-black;
+          span {
+            @apply text-base text-gray-500;
+          }
+        }
+      }
+    }
+  }
+  .vehicle-desc {
+    p {
+      @apply my-5 text-[#767676] text-base text-justify;
+    }
+  }
+  .vehicle-options {
+    @apply my-8 py-3 border-y;
+    .option-list {
+      @apply my-5;
+      ul {
+        @apply flex flex-wrap gap-4;
+        li {
+          @apply flex items-center gap-4;
+          width: calc(25% - 15px);
+        }
+      }
+    }
+  }
+  .papers {
+    @apply flex flex-col gap-8;
+    h2 {
+      @apply relative;
+      span {
+        @apply ml-2 border-2 border-black rounded-full px-2 font-semibold cursor-pointer;
+      }
+      p {
+        @apply hidden absolute bottom-[150%] left-[3%] text-xs text-center w-72 bg-white shadow-xl p-4 rounded-lg;
+        b {
+          @apply text-xs;
+        }
+        &::after {
+          content: "";
+          position: absolute;
+          width: 0;
+          height: 0;
+          top: 100%;
+          left: 50%;
+          transform: translateX(-50%);
+          border: 8px solid transparent;
+          border-top-color: #ffff;
+        }
+      }
+      span:hover + p {
+        display: block;
+      }
+    }
+    .papers-body {
+      @apply py-4 px-6 border-l-8 border-[#f26a2b] rounded-lg bg-[#fef7f4];
+      p {
+        @apply flex items-center my-4 gap-4;
+      }
+    }
+  }
+  .policy {
+    @apply flex flex-col gap-10;
+    p {
+      @apply text-left text-gray-500 text-base;
+    }
+  }
+  .fee {
+    .fee-list {
+      @apply border-y;
+      .service-fee {
+        p::after {
+          left: 49% !important;
+        }
+      }
+      div {
+        div {
+          @apply relative;
+          span {
+            @apply ml-2 px-2 py-1 border font-semibold rounded-full cursor-pointer text-xs;
+          }
+          p {
+            @apply hidden absolute bottom-[150%]  text-xs text-center w-52 bg-white shadow-xl p-4 rounded-lg;
+            &::after {
+              content: "";
+              position: absolute;
+              width: 0;
+              height: 0;
+              top: 100%;
+              left: 56%;
+              transform: translateX(-50%);
+              border: 8px solid transparent;
+              border-top-color: #ffff;
+            }
+          }
+          span:hover + p {
+            @apply block;
+          }
+        }
+      }
+    }
+  }
+}

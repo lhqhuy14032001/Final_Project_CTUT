@@ -35,7 +35,7 @@ const asideLgCloseClick = (event) => {
   emit("aside-lg-close-click", event);
 };
 function signOut() {
-  authStore.signOut();
+  authStore.signOutAD();
 }
 </script>
 

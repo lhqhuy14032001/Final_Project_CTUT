@@ -1,6 +1,6 @@
 <template>
-  <div class="filter-wrapper">
-    <div class="reset-filter">reset</div>
+  <div class="filter-wrapper my-3">
+    <!-- <div class="reset-filter">reset</div> -->
     <div class="filter-list">
       <FilterItem
         v-for="filter in props.filterList"

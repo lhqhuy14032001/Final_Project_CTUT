@@ -1,0 +1,9 @@
+.vehicle-img-wrapper {
+  .car-img-small {
+    .car-img-item {
+      img {
+        @apply w-full h-48 rounded-xl object-cover;
+      }
+    }
+  }
+}

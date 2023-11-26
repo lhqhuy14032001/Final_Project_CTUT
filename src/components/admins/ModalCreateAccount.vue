@@ -19,7 +19,7 @@ import {
 import { useVuelidate } from "@vuelidate/core";
 import { email, helpers, required } from "@vuelidate/validators";
 // axios API
-import userAPI from "@/apis/AdminAPI/user.api";
+import userAPI from "@/apis/user.api";
 // store
 import { useUser } from "@/stores/user.store";
 const userStore = useUser();

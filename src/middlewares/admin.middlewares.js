@@ -17,5 +17,19 @@ const adminMiddlewares = {
       next({ name: "home", params: {} });
     }
   },
+  handleCheckLoggedIn: (to, from, next) => {
+    try {
+      const authStore = useAuth();
+      const { adminLogin } = storeToRefs(authStore);
+      if (adminLogin.value) {
+        next({ name: "home-admin", params: {} });
+      } else {
+        next();
+      }
+    } catch (error) {
+      console.error("Something went wrong::::::::", error);
+      next({ name: "home", params: {} });
+    }
+  },
 };
 export default adminMiddlewares;

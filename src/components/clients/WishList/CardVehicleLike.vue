@@ -115,7 +115,16 @@
       >
         Bỏ thích
       </div>
-      <div class="cursor-pointer font-bold">Xem chi tiết</div>
+      <div class="cursor-pointer font-bold">
+        <router-link
+          :to="{
+            name: 'vehicle-detail',
+            params: { id: '1', vehicle_name: vehicleNameParam },
+          }"
+        >
+          Xem chi tiết
+        </router-link>
+      </div>
     </div>
   </div>
   <div class="Empty-wish-list w-[50%] mx-auto" v-else>
@@ -146,6 +155,9 @@ let star = 5;
 let tourTotal = 29;
 let location = "Quận Ninh Kiều, Cần Thơ";
 let price = 750;
+
+// handle veicle name to pass param
+const vehicleNameParam = carname.toLowerCase().replaceAll(" ", "-");
 </script>
 
 <style lang="scss" scoped></style>

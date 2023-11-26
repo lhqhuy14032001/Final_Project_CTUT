@@ -5,6 +5,7 @@ export const useState = defineStore("stateStore", () => {
   const isLoading = ref(false);
   const isShowModalSignUp = ref(false);
   const isShowModalSignIn = ref(false);
+  const isShowModalConfirmEmail = ref(false);
 
   function onToggleMenuMobile() {
     this.isShowMobileMenu = !this.isShowMobileMenu;
@@ -19,14 +20,20 @@ export const useState = defineStore("stateStore", () => {
     this.isShowModalSignIn = !this.isShowModalSignIn;
   }
 
+  function onToggleModalCofirmEmail() {
+    isShowModalConfirmEmail.value = !isShowModalConfirmEmail.value;
+  }
+
   return {
     isLoading,
     isShowMobileMenu,
+    isShowModalConfirmEmail,
     onToggleMenuMobile,
     onToggleloading,
     isShowModalSignUp,
     onToggleModalSignUp,
     isShowModalSignIn,
     onToggleModalSignIn,
+    onToggleModalCofirmEmail,
   };
 });

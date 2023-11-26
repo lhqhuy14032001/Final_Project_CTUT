@@ -30,18 +30,12 @@ export default [
       title: "Tables",
     },
   },
-  {
-    path: "them-xe",
-    name: "car-create",
-    component: ADMIN.CREATE_CAR,
-    meta: {},
-  },
-  {
-    path: "chi-tiet-xe/:id",
-    name: "car-detail",
-    component: ADMIN.CAR_DETAIL,
-    meta: {},
-  },
+  // {
+  //   path: "chi-tiet-xe/:id",
+  //   name: "car-detail",
+  //   component: ADMIN.CAR_DETAIL,
+  //   meta: {},
+  // },
   {
     path: "quan-ly-khuyen-mai",
     name: "sale-manage",

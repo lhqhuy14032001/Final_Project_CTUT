@@ -5,7 +5,8 @@ import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import CKEditor from "@ckeditor/ckeditor5-vue";
 import { registerGlobalComponent } from "@/ultils/import";
-
+// lightbox
+import VueEasyLightbox from "vue-easy-lightbox";
 // calendar
 import VCalendar from "v-calendar";
 import "v-calendar/style.css";
@@ -29,5 +30,6 @@ app.use(CKEditor);
 app.use(VCalendar, {
   color: "#5fcf86",
 });
+app.use(VueEasyLightbox);
 
 app.mount("#app");

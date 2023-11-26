@@ -2,7 +2,6 @@ import { useRouter } from "vue-router";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import authAPI from "@/apis/auth.api";
-import { getCookie } from "@/ultils/functions";
 import { PERMISSION } from "@/ultils/constants";
 
 export const useAuth = defineStore(
@@ -26,9 +25,8 @@ export const useAuth = defineStore(
         isLoggedIn.value = !isLoggedIn.value;
         userLoggedIn.value = data.metadata.user;
       } catch (error) {
-        console.error(error.response.data.message);
-        signUpError.value = error.response.data.message;
-        return;
+        console.error(error);
+        throw error.response.data.message;
       }
     }
     async function signIn(user) {
@@ -55,18 +53,13 @@ export const useAuth = defineStore(
       try {
         let _uid;
         if (userLoggedIn.value) {
-          _uid = JSON.parse(getCookie("_us")).uid;
-        } else {
-          _uid = adminLogin.value.uid;
+          _uid = userLoggedIn.value.uid;
         }
         let res = await authAPI.signOut(_uid);
         if (res.status === 200) {
           if (userLoggedIn.value) {
             isLoggedIn.value = !isLoggedIn.value;
             userLoggedIn.value = null;
-            router.push({ name: "home", params: {} });
-          } else {
-            adminLogin.value = null;
             router.push({ name: "home", params: {} });
           }
         }
@@ -76,11 +69,28 @@ export const useAuth = defineStore(
             isLoggedIn.value = false;
             userLoggedIn.value = null;
             router.push({ name: "home", params: {} });
-          } else {
-            adminLogin.value = null;
-            router.push({ name: "home", params: {} });
           }
-
+          // expiredSession.value = error.message;
+        } else {
+          console.error(error);
+        }
+      }
+    }
+    async function signOutAD() {
+      try {
+        let _uid;
+        if (adminLogin.value) {
+          _uid = adminLogin.value.uid;
+        }
+        let res = await authAPI.signOut(_uid);
+        if (res.status === 200) {
+          adminLogin.value = null;
+          router.push({ name: "admin-login", params: {} });
+        }
+      } catch (error) {
+        if (error.response.data.message.code === 403) {
+          adminLogin.value = null;
+          router.push({ name: "admin-login", params: {} });
           // expiredSession.value = error.message;
         } else {
           console.error(error);
@@ -105,6 +115,7 @@ export const useAuth = defineStore(
       signUp,
       signIn,
       signOut,
+      signOutAD,
       signupWithGoogle,
     };
   },

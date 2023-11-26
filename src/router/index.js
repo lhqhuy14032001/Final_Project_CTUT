@@ -11,6 +11,7 @@ const routes = [
     path: "",
     component: CLIENT,
     children: CLIENT_ROUTE,
+
     meta: {
       layout: "client",
     },
@@ -27,6 +28,7 @@ const routes = [
   {
     path: "/quan-tri/dang-nhap",
     name: "admin-login",
+    beforeEnter: adminMiddlewares.handleCheckLoggedIn,
     component: LOGIN,
     meta: {
       layout: "blank",

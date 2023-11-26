@@ -3,10 +3,15 @@
     <HeaderAccount></HeaderAccount>
     <div class="account-info-body grid grid-cols-12 mt-10">
       <div class="col-span-4">
-        <AvatarUser :username="user.fullname"></AvatarUser>
+        <AvatarUser
+          :username="userLoggedIn ? userLoggedIn.fullname : ''"
+        ></AvatarUser>
       </div>
       <div class="col-span-8 my-auto">
-        <InFo :phonenumber="user.phonenumber" :email="user.email"></InFo>
+        <InFo
+          :phonenumber="userLoggedIn ? userLoggedIn.phonenumber : ''"
+          :email="userLoggedIn ? userLoggedIn.email : ''"
+        ></InFo>
       </div>
     </div>
   </div>
@@ -17,8 +22,10 @@
 import HeaderAccount from "./components/HeaderAccount.vue";
 import AvatarUser from "./components/AvatarUser.vue";
 import InFo from "./components/Info.vue";
-import { getCookie } from "@/ultils/functions";
-const user = JSON.parse(getCookie("_us"));
+import { useAuth } from "@/stores/auth.store";
+import { storeToRefs } from "pinia";
+const authStore = useAuth();
+const { userLoggedIn } = storeToRefs(authStore);
 </script>
 
 <style lang="scss" scoped>

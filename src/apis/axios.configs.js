@@ -1,18 +1,12 @@
 import axios from "axios";
 import queryString from "query-string";
 import authAPI from "./auth.api";
-import { getCookie } from "@/ultils/functions";
-let _uid;
-let _user = getCookie("_us");
-if (_user && JSON.parse(_user).uid) {
-  _uid = JSON.parse(_user).uid;
-}
+import { getUIDFromCookies } from "@/ultils/functions";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3004/v1/api",
   headers: {
     "content-Type": "application/json",
-    // "Access-Control-Allow-Origin": "*",
   },
   paramsSerializer: (params) => queryString.stringify(params),
   credentials: "include",
@@ -38,6 +32,7 @@ axiosInstance.interceptors.response.use(
       !originalConfig._retry
     ) {
       originalConfig._retry = true;
+      let _uid = getUIDFromCookies();
       await authAPI.refreshToken(_uid);
       return axiosInstance.request(originalConfig);
     } else if (error.response.status === 403) {

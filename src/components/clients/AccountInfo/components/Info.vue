@@ -1,7 +1,25 @@
 <template>
   <div class="account-detail-info">
     <div class="flex justify-between mb-5">
-      <p class="text-xs">Số điện thoại</p>
+      <div
+        v-if="userLoggedIn && userLoggedIn.phonenumber"
+        class="flex items-center"
+      >
+        <p class="text-xs">Số điện thoại</p>
+        <p
+          v-if="phoneValid"
+          class="text-xs ml-5 px-3 py-1 rounded-full bg-green-200"
+        >
+          Đã xác thực
+        </p>
+        <p
+          v-else
+          class="text-xs ml-5 px-3 py-1 rounded-full bg-orange-200 cursor-pointer"
+        >
+          Chưa xác thực
+        </p>
+      </div>
+
       <div class="flex items-center">
         <p class="font-semibold">{{ props.phonenumber }}</p>
         <p class="btn-update border p-2 ml-3 w-fit rounded-full cursor-pointer">
@@ -28,8 +46,26 @@
         </p>
       </div>
     </div>
-    <div class="flex justify-between">
-      <p class="text-xs">Email</p>
+    <div class="flex justify-between" v-if="userLoggedIn && userLoggedIn.email">
+      <div class="flex items-center">
+        <p class="text-xs">Email</p>
+        <p
+          v-if="emailValid"
+          class="text-xs ml-5 px-3 py-1 rounded-full bg-green-200"
+        >
+          Đã xác thực
+        </p>
+        <p
+          v-else
+          class="text-xs ml-5 px-3 py-1 rounded-full bg-orange-200 cursor-pointer disabled"
+        >
+          <span v-if="isLoading" class="text-xs">Đang gửi</span>
+          <span v-else class="text-xs" @click="handleVerifyEmail"
+            >Chưa xác thực</span
+          >
+        </p>
+      </div>
+
       <div class="flex items-center">
         <p class="font-semibold">{{ props.email }}</p>
         <p class="btn-update border p-2 ml-3 w-fit rounded-full cursor-pointer">
@@ -60,8 +96,15 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
+import { defineProps, computed, ref } from "vue";
+// store
+import { useAuth } from "@/stores/auth.store";
+import { useUser } from "@/stores/user.store";
+import { storeToRefs } from "pinia";
 
+const userStore = useUser();
+const authStore = useAuth();
+const { userLoggedIn } = storeToRefs(authStore);
 const props = defineProps({
   phonenumber: {
     typed: String,
@@ -74,6 +117,21 @@ const props = defineProps({
     default: "Thêm email",
   },
 });
+const isLoading = ref(false);
+
+const phoneValid = computed(() => {
+  return userLoggedIn.value && userLoggedIn.value.phoneValid ? true : false;
+});
+
+const emailValid = computed(() => {
+  return userLoggedIn.value && userLoggedIn.value.emailValid ? true : false;
+});
+
+async function handleVerifyEmail() {
+  isLoading.value = true;
+  await userStore.verifyEmail(userLoggedIn.value);
+  isLoading.value = false;
+}
 </script>
 
 <style lang="scss" scoped></style>

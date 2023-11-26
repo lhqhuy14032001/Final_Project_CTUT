@@ -18,7 +18,7 @@ export const uploadAvatar = async (file) => {
     return { error: true, message: "Vui lòng chọn ảnh png, jpg, jepg." };
   let errStatus = await removeOldAvatar(userLoggedIn.value.uid);
   if (errStatus) {
-    return { error: true, message: "Có lỗi xảy ra vui lòng thử lại" };
+    return { error: true, message: "Có lỗi xảy ra vui lòng thử lại." };
   } else {
     let refAvatar = ref(
       storage,

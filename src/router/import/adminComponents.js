@@ -16,17 +16,15 @@ const BLOG_MANAGE = () =>
     /*webpackChunkName: "blog_manage"*/ "@/views/administration/BlogsManage/views/BlogsList"
   );
 const CAR_MANAGE = () =>
-  import(/*webpackChunkName: "car_manage"*/ "@/views/VehiclesManage");
-
-const CAR_DETAIL = () =>
   import(
-    /*webpackChunkName: "car_detail"*/ "@/views/VehiclesManage/components/VehicleDetail"
+    /*webpackChunkName: "car_manage"*/ "@/views/administration/VehiclesManage"
   );
 
-const CREATE_CAR = () =>
-  import(
-    /*webpackChunkName: "create_car"*/ "@/views/VehiclesManage/components/CreateVehicleView"
-  );
+// const CAR_DETAIL = () =>
+//   import(
+//     /*webpackChunkName: "car_detail"*/ "@/views/administration/VehiclesManage/components/VehicleDetail"
+//   );
+
 const SALE_MANAGE = () =>
   import(
     /*webpackChunkName: "sale_manage"*/ "@/views/administration/VouchersManage"
@@ -48,6 +46,5 @@ export {
   SALE_MANAGE,
   CONSTRACT_MANAGE,
   STATISTIS_MANAGE,
-  CAR_DETAIL,
-  CREATE_CAR,
+  // CAR_DETAIL,
 };

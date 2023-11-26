@@ -36,6 +36,7 @@ import LocationFamous from "@/components/clients/LocationFamous";
 import AdvangtageMiAUTO from "@/components/clients/AdvantageMiAUTO";
 import ModalSignUp from "@/components/clients/ModalSignUp";
 import ModalSignIn from "@/components/clients/ModalSignIn";
+
 // store
 import { useState } from "@/stores/state.store";
 import { storeToRefs } from "pinia";

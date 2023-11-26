@@ -1,0 +1,401 @@
+<template>
+  <div class="vehicle-info-wrapper">
+    <div class="col-span-8">
+      <div class="vehicle-info">
+        <div class="vehicle-name">Veloz 2023</div>
+        <div class="vehicle-hire-info">
+          <div class="total-tours">
+            <div class="wrap-svg">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                style="margin-right: 4px"
+              >
+                <g clip-path="url(#clip0_1087_41996)">
+                  <path
+                    d="M10.0625 1.21875C10.0625 1.06369 10.1887 0.9375 10.3438 0.9375H11.9688C12.1238 0.9375 12.25 1.06369 12.25 1.21875V2.89422H13.1875V1.21875C13.1875 0.546719 12.6408 0 11.9688 0H10.3438C9.67172 0 9.125 0.546719 9.125 1.21875V2.89422H10.0625V1.21875Z"
+                    fill="#5FCF86"
+                  ></path>
+                  <path
+                    d="M5.69806 15.0623C5.49325 14.7441 5.375 14.3673 5.375 13.9686V6.94092H1.09375C0.490656 6.94092 0 7.43157 0 8.03467V13.9686C0 14.5186 0.408156 14.9749 0.9375 15.051V15.5309C0.9375 15.7898 1.14737 15.9997 1.40625 15.9997C1.66513 15.9997 1.875 15.7898 1.875 15.5309V15.0623H5.69806V15.0623ZM1.875 8.65967C1.875 8.40079 2.08487 8.19092 2.34375 8.19092C2.60263 8.19092 2.8125 8.40079 2.8125 8.65967V13.3436C2.8125 13.6024 2.60263 13.8123 2.34375 13.8123C2.08487 13.8123 1.875 13.6024 1.875 13.3436V8.65967Z"
+                    fill="#5FCF86"
+                  ></path>
+                  <path
+                    d="M4.375 5.26562C4.375 5.11056 4.50119 4.98438 4.65625 4.98438H5.375V4.92547C5.375 4.61094 5.44687 4.31291 5.57506 4.04688H4.65625C3.98422 4.04688 3.4375 4.59359 3.4375 5.26562V6.00359H4.375V5.26562Z"
+                    fill="#5FCF86"
+                  ></path>
+                  <path
+                    d="M14.9062 3.83154H7.40625C6.80316 3.83154 6.3125 4.3222 6.3125 4.92529V13.9686C6.3125 14.5186 6.72066 14.9749 7.25 15.051V15.5309C7.25 15.7898 7.45987 15.9997 7.71875 15.9997C7.97763 15.9997 8.1875 15.7898 8.1875 15.5309V15.0623H14.125V15.5309C14.125 15.7898 14.3349 15.9997 14.5938 15.9997C14.8526 15.9997 15.0625 15.7898 15.0625 15.5309V15.051C15.5918 14.9749 16 14.5186 16 13.9686V4.92529C16 4.32217 15.5093 3.83154 14.9062 3.83154ZM9.125 13.3436C9.125 13.6024 8.91513 13.8123 8.65625 13.8123C8.39737 13.8123 8.1875 13.6024 8.1875 13.3436V5.55029C8.1875 5.29142 8.39737 5.08154 8.65625 5.08154C8.91513 5.08154 9.125 5.29142 9.125 5.55029V13.3436ZM13.6562 13.8123C13.3974 13.8123 13.1875 13.6024 13.1875 13.3436V5.55029C13.1875 5.29142 13.3974 5.08154 13.6562 5.08154C13.9151 5.08154 14.125 5.29142 14.125 5.55029V13.3436C14.125 13.6024 13.9151 13.8123 13.6562 13.8123Z"
+                    fill="#5FCF86"
+                  ></path>
+                </g>
+                <defs>
+                  <clipPath id="clip0_1087_41996">
+                    <rect width="16" height="16" fill="white"></rect>
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+            <div class="info">63 chuyến</div>
+          </div>
+          <div class="address">
+            <BaseIcon :path="mdiMapMarker" size="20"></BaseIcon>
+            <p>Quận Tân Bình, Hồ Chí Minh</p>
+          </div>
+        </div>
+        <div class="hire-condition">
+          <div class="hire-condition-tag">Miễn thế chấp</div>
+        </div>
+      </div>
+      <div class="vehicle-characteristic">
+        <h2>Đặc điểm</h2>
+        <div class="characteristics-list">
+          <div class="characteristic-item">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.914 23.3289C10.9148 23.3284 10.9156 23.3279 10.9163 23.3274C10.9155 23.3279 10.9148 23.3284 10.914 23.3289ZM10.914 23.3289C10.914 23.3289 10.914 23.3289 10.914 23.3289L11.3128 23.9114M10.914 23.3289L11.3128 23.9114M11.3128 23.9114L10.9807 23.2882L20.6697 23.9458C20.6682 23.9484 20.6656 23.9496 20.6631 23.9479C20.655 23.9424 20.6343 23.9284 20.6014 23.9074C20.6014 23.9073 20.6014 23.9073 20.6013 23.9073C20.5141 23.8516 20.3413 23.7468 20.0921 23.6208C20.0919 23.6207 20.0918 23.6206 20.0917 23.6206C19.3397 23.2404 17.8926 22.6674 16.0003 22.6674C14.1715 22.6674 12.7584 23.2026 11.9869 23.5817L11.9929 23.5929M11.3128 23.9114L11.331 23.9456C11.3324 23.9483 11.3352 23.9495 11.3377 23.9478C11.3444 23.9432 11.3592 23.9332 11.3821 23.9184L11.9929 23.5929L11.9929 23.5929M11.9929 23.5929C11.9909 23.5892 11.9889 23.5855 11.9868 23.5818C11.6767 23.7342 11.4702 23.8614 11.3821 23.9184L11.9929 23.5929ZM10.6691 24.2983L10.6691 24.2983C10.7406 24.4324 10.8728 24.5792 11.0793 24.6538C11.3072 24.7361 11.5609 24.7039 11.7614 24.5667L11.7614 24.5667C11.7978 24.5418 13.4597 23.4174 16.0003 23.4174C18.5426 23.4174 20.205 24.5432 20.2393 24.5667L20.2393 24.5667C20.4389 24.7034 20.6938 24.7372 20.9245 24.6528C21.1293 24.5779 21.2557 24.4338 21.3233 24.3136L22.4886 22.2427L24.3242 23.0447L21.6934 28.584H9.99882L7.65051 23.0635L9.57427 22.2435L10.6691 24.2983ZM24.4348 22.8117L24.4345 22.8124L24.4348 22.8117Z"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+              ></path>
+              <path
+                d="M12.75 4.66675C12.75 3.97639 13.3096 3.41675 14 3.41675H18C18.6904 3.41675 19.25 3.97639 19.25 4.66675V7.00008C19.25 7.13815 19.1381 7.25008 19 7.25008H13C12.8619 7.25008 12.75 7.13815 12.75 7.00008V4.66675Z"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+              ></path>
+              <path
+                d="M9.33398 22.6668L9.90564 11.2336C9.95887 10.1692 10.8374 9.3335 11.9031 9.3335H20.0982C21.1639 9.3335 22.0424 10.1692 22.0957 11.2336L22.6673 22.6668"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+              ></path>
+              <path
+                d="M14.667 7.35815V9.8901"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+              ></path>
+              <path
+                d="M17.334 7.35815V9.8901"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+              ></path>
+            </svg>
+            <div>
+              <span>Số ghế</span>
+              5 chỗ
+            </div>
+          </div>
+          <div class="characteristic-item">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M25.9163 7.99992C25.9163 9.05846 25.0582 9.91659 23.9997 9.91659C22.9411 9.91659 22.083 9.05846 22.083 7.99992C22.083 6.94137 22.9411 6.08325 23.9997 6.08325C25.0582 6.08325 25.9163 6.94137 25.9163 7.99992Z"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+              ></path>
+              <circle
+                cx="23.9997"
+                cy="23.9999"
+                r="1.91667"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+              ></circle>
+              <path
+                d="M17.9163 7.99992C17.9163 9.05846 17.0582 9.91659 15.9997 9.91659C14.9411 9.91659 14.083 9.05846 14.083 7.99992C14.083 6.94137 14.9411 6.08325 15.9997 6.08325C17.0582 6.08325 17.9163 6.94137 17.9163 7.99992Z"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+              ></path>
+              <path
+                d="M17.9163 23.9999C17.9163 25.0585 17.0582 25.9166 15.9997 25.9166C14.9411 25.9166 14.083 25.0585 14.083 23.9999C14.083 22.9414 14.9411 22.0833 15.9997 22.0833C17.0582 22.0833 17.9163 22.9414 17.9163 23.9999Z"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+              ></path>
+              <circle
+                cx="7.99967"
+                cy="7.99992"
+                r="1.91667"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+              ></circle>
+              <path
+                d="M10.1025 26.6666V21.3333H7.99837C7.59559 21.3333 7.25184 21.4053 6.96712 21.5494C6.68066 21.6918 6.46278 21.894 6.31348 22.1562C6.16244 22.4166 6.08691 22.723 6.08691 23.0754C6.08691 23.4296 6.1633 23.7343 6.31608 23.9895C6.46886 24.243 6.69021 24.4374 6.98014 24.5728C7.26834 24.7083 7.6173 24.776 8.02702 24.776H9.43587V23.8697H8.20931C7.99403 23.8697 7.81521 23.8402 7.67285 23.7812C7.53049 23.7221 7.42459 23.6336 7.35514 23.5155C7.28396 23.3975 7.24837 23.2508 7.24837 23.0754C7.24837 22.8984 7.28396 22.7491 7.35514 22.6275C7.42459 22.506 7.53136 22.414 7.67546 22.3515C7.81782 22.2872 7.9975 22.2551 8.21452 22.2551H8.97493V26.6666H10.1025ZM7.22233 24.2395L5.89681 26.6666H7.1416L8.43848 24.2395H7.22233Z"
+                fill="#5FCF86"
+              ></path>
+              <path
+                d="M24 10.6665V15.9998M24 21.3332V15.9998M16 10.6665V21.3332M8 10.6665V15.4998C8 15.776 8.22386 15.9998 8.5 15.9998H24"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+            <div>
+              <span>Truyển động</span>
+              Số tự động
+            </div>
+          </div>
+          <div class="characteristic-item">
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              data-metatip="true"
+            >
+              <path
+                d="M24.3337 27.2499H7.66699C7.52892 27.2499 7.41699 27.138 7.41699 26.9999V12.4599C7.41699 12.3869 7.44888 12.3175 7.5043 12.27L14.652 6.14344L14.1639 5.574L14.652 6.14344C14.6973 6.1046 14.755 6.08325 14.8147 6.08325H24.3337C24.4717 6.08325 24.5837 6.19518 24.5837 6.33325V26.9999C24.5837 27.138 24.4717 27.2499 24.3337 27.2499Z"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              ></path>
+              <path
+                d="M12.0001 5.33325L7.42285 9.46712"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              ></path>
+              <path
+                d="M17.888 19.5212L16.7708 15.93C16.5378 15.1812 15.4785 15.1798 15.2436 15.928L14.1172 19.5164C13.7178 20.7889 14.6682 22.0833 16.0019 22.0833C17.3335 22.0833 18.2836 20.7927 17.888 19.5212Z"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              ></path>
+              <path
+                d="M23.2503 3.66675V5.66675C23.2503 5.80482 23.1384 5.91675 23.0003 5.91675H14.667C14.5827 5.91675 14.5365 5.8916 14.5072 5.86702C14.4721 5.83755 14.44 5.78953 14.4245 5.72738C14.4089 5.66524 14.4147 5.60775 14.4318 5.56523C14.4461 5.52975 14.4749 5.48584 14.5493 5.44616L18.2993 3.44616C18.3356 3.42685 18.376 3.41675 18.417 3.41675H23.0003C23.1384 3.41675 23.2503 3.52868 23.2503 3.66675Z"
+                stroke="#5FCF86"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+            <div>
+              <span>Nhiên liệu</span>
+              Xăng
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="vehicle-desc">
+        <h2 class="text-left">Mô tả</h2>
+        <p>
+          Xe toyota veloz bản top 7c std đời 2023, có màn hình tích hợp androi
+          xem bản đồ việt map cảnh báo tốc độ, youtube chỉ cần ra lệnh giọng nói
+          là được, có trang bị cam hành trình , cam 360, phanh tay điện tử, đèn
+          auto , cùng nhiều tính năng an toàn , xe rộng rãi và là xe nhà nên dc
+          vệ sinh sạch sẽ . Xe phân khúc 7c rộng bự ngồi thoải mái ạ
+        </p>
+      </div>
+      <div class="vehicle-options">
+        <h2>Các tiện nghi khác</h2>
+        <div class="option-list">
+          <ul>
+            <li v-for="option in props.options" :key="option.id">
+              <img class="w-8" loading="lazy" :src="option.img" alt="" />
+              {{ option.label }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="papers">
+        <h2>
+          Giấy tờ thuê xe <span>?</span>
+          <p>
+            <b>Bạn đã có CCCD gắn chip </b><br />Giấy tờ thuê xe gồm có: <br />-
+            Giấy phép lái xe &amp; CCCD (chủ xe đối chiếu và gửi lại bạn)
+            <br /><b>Bạn chưa có CCCD gắn chip </b><br />Giấy tờ thuê xe gồm có:
+            <br />- Giấy phép lái xe (chủ xe đối chiếu và gửi lại bạn) <br />-
+            Passport (chủ xe đối chiếu, giữ lại và hoàn trả khi bạn trả xe)
+            <br />Lưu ý: Khách thuê vui lòng chuẩn bị đầy đủ BẢN GỐC tất cả giấy
+            tờ thuê xe khi làm thủ tục nhận xe.
+          </p>
+        </h2>
+        <div class="papers-body">
+          <p>
+            <svg
+              width="17"
+              height="16"
+              viewBox="0 0 17 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.49967 1.33325C4.82634 1.33325 1.83301 4.32659 1.83301 7.99992C1.83301 11.6733 4.82634 14.6666 8.49967 14.6666C12.173 14.6666 15.1663 11.6733 15.1663 7.99992C15.1663 4.32659 12.173 1.33325 8.49967 1.33325ZM8.49967 6.05325C8.22634 6.05325 7.99967 5.83325 7.99967 5.55325C7.99967 5.27992 8.22634 5.05325 8.49967 5.05325C8.77967 5.05325 8.99967 5.27992 8.99967 5.55325C8.99967 5.83325 8.77967 6.05325 8.49967 6.05325ZM8.99967 10.3866C8.99967 10.6666 8.77301 10.8866 8.49967 10.8866C8.22634 10.8866 7.99967 10.6666 7.99967 10.3866V7.27992C7.99967 6.99992 8.22634 6.77992 8.49967 6.77992C8.77301 6.77992 8.99967 6.99992 8.99967 7.27992V10.3866Z"
+                fill="#666666"
+              ></path>
+            </svg>
+            Chọn 1 trong 2 hình thức
+          </p>
+          <p>
+            <img
+              class="w-6"
+              src="https://n1-cstg.mioto.vn/v4/p/m/icons/papers/gplx_cccd.png"
+              alt="https://n1-cstg.mioto.vn/v4/p/m/icons/papers/gplx_cccd.png"
+            />
+            GPLX & CCCD gắn chip (đối chiếu)
+          </p>
+          <p>
+            <img
+              class="w-6"
+              src="https://n1-cstg.mioto.vn/v4/p/m/icons/papers/gplx_passport.png"
+              alt="https://n1-cstg.mioto.vn/v4/p/m/icons/papers/gplx_passport.png"
+            />
+            GPLX (đối chiếu) & Passport (giữ lại)
+          </p>
+        </div>
+        <div class="policy">
+          <h2>Điều khoản</h2>
+          <p>
+            Quy định khác:<br />
+            ◦ Sử dụng xe đúng mục đích.<br />
+            ◦ Không sử dụng xe thuê vào mục đích phi pháp, trái pháp luật.<br />
+            ◦ Không sử dụng xe thuê để cầm cố, thế chấp.<br />
+            ◦ Không hút thuốc, nhả kẹo cao su, xả rác trong xe.<br />
+            ◦ Không chở hàng quốc cấm dễ cháy nổ.<br />
+            ◦ Không chở hoa quả, thực phẩm nặng mùi trong xe.<br />
+            ◦ Khi trả xe, nếu xe bẩn hoặc có mùi trong xe, khách hàng vui lòng
+            vệ sinh xe sạch sẽ hoặc gửi phụ thu phí vệ sinh xe.<br />
+            Trân trọng cảm ơn, chúc quý khách hàng có những chuyến đi tuyệt vời
+            !
+          </p>
+        </div>
+        <div class="owner">
+          <h2 class="my-5">Chủ xe</h2>
+          <div class="flex gap-5">
+            <img
+              class="w-20 rounded-full"
+              src="https://www.shareicon.net/data/512x512/2015/09/18/103160_man_512x512.png"
+              alt=""
+            />
+            <p class="text-2xl font-semibold">Le Hoang Quoc Huy</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-span-4">
+      <div class="hire-price-info border py-4 px-6 rounded-xl bg-slate-100">
+        <h3 class="text-3xl font-bold text-left">900K/ngày</h3>
+        <div
+          class="border flex justify-evenly my-3 min-w-full bg-white rounded-lg"
+        >
+          <div class="px-4 py-3">
+            <p class="text-sm text-gray-500 text-left">Ngày nhận</p>
+            <p class="text-xl font-semibold">20/11/2023</p>
+          </div>
+          <div class="border"></div>
+          <div class="px-4 py-3">
+            <p class="text-sm text-gray-500 text-left">Ngày trả</p>
+            <p class="text-xl font-semibold">21/11/2023</p>
+          </div>
+        </div>
+        <div class="fee">
+          <div class="fee-list">
+            <div class="hire-price flex justify-between my-5">
+              <div>
+                Đơn giá thuê
+                <span>?</span>
+                <p>
+                  Giá thuê xe được tính theo ngày, thời gian thuê ít hơn 24
+                  tiếng sẽ được tính tròn 1&nbsp;ngày <br />Giá thuê xe không
+                  bao gồm tiền xăng. Khi kết thúc chuyến đi, bạn vui lòng đổ
+                  xăng về lại mức ban đầu như khi nhận xe.
+                </p>
+              </div>
+              <div class="font-semibold">
+                {{ new Intl.NumberFormat().format(hirePrice) }}đ/ngày
+              </div>
+            </div>
+            <div class="service-fee flex justify-between my-5">
+              <div>
+                Phí dịch vụ
+                <span>?</span>
+                <p>
+                  Phí dịch vụ giúp chúng tôi duy trì và phát triển dịch vụ trên
+                  ứng dụng MiAuto.
+                </p>
+              </div>
+              <div class="font-semibold">
+                {{ new Intl.NumberFormat().format(hirePrice * 0.1) }}đ/ngày
+              </div>
+            </div>
+            <div class="PDC-fee flex justify-between my-5">
+              <div>
+                Phí bảo hiểm
+                <span>?</span>
+                <p>
+                  Chuyến đi của bạn được mua gói bảo hiểm vật chất xe ô tô.
+                  Trường hợp có sự cố ngoài ý muốn (trong phạm vi bảo hiểm), số
+                  tiền bạn thanh toán tối đa là 2.000.000 đồng/vụ (không bao gồm
+                  các trường hợp giảm trừ bồi thường theo quy tắc bảo hiểm).
+                </p>
+              </div>
+              <div class="font-semibold">
+                {{ new Intl.NumberFormat().format(hirePrice * 0.1) }}đ/ngày
+              </div>
+            </div>
+          </div>
+          <div class="total-fee my-3 flex justify-between font-bold">
+            <h3>Tổng cộng</h3>
+            <p>
+              {{
+                new Intl.NumberFormat().format(hirePrice + hirePrice * 0.1 * 2)
+              }}đ
+            </p>
+          </div>
+        </div>
+        <div
+          class="px-6 py-4 text-lg rounded-lg text-white bg-primary font-semibold cursor-pointer hover:shadow-xl hover:transition-all hover:opacity-70"
+          @click="onHireVehicle"
+        >
+          Chọn thuê
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+// components
+import BaseIcon from "@/components/admins/BaseIcon";
+import { mdiMapMarker } from "@mdi/js";
+import { defineProps } from "vue";
+
+// store
+import { useVehicleInfoStore } from "@/stores/vehicle.store";
+import { storeToRefs } from "pinia";
+const vehicleStore = useVehicleInfoStore();
+const { hirePrice } = storeToRefs(vehicleStore);
+const props = defineProps({
+  options: {
+    required: true,
+    typed: Array,
+    default() {
+      return [];
+    },
+  },
+  carinfo: {
+    required: true,
+    typed: Array,
+    default() {
+      return {};
+    },
+  },
+});
+function onHireVehicle() {
+  alert("OKOK");
+}
+</script>
+
+<style lang="scss" scoped>
+@import url("./style.scss");
+</style>

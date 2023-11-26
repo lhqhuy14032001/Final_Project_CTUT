@@ -1,12 +1,27 @@
 <template>
-  <component :is="layout"> <slot /> </component>
+  <component :is="layout">
+    <slot />
+  </component>
 </template>
 
 <script setup>
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+// store
+import { useState } from "@/stores/state.store";
 import { PUBLIC_LAYOUT } from "@/constans";
+import { storeToRefs } from "pinia";
+import { onBeforeMount } from "vue";
+import { onMounted } from "vue";
 const ROUTE = useRoute();
+const stateStore = useState();
+const { isLoading } = storeToRefs(stateStore);
+onBeforeMount(() => {
+  isLoading.value = true;
+});
+onMounted(() => {
+  isLoading.value = false;
+});
 let layout = computed(() => (ROUTE.meta.layout || PUBLIC_LAYOUT) + "Layout");
 </script>
 

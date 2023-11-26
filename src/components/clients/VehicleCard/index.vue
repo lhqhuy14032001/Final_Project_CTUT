@@ -1,5 +1,11 @@
 <template>
-  <div class="car-for-you-item border-1 w-full">
+  <router-link
+    :to="{
+      name: 'vehicle-detail',
+      params: { id: '1', vehicle_name: vehicleNameParam },
+    }"
+    class="car-for-you-item border-1 w-full cursor-pointer"
+  >
     <div class="img">
       <div class="label-list">
         <div class="label">
@@ -145,12 +151,16 @@
         </div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script setup>
 import BaseIcon from "@/components/admins/BaseIcon";
 import { mdiMapMarker } from "@mdi/js";
+
+// handle veicle name to pass param
+const vehicleName = "Veloz 2023";
+const vehicleNameParam = vehicleName.toLowerCase().replaceAll(" ", "-");
 </script>
 
 <style lang="scss" scoped>

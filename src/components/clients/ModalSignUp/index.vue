@@ -244,6 +244,7 @@ const formData = ref({
   password: "",
   rePassword: "",
   acceptPolicy: false,
+  role: "2222",
 });
 
 const rules = computed(() => {
@@ -309,11 +310,20 @@ async function onSubmitForm() {
           "Vui lòng đồng ý các điều khoản trước khi đăng ký."
         );
       } else {
-        // useAuthStore.onSaveSignUpInfo(formData.value);
-        useAuthStore.signUp(formData.value);
-        onClearData();
-        v$.value.$reset();
-        confirmCancel("cancel");
+        useAuthStore
+          .signUp(formData.value)
+          .then(() => {
+            onClearData();
+            v$.value.$reset();
+            confirmCancel("cancel");
+          })
+          .catch((error) => {
+            notificationStatusCreate.value.showAlert(
+              "error",
+              "Thông báo",
+              error
+            );
+          });
       }
     }
   } catch (error) {

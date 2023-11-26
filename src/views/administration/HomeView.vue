@@ -1,6 +1,5 @@
 <script setup>
 import { computed, ref, onMounted } from "vue";
-import { useMainStore } from "@/stores/main";
 import {
   mdiAccountMultiple,
   mdiCar,
@@ -17,6 +16,11 @@ import BaseButton from "@/components/admins/BaseButton.vue";
 import CardBoxTransaction from "@/components/admins/CardBoxTransaction.vue";
 // import CardBoxClient from "@/components/admins/CardBoxClient.vue";
 import SectionTitleLineWithButton from "@/components/admins/SectionTitleLineWithButton.vue";
+// stores
+import { useMainStore } from "@/stores/main";
+import { useUser } from "@/stores/user.store";
+import { storeToRefs } from "pinia";
+import { onBeforeMount } from "vue";
 
 const chartData = ref(null);
 
@@ -29,6 +33,13 @@ onMounted(() => {
 });
 
 const mainStore = useMainStore();
+const userStore = useUser();
+
+// call API
+onBeforeMount(async () => {
+  await userStore.getTotalUsers();
+});
+const { totalUsers } = storeToRefs(userStore);
 
 // const clientBarItems = computed(() => mainStore.clients.slice(0, 4));
 
@@ -47,7 +58,7 @@ const transactionBarItems = computed(() => mainStore.history);
         trend-type="up"
         color="text-emerald-500"
         :icon="mdiAccountMultiple"
-        :number="512"
+        :number="totalUsers"
         label="Tài khoản"
       />
       <CardBoxWidget
