@@ -55,7 +55,8 @@ export const useAuth = defineStore(
         if (userLoggedIn.value) {
           _uid = userLoggedIn.value.uid;
         }
-        let res = await authAPI.signOut(_uid);
+        console.log(_uid);
+        let res = await authAPI.signOut(_uid, PERMISSION.CUS);
         if (res.status === 200) {
           if (userLoggedIn.value) {
             isLoggedIn.value = !isLoggedIn.value;
@@ -82,7 +83,7 @@ export const useAuth = defineStore(
         if (adminLogin.value) {
           _uid = adminLogin.value.uid;
         }
-        let res = await authAPI.signOut(_uid);
+        let res = await authAPI.signOut(_uid, PERMISSION.AD);
         if (res.status === 200) {
           adminLogin.value = null;
           router.push({ name: "admin-login", params: {} });

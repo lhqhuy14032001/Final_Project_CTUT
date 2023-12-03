@@ -1,8 +1,15 @@
 import firebaseApp from "@/configs/init.firebase";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  getStorage,
+  ref as firebaseRef,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+} from "firebase/storage";
 // store
 import { useAuth } from "@/stores/auth.store";
 import { storeToRefs } from "pinia";
+import { ref } from "vue";
 
 const storage = getStorage(firebaseApp);
 const imgType = ["image/png", "image/jpg", "image/jpeg"];
@@ -19,7 +26,7 @@ export const uploadVehicleImages = async (files, numberPlate) => {
   let uploadList = [];
   files.forEach((file) => {
     uploadList.push({
-      ref: ref(
+      ref: firebaseRef(
         storage,
         `vehicle_img/${userLoggedIn.value.uid}/${numberPlate}/${file.name}`
       ),
@@ -37,4 +44,22 @@ export const uploadVehicleImages = async (files, numberPlate) => {
     console.error("Error from firebase upload", error);
     return { error: true, data: null };
   }
+};
+export const getImageListByNumberPlate = async (uid, numberPlate) => {
+  let imgs = ref([]);
+  const listRef = firebaseRef(storage, `/vehicle_img/${uid}/${numberPlate}`);
+  // Find all the prefixes and items.
+  listAll(listRef)
+    .then((res) => {
+      if (res.items.length > 0) {
+        res.items.forEach(async (item) => {
+          const fileRef = firebaseRef(storage, item._location.path_);
+          imgs.value.push(await getDownloadURL(fileRef));
+        });
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  return imgs.value;
 };

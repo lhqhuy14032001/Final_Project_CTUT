@@ -2,11 +2,17 @@
   <router-link
     :to="{
       name: 'vehicle-detail',
-      params: { id: '1', vehicle_name: vehicleNameParam },
+      params: { id: carID, vehicle_name: vehicleNameParam },
     }"
     class="car-for-you-item border-1 w-full cursor-pointer"
   >
     <div class="img">
+      <img
+        loading="lazy"
+        class="w-full object-cover rounded-lg min-h-[250px]"
+        :src="imgsList[0]"
+        alt=""
+      />
       <div class="label-list">
         <div class="label">
           <span class="mr-1">Đặt xe nhanh</span>
@@ -23,7 +29,7 @@
             ></path>
           </svg>
         </div>
-        <div class="label">
+        <div v-if="deposit === 'Miễn thế chấp'" class="label">
           <span class="mr-1">Miễn thế chấp</span>
           <svg
             width="16"
@@ -48,11 +54,11 @@
     </div>
     <div class="desc">
       <div class="desc-tag-list flex">
-        <div class="desc-tag">Số tự động</div>
+        <div class="desc-tag">{{ gearbox }}</div>
         <!-- <div class="desc-tag">Số tự động</div> -->
       </div>
       <div class="desc-name">
-        <p>HONDA CITY 2014</p>
+        <p>{{ brand }} {{ carName }} {{ year }}</p>
         <div class="wrap-svg">
           <svg
             width="24"
@@ -85,7 +91,7 @@
       </div>
       <div class="desc-address">
         <BaseIcon :path="mdiMapMarker" size="20"></BaseIcon>
-        <p>Quận Tân Bình, Hồ Chí Minh</p>
+        <p>{{ district }}, {{ prov }}</p>
       </div>
       <div class="line-page"></div>
       <div class="desc-price-info flex justify-between">
@@ -144,9 +150,13 @@
           <span class="info text-[12px]">63 chuyến</span>
         </div>
         <div class="wrap-price">
-          <div class="price"><span class="price-special">650K</span></div>
+          <div class="price">
+            <span class="price-special">{{ price }}K</span>
+          </div>
           <div class="total-price">
-            <p>Giá tổng <span>810K</span></p>
+            <p>
+              Giá tổng <span>{{ totalPrice }}K</span>
+            </p>
           </div>
         </div>
       </div>
@@ -155,12 +165,55 @@
 </template>
 
 <script setup>
+// firebase
 import BaseIcon from "@/components/admins/BaseIcon";
+import { getImageListByNumberPlate } from "@/firebase/uploadImagesVehicle";
 import { mdiMapMarker } from "@mdi/js";
+import { defineProps, onBeforeMount, ref } from "vue";
+const props = defineProps({ vehicle: { type: Object, required: true } });
+const vehicleNameParam = ref("Veloz");
+const carID = ref(1);
+const gearbox = ref("Số tự động");
+const price = ref(0);
+const totalPrice = ref(0);
+const deposit = ref(null);
+const carName = ref(null);
+const brand = ref(null);
+const year = ref(null);
+const district = ref(null);
+const prov = ref(null);
+const imgsList = ref([]);
 
+if (props && props.vehicle) {
+  const vehicle = props.vehicle;
+  // get img
+  onBeforeMount(async () => {
+    imgsList.value = await getImageListByNumberPlate(
+      vehicle.uid,
+      vehicle.numberPlate
+    );
+  });
+
+  const vehicleName = `${vehicle.brand} ${vehicle.name}`;
+  vehicleNameParam.value = vehicleName.toLowerCase().replaceAll(" ", "-");
+  carID.value = vehicle.car_id;
+  gearbox.value = vehicle.gearbox;
+  price.value = new Intl.NumberFormat().format(vehicle.hire_price);
+  deposit.value = vehicle.deposit_state;
+  carName.value = vehicle.name;
+  brand.value = vehicle.brand;
+  year.value = vehicle.year_manufacture;
+  prov.value = vehicle.prov;
+  district.value = vehicle.district;
+  totalPrice.value = new Intl.NumberFormat().format(
+    vehicle.hire_price + vehicle.hire_price * 0.2
+  );
+}
+// if (!props.vehicle) {
+//   const vehicleName = `${props?.vehicle?.brand} ${props?.vehicle?.name}`;
+//   vehicleNameParam.value = vehicleName.toLowerCase().replaceAll(" ", "-");
+// }
 // handle veicle name to pass param
-const vehicleName = "Veloz 2023";
-const vehicleNameParam = vehicleName.toLowerCase().replaceAll(" ", "-");
 </script>
 
 <style lang="scss" scoped>

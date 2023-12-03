@@ -13,6 +13,12 @@ const getUIDAdmin = () => {
   let _uid = adminLogin.value.uid;
   return _uid;
 };
+const getRole = () => {
+  const authStore = useAuth();
+  const { adminLogin } = storeToRefs(authStore);
+  let role = adminLogin.value.role;
+  return role;
+};
 
 const vehicleAPI = {
   getType: () => {
@@ -58,8 +64,41 @@ const vehicleAPI = {
   getVehicleWithStatus: (status) => {
     let url = "admin/all-vehicle-status";
     return axiosInstance.post(url, {
-      _uid: getUIDAdmin,
+      _uid: getUIDAdmin(),
       status: status,
+      role: "0000",
+    });
+  },
+  // client
+  getVehicleWithStatusChecked: (status) => {
+    let url = "public/vehicle-list";
+    return axiosInstance.post(url, {
+      status: status,
+    });
+  },
+  getProvSearch: () => {
+    let url = "public/provinces";
+    return axiosInstance.post(url);
+  },
+  getDistrictSearch: (prov_id) => {
+    let url = "public/districts";
+    return axiosInstance.post(url, { prov_id: prov_id });
+  },
+  handleAcceptVehicle: (vehicleInfo) => {
+    let url = "admin/accept-vehicle";
+    return axiosInstance.post(url, {
+      _uid: getUIDAdmin(),
+      vehicleInfo: vehicleInfo,
+      role: getRole(),
+    });
+  },
+  handleRejectVehicle: (vehicleInfo, reason) => {
+    let url = "admin/reject-vehicle";
+    return axiosInstance.post(url, {
+      _uid: getUIDAdmin(),
+      carInfo: vehicleInfo,
+      reason: reason,
+      role: getRole(),
     });
   },
 };

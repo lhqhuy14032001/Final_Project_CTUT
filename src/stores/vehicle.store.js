@@ -95,6 +95,7 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
     endDate: null,
     location: null,
   });
+  const vehicleWaitToConfirm = ref([]);
   const hirePrice = ref(900000);
   const serviceFee = hirePrice.value * 0.01;
   const PDCfee = hirePrice.value * 0.01;
@@ -150,6 +151,8 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
     { value: 2, label: "Xe máy chính chủ" },
     { value: 3, label: "Tất cả" },
   ]);
+  const provSearch = ref([]);
+  const districtSearch = ref([]);
   const gearboxes = ref(new Array());
   const car_types = ref([]);
   const fuels = ref([]);
@@ -158,62 +161,78 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
     {
       feature_id: 1,
       label: "Bản đồ",
+      img: "https://n1-cstg.mioto.vn/v4/p/m/icons/features/map-v2.png",
     },
     {
       feature_id: 2,
       label: "Bluetooth",
+      img: "https://n1-cstg.mioto.vn/v4/p/m/icons/features/bluetooth-v2.png",
     },
     {
       feature_id: 3,
       label: "Camera 360",
+      img: "https://n1-cstg.mioto.vn/v4/p/m/icons/features/360_camera-v2.png",
     },
     {
       feature_id: 4,
       label: "Camera cập lề",
+      img: "https://n1-cstg.mioto.vn/v4/p/m/icons/features/parking_camera-v2.png",
     },
     {
       feature_id: 5,
       label: "Camera hành trình",
+      img: "https://n1-cstg.mioto.vn/v4/p/m/icons/features/dash_camera-v2.png",
     },
     {
       feature_id: 6,
       label: "Camera lùi",
+      img: "https://n1-cstg.mioto.vn/v4/p/m/icons/features/reverse_camera-v2.png",
     },
     {
       feature_id: 7,
       label: "Cảm biến va chạm",
+      img: "https://n1-cstg.mioto.vn/v4/p/m/icons/features/impact_sensor-v2.png",
     },
     {
       feature_id: 8,
       label: "Cảnh báo tốc độ",
+      img: "https://n1-cstg.mioto.vn/v4/p/m/icons/features/head_up-v2.png",
     },
     {
       feature_id: 9,
       label: "Định vị GPS",
+      img: "https://n1-cstg.mioto.vn/v4/p/m/icons/features/gps-v2.png",
     },
     {
       feature_id: 10,
       label: "Khe cắm USB",
+      img: "https://n1-cstg.mioto.vn/v4/p/m/icons/features/usb-v2.png",
     },
     {
       feature_id: 11,
       label: "Lốp dự phòng",
+      img: "https://n1-cstg.mioto.vn/v4/p/m/icons/features/spare_tire-v2.png",
     },
     {
       feature_id: 12,
       label: "Màn hình DVD",
+      img: "https://n1-cstg.mioto.vn/v4/p/m/icons/features/dvd-v2.png",
     },
     {
       feature_id: 13,
       label: "ETC",
+      img: "https://n1-cstg.mioto.vn/v4/p/m/icons/features/etc-v2.png",
     },
     {
       feature_id: 14,
       label: "Túi khí an toàn",
+      img: "https://n1-cstg.mioto.vn/v4/p/m/icons/features/airbags-v2.png",
     },
   ]);
   const provinces = ref([]);
   const districts = ref([]);
+  // vehicle to show for client
+  const vehicleChecked = ref([]);
   // call API to get vehicle info
   async function getType() {
     try {
@@ -222,7 +241,7 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
         car_types.value = response.metadata;
       }
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         if (userLoggedIn.value) {
           isLoggedIn.value = false;
           userLoggedIn.value = null;
@@ -239,7 +258,7 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
         gearboxes.value = response.metadata;
       }
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         if (userLoggedIn.value) {
           isLoggedIn.value = false;
           userLoggedIn.value = null;
@@ -256,7 +275,7 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
         brands.value = response.metadata;
       }
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         if (userLoggedIn.value) {
           isLoggedIn.value = false;
           userLoggedIn.value = null;
@@ -273,7 +292,7 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
         fuels.value = response.metadata;
       }
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         if (userLoggedIn.value) {
           isLoggedIn.value = false;
           userLoggedIn.value = null;
@@ -290,7 +309,7 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
         provinces.value = response.metadata;
       }
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         if (userLoggedIn.value) {
           isLoggedIn.value = false;
           userLoggedIn.value = null;
@@ -309,7 +328,7 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
         districts.value = [];
       }
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         if (userLoggedIn.value) {
           isLoggedIn.value = false;
           userLoggedIn.value = null;
@@ -321,27 +340,36 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
   }
 
   async function registerVehicle(carInfo) {
+    let res = {};
     try {
-      let res = await vehicleAPI.registerVehicle(carInfo);
-      console.log(res);
+      let result = await vehicleAPI.registerVehicle(carInfo);
+      if (result.status === 200) {
+        res.err = false;
+        res.message = "Đăng ký thông tin xe thành công.";
+      }
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         if (userLoggedIn.value) {
           isLoggedIn.value = false;
           userLoggedIn.value = null;
           router.push({ name: "home", params: {} });
         }
       } else {
+        res.err = true;
+        res.message = "Có lỗi xảy ra!";
         console.error(error);
       }
     }
+    return res;
   }
   async function getVehicleWithStatus(status) {
     try {
       let result = await vehicleAPI.getVehicleWithStatus(status);
-      console.log(result);
+      if (result.metadata.length > 0) {
+        vehicleWaitToConfirm.value = result.metadata;
+      }
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         if (adminLogin.value) {
           adminLogin.value = null;
           router.push({ name: "admin-login", params: {} });
@@ -349,6 +377,106 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
       } else {
         console.error(error);
       }
+    }
+  }
+  async function getVehicleChecked(status) {
+    try {
+      let result = await vehicleAPI.getVehicleWithStatusChecked(status);
+      if (result.metadata.length !== 0) {
+        vehicleChecked.value = result.metadata;
+      }
+    } catch (error) {
+      if (error?.response?.data?.message?.code === 403) {
+        if (adminLogin.value) {
+          adminLogin.value = null;
+          router.push({ name: "home", params: {} });
+        }
+      } else {
+        console.error(error);
+      }
+    }
+  }
+  async function handleAcceptVehicle(vehicleInfo) {
+    let res = {};
+    try {
+      let result = await vehicleAPI.handleAcceptVehicle(vehicleInfo);
+      if (result.status === 200) {
+        res.err = false;
+        // await vehicleAPI.getVehicleWithStatus(vehicleStatus.CD);
+        router.push({ name: "car-manage", params: {} });
+      }
+    } catch (error) {
+      if (error?.response?.data?.message?.code === 403) {
+        if (adminLogin.value) {
+          adminLogin.value = null;
+          router.push({ name: "admin-login", params: {} });
+        }
+      } else {
+        res.err = true;
+        res.message = "Có lỗi xảy ra! Vui lòng thử lại.";
+        console.error(error);
+      }
+    }
+    return res;
+  }
+  async function handleRejectVehicle(vehicleInfo, reason) {
+    let res = {};
+    try {
+      let result = await vehicleAPI.handleRejectVehicle(vehicleInfo, reason);
+      if (result.status === 200) {
+        res.err = false;
+        // await vehicleAPI.getVehicleWithStatus(vehicleStatus.CD);
+        router.push({ name: "car-manage", params: {} });
+      }
+    } catch (error) {
+      if (error?.response?.data?.message?.code === 403) {
+        if (adminLogin.value) {
+          adminLogin.value = null;
+          router.push({ name: "admin-login", params: {} });
+        }
+      } else {
+        res.err = true;
+        res.message = "Có lỗi xảy ra! Vui lòng thử lại.";
+        console.error(error);
+      }
+    }
+    return res;
+  }
+  // filter
+  async function getProvincesSearch() {
+    try {
+      let response = await vehicleAPI.getProvSearch();
+      if (response.status === 200) {
+        provSearch.value = response.metadata;
+      }
+    } catch (error) {
+      if (error?.response?.data?.message?.code === 403) {
+        if (userLoggedIn.value) {
+          isLoggedIn.value = false;
+          userLoggedIn.value = null;
+          router.push({ name: "home", params: {} });
+        }
+        console.error(error);
+      }
+    }
+  }
+  async function getDistrictsSearch(prov_id) {
+    try {
+      let response = await vehicleAPI.getDistrictSearch(prov_id);
+      if (response.status === 200) {
+        districtSearch.value = response.metadata;
+      } else {
+        districts.value = [];
+      }
+    } catch (error) {
+      if (error?.response?.data?.message?.code === 403) {
+        if (userLoggedIn.value) {
+          isLoggedIn.value = false;
+          userLoggedIn.value = null;
+          router.push({ name: "home", params: {} });
+        }
+      }
+      console.error(error);
     }
   }
 
@@ -369,6 +497,10 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
     hirePrice,
     serviceFee,
     PDCfee,
+    vehicleWaitToConfirm,
+    vehicleChecked,
+    provSearch,
+    districtSearch,
     getType,
     getGearboxes,
     getBrands,
@@ -377,5 +509,10 @@ export const useVehicleInfoStore = defineStore("VehicelInfo", () => {
     getDistricts,
     registerVehicle,
     getVehicleWithStatus,
+    getVehicleChecked,
+    handleAcceptVehicle,
+    handleRejectVehicle,
+    getProvincesSearch,
+    getDistrictsSearch,
   };
 });

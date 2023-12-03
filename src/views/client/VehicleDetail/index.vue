@@ -2,46 +2,46 @@
   <div class="detali-vehicle-wrapper">
     <ModalSignIn v-model="isShowModalSignIn" has-cancel></ModalSignIn>
     <ModalSignUp v-model="isShowModalSignUp" has-cancel></ModalSignUp>
-    <Header></Header>
+    <Header></Header>{{}}
     <imagesVehicle
       :imagesList="imgList"
       :mainImg="imgList[0]"
       :subImages="[imgList[1], imgList[2], imgList[3]]"
     ></imagesVehicle>
-    <detailVehicle :options="optionsList"></detailVehicle>
+    <detailVehicle :options="optionsList" :carinfo="carInfo[0]"></detailVehicle>
     <Footer></Footer>
   </div>
 </template>
 
 <script setup>
 // components
-import Header from "@/components/clients/Header";
 import Footer from "@/components/clients/Footer";
+import Header from "@/components/clients/Header";
 import ModalSignIn from "@/components/clients/ModalSignIn";
 import ModalSignUp from "@/components/clients/ModalSignUp";
-import imagesVehicle from "./components/imagesVehicle";
+import { ref, onBeforeMount } from "vue";
 import detailVehicle from "./components/detailVehicle";
+import imagesVehicle from "./components/imagesVehicle";
+// firebase
+import { getImageListByNumberPlate } from "@/firebase/uploadImagesVehicle";
 // router
 import { useRouter } from "vue-router";
 // store
 import { useState } from "@/stores/state.store";
+import { useVehicleInfoStore } from "@/stores/vehicle.store";
 import { storeToRefs } from "pinia";
 // handle store
 const stateStore = useState();
 const { isShowModalSignIn, isShowModalSignUp } = storeToRefs(stateStore);
-
+const vehicleStore = useVehicleInfoStore();
+const { vehicleChecked } = storeToRefs(vehicleStore);
 // handle router
 const router = useRouter();
-let params = router.currentRoute.value.params;
-console.log(params);
+let carID = router.currentRoute.value.params.id;
+const carInfo = ref([]);
 
 // handle vehicle img
-let imgList = [
-  "https://www.toyota.com.vn/media/t2hpe25x/toyota-veloz-cross-1.jpeg?width=770&height=513&mode=max",
-  "https://decoroto.com/wp-content/uploads/2023/02/toyota-veloz-4.jpg",
-  "https://katavina.com/uploaded/tin/1/Toyota-Veloz-Cross-2023/9-Toyota-Veloz-Cross-2023.jpg",
-  "https://toyotatancang.net/wp-content/uploads/2022/03/s3wXRRER6iKb43mgTkoUvJCmkUGTyDRkoZeKHnSHD6Jq73upWKdkBafcwt23xh1FcHWuTuYcbIfQglOIONR5t2cTv-ZFmT7wUrkXjLFtxlrDhzegrYKxfr4Lkd722_SoOwqR0d0D.jpg",
-];
+let imgList = ref([]);
 
 // options list
 let optionsList = [
@@ -117,9 +117,22 @@ let optionsList = [
   },
 ];
 
-let carInfor = {
-  
-}
+onBeforeMount(async () => {
+  if (vehicleChecked.value.length > 0) {
+    carInfo.value = vehicleChecked.value.filter((vehicle) => {
+      return vehicle.car_id == carID;
+    });
+
+    if (carInfo.value[0].length != 0) {
+      imgList.value = await getImageListByNumberPlate(
+        carInfo.value[0].uid,
+        carInfo.value[0].numberPlate
+      );
+    }
+  } else {
+    router.push({ name: "home", params: {} });
+  }
+});
 </script>
 
 <style lang="scss" scoped></style>

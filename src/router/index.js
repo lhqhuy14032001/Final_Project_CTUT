@@ -34,6 +34,15 @@ const routes = [
       layout: "blank",
     },
   },
+  {
+    path: "/coming-soon",
+    name: "coming-soon",
+    component: () =>
+      import(/*webpackChunkName: "coming-soon"*/ "@/components/ComingSoon.vue"),
+    meta: {
+      layout: "blank",
+    },
+  },
 ];
 
 const router = createRouter({

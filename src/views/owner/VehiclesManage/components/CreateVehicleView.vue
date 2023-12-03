@@ -100,6 +100,7 @@
                     class="rounded-lg border border-gray-200 w-full text-fz-16"
                     type="text"
                     id="price-hire"
+                    placeholder="67A-23273"
                   />
                 </div>
                 <p
@@ -702,6 +703,33 @@ const errList = ref({
   year: false,
 });
 
+// clear data
+function onClearData() {
+  carName.value = null;
+  hirePrice.value = null;
+  numberPlate.value = null;
+  PDC_state.value = null;
+  PDC_fee.value = null;
+  PDC_brand.value = null;
+  desc.value = null;
+  avgFuel.value = null;
+  addressDetail.value = null;
+  img_1.value = "";
+  img_2.value = "";
+  img_3.value = "";
+  img_4.value = "";
+  fileList.value = [];
+  selectedBrand.value = null;
+  selectedType.value = null;
+  selectedGearbox.value = null;
+  selectedFuel.value = null;
+  selectedFeature.value = [];
+  selectedDeposit.value = null;
+  selectedDistrict.value = null;
+  selectedProvince.value = null;
+  selectedDate.value = null;
+}
+
 async function onSaveVehiCleInfo() {
   let isValid = true;
   carInfor.value.uid =
@@ -776,7 +804,13 @@ async function onSaveVehiCleInfo() {
         uploadStatus.message
       );
     } else {
-      await vehicleInfo.registerVehicle(carInfor.value);
+      let { err, message } = await vehicleInfo.registerVehicle(carInfor.value);
+      if (err) {
+        notificationStatus.value.showAlert("error", "Lỗi !", message);
+      } else {
+        notificationStatus.value.showAlert("success", "Thành công", message);
+        onClearData();
+      }
     }
   } else {
     notificationStatus.value.showAlert(

@@ -2,6 +2,16 @@ import axios from "axios";
 import queryString from "query-string";
 import authAPI from "./auth.api";
 import { getUIDFromCookies } from "@/ultils/functions";
+import { PERMISSION } from "@/ultils/constants";
+// store
+import { storeToRefs } from "pinia";
+import { useAuth } from "@/stores/auth.store";
+const getUIDAdmin = () => {
+  const authStore = useAuth();
+  const { adminLogin } = storeToRefs(authStore);
+  let _uid = adminLogin.value.uid;
+  return _uid;
+};
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3004/v1/api",
@@ -31,9 +41,15 @@ axiosInstance.interceptors.response.use(
       originalConfig.url !== "/sign-in" &&
       !originalConfig._retry
     ) {
-      originalConfig._retry = true;
-      let _uid = getUIDFromCookies();
-      await authAPI.refreshToken(_uid);
+      if (error.response.config.url.split("/")[0] === "admin") {
+        originalConfig._retry = true;
+        let _uid = getUIDAdmin();
+        await authAPI.refreshToken(_uid, PERMISSION.AD);
+      } else {
+        originalConfig._retry = true;
+        let _uid = getUIDFromCookies();
+        await authAPI.refreshToken(_uid);
+      }
       return axiosInstance.request(originalConfig);
     } else if (error.response.status === 403) {
       let err = {

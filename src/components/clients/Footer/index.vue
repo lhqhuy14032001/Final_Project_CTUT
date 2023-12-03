@@ -1,7 +1,7 @@
 <template>
   <div class="footer border-t border-t-gray-4 pt-10">
     <div class="grid grid-cols-12">
-      <div class="logo col-span-4">
+      <div class="logo mx-auto lg:mx-0 col-span-4">
         <div class="w-20 left-nav">
           <router-link :to="{ name: 'home', params: {} }" class="flex items-end"
             ><img
@@ -13,7 +13,7 @@
           </router-link>
         </div>
       </div>
-      <div class="footer-link-list col-span-8 grid grid-cols-6">
+      <div class="footer-link-list col-span-8 lg:grid grid-cols-6 hidden">
         <div class="col-span-2">
           <h1>Chính sách</h1>
           <ul>

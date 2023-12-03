@@ -36,6 +36,11 @@ const CONSTRACT_MANAGE = () =>
 const STATISTIS_MANAGE = () =>
   import(/*webpackChunkName: "statistic"*/ "@/views/administration/ErrorView");
 
+const DETAIL_VEHICLE_REQUEST = () =>
+  import(
+    /*webpackChunkName: "vehicle_request"*/ "@/components/admins/DetailVehicleReq.vue"
+  );
+
 export {
   ADMIN,
   LOGIN,
@@ -47,4 +52,5 @@ export {
   CONSTRACT_MANAGE,
   STATISTIS_MANAGE,
   // CAR_DETAIL,
+  DETAIL_VEHICLE_REQUEST,
 };

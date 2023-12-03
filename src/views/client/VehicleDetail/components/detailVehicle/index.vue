@@ -2,7 +2,10 @@
   <div class="vehicle-info-wrapper">
     <div class="col-span-8">
       <div class="vehicle-info">
-        <div class="vehicle-name">Veloz 2023</div>
+        <div class="vehicle-name">
+          {{ props.carinfo.brand }} {{ props.carinfo.name }}
+          {{ props.carinfo.year_manufacture }}
+        </div>
         <div class="vehicle-hire-info">
           <div class="total-tours">
             <div class="wrap-svg">
@@ -43,11 +46,19 @@
           </div>
           <div class="address">
             <BaseIcon :path="mdiMapMarker" size="20"></BaseIcon>
-            <p>Quận Tân Bình, Hồ Chí Minh</p>
+            <p>{{ props.carinfo.district }}, {{ props.carinfo.prov }}</p>
           </div>
         </div>
-        <div class="hire-condition">
+        <div
+          v-if="props.carinfo.deposit === 'Miễn thế chấp'"
+          class="hire-condition"
+        >
           <div class="hire-condition-tag">Miễn thế chấp</div>
+        </div>
+        <div v-else class="hire-condition">
+          <div class="hire-condition-tag">
+            {{ props.carinfo.deposit_state }}
+          </div>
         </div>
       </div>
       <div class="vehicle-characteristic">
@@ -89,7 +100,12 @@
             </svg>
             <div>
               <span>Số ghế</span>
-              5 chỗ
+              {{
+                props.carinfo.carType?.split(" ")[0] != "Bán"
+                  ? props.carinfo.carType?.split(" ")[0]
+                  : 4
+              }}
+              chỗ
             </div>
           </div>
           <div class="characteristic-item">
@@ -142,7 +158,7 @@
             </svg>
             <div>
               <span>Truyển động</span>
-              Số tự động
+              {{ props.carinfo.gearbox }}
             </div>
           </div>
           <div class="characteristic-item">
@@ -181,7 +197,7 @@
             </svg>
             <div>
               <span>Nhiên liệu</span>
-              Xăng
+              {{ props.carinfo.fuel }}
             </div>
           </div>
         </div>
@@ -189,18 +205,17 @@
       <div class="vehicle-desc">
         <h2 class="text-left">Mô tả</h2>
         <p>
-          Xe toyota veloz bản top 7c std đời 2023, có màn hình tích hợp androi
-          xem bản đồ việt map cảnh báo tốc độ, youtube chỉ cần ra lệnh giọng nói
-          là được, có trang bị cam hành trình , cam 360, phanh tay điện tử, đèn
-          auto , cùng nhiều tính năng an toàn , xe rộng rãi và là xe nhà nên dc
-          vệ sinh sạch sẽ . Xe phân khúc 7c rộng bự ngồi thoải mái ạ
+          {{ props.carinfo.carDesc }}
         </p>
       </div>
       <div class="vehicle-options">
         <h2>Các tiện nghi khác</h2>
         <div class="option-list">
           <ul>
-            <li v-for="option in props.options" :key="option.id">
+            <li
+              v-for="option in props.carinfo?.features?.features"
+              :key="option.id"
+            >
               <img class="w-8" loading="lazy" :src="option.img" alt="" />
               {{ option.label }}
             </li>
@@ -269,7 +284,7 @@
             !
           </p>
         </div>
-        <div class="owner">
+        <!-- <div class="owner">
           <h2 class="my-5">Chủ xe</h2>
           <div class="flex gap-5">
             <img
@@ -279,13 +294,19 @@
             />
             <p class="text-2xl font-semibold">Le Hoang Quoc Huy</p>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="col-span-4">
       <div class="hire-price-info border py-4 px-6 rounded-xl bg-slate-100">
-        <h3 class="text-3xl font-bold text-left">900K/ngày</h3>
-        <div
+        <h3 class="text-3xl font-bold text-left">
+          {{
+            new Intl.NumberFormat().format(
+              props.carinfo.hire_price + props.carinfo.hire_price * 0.1 * 2
+            )
+          }}K/ngày
+        </h3>
+        <!-- <div
           class="border flex justify-evenly my-3 min-w-full bg-white rounded-lg"
         >
           <div class="px-4 py-3">
@@ -297,7 +318,7 @@
             <p class="text-sm text-gray-500 text-left">Ngày trả</p>
             <p class="text-xl font-semibold">21/11/2023</p>
           </div>
-        </div>
+        </div> -->
         <div class="fee">
           <div class="fee-list">
             <div class="hire-price flex justify-between my-5">
@@ -312,7 +333,9 @@
                 </p>
               </div>
               <div class="font-semibold">
-                {{ new Intl.NumberFormat().format(hirePrice) }}đ/ngày
+                {{
+                  new Intl.NumberFormat().format(props.carinfo.hire_price)
+                }}đ/ngày
               </div>
             </div>
             <div class="service-fee flex justify-between my-5">
@@ -325,7 +348,11 @@
                 </p>
               </div>
               <div class="font-semibold">
-                {{ new Intl.NumberFormat().format(hirePrice * 0.1) }}đ/ngày
+                {{
+                  new Intl.NumberFormat().format(
+                    props.carinfo.hire_price * 0.1
+                  )
+                }}đ/ngày
               </div>
             </div>
             <div class="PDC-fee flex justify-between my-5">
@@ -340,7 +367,11 @@
                 </p>
               </div>
               <div class="font-semibold">
-                {{ new Intl.NumberFormat().format(hirePrice * 0.1) }}đ/ngày
+                {{
+                  new Intl.NumberFormat().format(
+                    props.carinfo.hire_price * 0.1
+                  )
+                }}đ/ngày
               </div>
             </div>
           </div>
@@ -348,7 +379,9 @@
             <h3>Tổng cộng</h3>
             <p>
               {{
-                new Intl.NumberFormat().format(hirePrice + hirePrice * 0.1 * 2)
+                new Intl.NumberFormat().format(
+                  props.carinfo.hire_price + props.carinfo.hire_price * 0.1 * 2
+                )
               }}đ
             </p>
           </div>
@@ -369,31 +402,35 @@
 import BaseIcon from "@/components/admins/BaseIcon";
 import { mdiMapMarker } from "@mdi/js";
 import { defineProps } from "vue";
-
+// router
+import { useRouter } from "vue-router";
 // store
-import { useVehicleInfoStore } from "@/stores/vehicle.store";
-import { storeToRefs } from "pinia";
-const vehicleStore = useVehicleInfoStore();
-const { hirePrice } = storeToRefs(vehicleStore);
+
+const router = useRouter();
 const props = defineProps({
   options: {
     required: true,
-    typed: Array,
+    type: Array,
     default() {
       return [];
     },
   },
   carinfo: {
     required: true,
-    typed: Array,
+    type: Object,
     default() {
       return {};
     },
   },
+  user: {
+    type: Object,
+    required: true,
+  },
 });
 function onHireVehicle() {
-  alert("OKOK");
+  router.push({ name: "coming-soon", params: {} });
 }
+console.log(props.user);
 </script>
 
 <style lang="scss" scoped>

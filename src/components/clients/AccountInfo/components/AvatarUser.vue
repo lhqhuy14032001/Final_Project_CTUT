@@ -92,6 +92,8 @@ let isExistEmail = computed(() => {
 async function onBecomeOwner() {
   if (isExistEmail.value) {
     await userStore.updateRole(userLoggedIn.value.email);
+    await userStore.verifyEmail(userLoggedIn.value);
+    isShowModalConfirmEmail.value = false;
   } else {
     stateStore.onToggleModalCofirmEmail();
   }

@@ -1,8 +1,8 @@
 import axiosInstance from "./axios.configs";
 const authAPI = {
-  refreshToken: (_uid) => {
+  refreshToken: (_uid, role) => {
     const url = "auth/refresh-token";
-    return axiosInstance.post(url, { _uid: _uid });
+    return axiosInstance.post(url, { _uid: _uid, role: role });
   },
   signUp: (user) => {
     const url = "auth/sign-up";
@@ -12,9 +12,9 @@ const authAPI = {
     const url = "auth/sign-in";
     return axiosInstance.post(url, user);
   },
-  signOut: (_uid) => {
+  signOut: (_uid, role) => {
     const url = "auth/sign-out";
-    return axiosInstance.post(url, { _uid });
+    return axiosInstance.post(url, { _uid: _uid, role: role });
   },
   // google auth
   signupWithGoogle: async (accessToken) => {

@@ -42,7 +42,7 @@ export const useUser = defineStore("userStore", () => {
         }
       }
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         handleCheckSession(router, { name: "admin-login", params: {} });
       }
       console.error("Error fetch user list::::", error);
@@ -55,7 +55,7 @@ export const useUser = defineStore("userStore", () => {
         totalUsers.value = response.metadata;
       }
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         handleCheckSession(router, { name: "admin-login", params: {} });
       }
       console.error("Error fetch total users::::", error);
@@ -74,7 +74,7 @@ export const useUser = defineStore("userStore", () => {
         });
       }
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         handleCheckSession(router, { name: "admin-login", params: {} });
       }
       console.error("Error fetch user list::::", error);
@@ -88,7 +88,7 @@ export const useUser = defineStore("userStore", () => {
         await getUserList();
       }
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         handleCheckSession(router, { name: "admin-login", params: {} });
       }
       console.error(error);
@@ -99,7 +99,7 @@ export const useUser = defineStore("userStore", () => {
     try {
       await userAPI.updateAvatar(url);
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         handleCheckSession(router, { name: "admin-login", params: {} });
       }
       console.error(error);
@@ -114,7 +114,7 @@ export const useUser = defineStore("userStore", () => {
       }
       return { errMesssage: false };
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         handleCheckSession(router, { name: "home", params: {} });
       }
       console.error(error);
@@ -127,7 +127,7 @@ export const useUser = defineStore("userStore", () => {
     try {
       await emailAPI.sendVerifyEmail(user);
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         handleCheckSession(router, { name: "home", params: {} });
       }
       console.error(error);
@@ -138,7 +138,7 @@ export const useUser = defineStore("userStore", () => {
       let res = await emailAPI.updateEmailState(email);
       userLoggedIn.value = res.metadata;
     } catch (error) {
-      if (error.response.data.message.code === 403) {
+      if (error?.response?.data?.message?.code === 403) {
         handleCheckSession(router, { name: "home", params: {} });
       }
       console.error(error);

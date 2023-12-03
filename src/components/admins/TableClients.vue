@@ -77,7 +77,10 @@
     @deleteUser="confirmDelete"
   >
     <p>Bạn có chắc chắn muốn xoá tài khoản này?</p>
-    <p>Lưu ý: KHÔNG thể khôi phục dữ liệu tài khoản sau khi đã xoá.</p>
+    <p>
+      Lưu ý: Các xe đã đăng ký cho thuê sẽ bị xoá và
+      <strong>KHÔNG THỂ</strong> khôi phục dữ liệu tài khoản sau khi đã xoá.
+    </p>
   </CardBoxModal>
   <!-- END: CONFIRM DELETE -->
   <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
@@ -131,12 +134,12 @@
               small
               @click="hanldeShowUser(user)"
             />
-            <BaseButton
+            <!-- <BaseButton
               color="danger"
               :icon="mdiTrashCan"
               small
               @click="getUserDelete(user)"
-            />
+            /> -->
           </BaseButtons>
         </td>
       </tr>
@@ -152,7 +155,7 @@
 </template>
 <script setup>
 import { ref, defineProps } from "vue";
-import { mdiEye, mdiTrashCan } from "@mdi/js";
+import { mdiEye } from "@mdi/js";
 import CardBoxModal from "@/components/admins/CardBoxModal.vue";
 import BaseButtons from "@/components/admins/BaseButtons.vue";
 import BaseButton from "@/components/admins/BaseButton.vue";
@@ -163,15 +166,15 @@ import VueBasicAlert from "vue-basic-alert";
 import { PERMISSION } from "@/ultils/constants";
 // store
 import { useUser } from "@/stores/user.store";
-import { useAuth } from "@/stores/auth.store";
+// import { useAuth } from "@/stores/auth.store";
 import { storeToRefs } from "pinia";
 import { computed } from "vue";
 import { watch } from "vue";
 
 const checkedRows = ref([]);
 const userStore = useUser();
-const autStore = useAuth();
-const { adminLogin } = storeToRefs(autStore);
+// const autStore = useAuth();
+// const { adminLogin } = storeToRefs(autStore);
 // get state
 const getRoleToShow = (role) => {
   let label;
@@ -238,18 +241,18 @@ function hanldeShowUser(user) {
   userRole.value = getRoleToShow(user.role);
   isModalDetailActive.value = !isModalDetailActive.value;
 }
-function getUserDelete(user) {
-  isModalDeleteActive.value = !isModalDeleteActive.value;
-  userDelete.value = user;
-  if (adminLogin.value.uid === user.uid) {
-    isModalDeleteActive.value = !isModalDeleteActive.value;
-    notificationStatusCreate.value.showAlert(
-      "error",
-      "Thông báo",
-      "Bạn không thể xoá chính mình."
-    );
-  }
-}
+// function getUserDelete(user) {
+//   isModalDeleteActive.value = !isModalDeleteActive.value;
+//   userDelete.value = user;
+//   if (adminLogin.value.uid === user.uid) {
+//     isModalDeleteActive.value = !isModalDeleteActive.value;
+//     notificationStatusCreate.value.showAlert(
+//       "error",
+//       "Thông báo",
+//       "Bạn không thể xoá chính mình."
+//     );
+//   }
+// }
 function confirmDelete() {
   userStore.deleteUser(userDelete.value);
 }

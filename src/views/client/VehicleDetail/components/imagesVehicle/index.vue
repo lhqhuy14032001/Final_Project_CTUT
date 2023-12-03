@@ -4,6 +4,7 @@
       <div class="col-span-8">
         <div>
           <img
+            loading="lazy"
             class="w-full h-[600px] rounded-xl object-cover"
             :src="props.mainImg"
             alt=""
@@ -19,14 +20,14 @@
             @click="getIndex(index + 1)"
             :key="index"
           >
-            <img :src="img" :alt="img" />
+            <img loading="lazy" :src="img" :alt="img" />
           </div>
         </div>
       </div>
     </div>
     <vue-easy-lightbox
       :visible="visibleRef"
-      :imgs="media"
+      :imgs="props.imagesList"
       @hide="onHide"
       :index="indexRef"
     ></vue-easy-lightbox>
@@ -69,13 +70,13 @@ const getIndex = (index) => {
   onShow();
 };
 const onHide = () => (visibleRef.value = false);
-const media = ref([]);
-props.imagesList.forEach((img) => {
-  media.value.push({
-    alt: img,
-    src: img,
-  });
-});
+// const media = ref([]);
+// props.imagesList.forEach((img) => {
+//   media.value.push({
+//     alt: img,
+//     src: img,
+//   });
+// });
 </script>
 
 <style lang="scss" scoped>

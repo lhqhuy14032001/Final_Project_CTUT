@@ -25,3 +25,28 @@ export const removeOldAvatar = async (uid) => {
       console.error(error);
     });
 };
+
+export const removeVehicleImg = async (uid, numberPlate) => {
+  const listRef = ref(storage, `/vehicle_img/${uid}/${numberPlate}`);
+  // Find all the prefixes and items.
+  listAll(listRef)
+    .then((res) => {
+      if (res.items.length === 0) return false;
+      if (res.items.length !== 0) {
+        res.items.forEach((item) => {
+          const fileRef = ref(storage, item._location.path_);
+          deleteObject(fileRef)
+            .then(() => {
+              return false;
+            })
+            .catch((error) => {
+              console.error(error);
+              return true;
+            });
+        });
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+};

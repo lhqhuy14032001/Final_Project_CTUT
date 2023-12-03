@@ -5,9 +5,8 @@ const authStore = useAuth();
 const { userLoggedIn } = storeToRefs(authStore);
 const emailAPI = {
   sendVerifyEmail: (user) => {
-    let url = "owner/verify-email";
+    let url = "public/verify-email";
     return axiosInstance.post(url, {
-      _uid: userLoggedIn.value.uid,
       user: user,
     });
   },

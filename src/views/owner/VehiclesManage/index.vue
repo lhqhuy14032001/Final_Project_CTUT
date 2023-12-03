@@ -9,7 +9,7 @@
       >
       </SectionTitleLineWithButton>
       <CardBox hasTable>
-        <TableVehicles checkable></TableVehicles>
+        <TableVehicles></TableVehicles>
       </CardBox>
     </SectionMain>
   </div>

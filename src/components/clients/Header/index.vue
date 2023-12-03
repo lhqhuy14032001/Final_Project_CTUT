@@ -21,15 +21,20 @@
         ></Bars3Icon>
         <div class="pc-nav hidden lg:flex lg:items-center">
           <div class="first-right-nav gap-3">
+            <router-link class="pc-nav-item" :to="{ name: 'home', params: {} }">
+              Trang chủ
+            </router-link>
             <router-link
               class="pc-nav-item"
               :to="{ name: 'policy', params: {} }"
             >
               Về MiAUTO
             </router-link>
-            <!-- <router-link class="pc-nav-item" to="/test"
-              >Trở thành chủ xe</router-link
-            > -->
+            <router-link
+              class="pc-nav-item"
+              :to="{ name: 'vehicleList', params: {} }"
+              >Tìm xe</router-link
+            >
           </div>
           <div class="line border-l-2 border-gray-300"></div>
           <div v-if="!isLoggedIn" class="second-right-nav">

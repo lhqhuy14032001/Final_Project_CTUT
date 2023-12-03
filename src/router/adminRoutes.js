@@ -1,7 +1,7 @@
 import * as ADMIN from "./import/adminComponents";
 export default [
   {
-    path: "tong-quan",
+    path: "",
     name: "home-admin",
     component: ADMIN.HOME_PAGE_ADMIN,
     meta: {},
@@ -23,7 +23,7 @@ export default [
     },
   },
   {
-    path: "quan-ly-xe",
+    path: "phe-duyet-xe",
     name: "car-manage",
     component: ADMIN.CAR_MANAGE,
     meta: {
@@ -36,6 +36,14 @@ export default [
   //   component: ADMIN.CAR_DETAIL,
   //   meta: {},
   // },
+  {
+    path: "cho-duyet/thong-tin-chi-tiet/:vehicle_id",
+    name: "detailInforReqVehicle",
+    component: ADMIN.DETAIL_VEHICLE_REQUEST,
+    meta: {
+      title: "Tables",
+    },
+  },
   {
     path: "quan-ly-khuyen-mai",
     name: "sale-manage",

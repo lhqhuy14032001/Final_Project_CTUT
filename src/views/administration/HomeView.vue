@@ -19,6 +19,7 @@ import SectionTitleLineWithButton from "@/components/admins/SectionTitleLineWith
 // stores
 import { useMainStore } from "@/stores/main";
 import { useUser } from "@/stores/user.store";
+
 import { storeToRefs } from "pinia";
 import { onBeforeMount } from "vue";
 
@@ -66,7 +67,7 @@ const transactionBarItems = computed(() => mainStore.history);
         trend-type="down"
         color="text-blue-500"
         :icon="mdiCar"
-        :number="7770"
+        :number="0"
         suffix="xe"
         label="Xe"
       />

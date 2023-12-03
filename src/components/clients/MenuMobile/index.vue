@@ -12,7 +12,7 @@
       <AccountInfoMobile
         v-if="isLoggedIn"
         @onLogout="onLogout"
-        :fullname="fullname"
+        :fullname="signUpInfo.fullname"
       ></AccountInfoMobile>
       <!-- End Account Info -->
 
@@ -27,7 +27,7 @@
 import { useAuth } from "@/stores/auth.store";
 import { useState } from "@/stores/state.store";
 import { XMarkIcon } from "@heroicons/vue/24/outline";
-import { computed } from "vue";
+// import { computed } from "vue";
 import AccountInfoMobile from "./components/AccountInfoMobile";
 import Login from "./components/Login";
 import { storeToRefs } from "pinia";
@@ -35,17 +35,14 @@ import { storeToRefs } from "pinia";
 const authStore = useAuth();
 const stateStore = useState();
 
-const { signUpInfo } = storeToRefs(authStore);
-const user = signUpInfo.value.user;
-const fullname = user.fullname;
+const { signUpInfo, isLoggedIn } = storeToRefs(authStore);
 
 const onCloseMenu = () => {
   stateStore.onToggleMenuMobile();
 };
-
-let isLoggedIn = computed(() => {
-  return authStore.isLoggedIn;
-});
+// let isLoggedIn = computed(() => {
+//   return authStore.isLoggedIn;
+// });
 authStore.$subscribe((mutation, state) => {
   isLoggedIn.value = state.isLoggedIn;
 });

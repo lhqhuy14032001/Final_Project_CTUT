@@ -5,15 +5,15 @@
     <Header></Header>
     <section class="section-banner relative">
       <Banner></Banner>
-      <div class="absolute w-full top-[70%] xl:bottom-0">
+      <!-- <div class="absolute w-full top-[70%] xl:bottom-0">
         <VehicleSearch></VehicleSearch>
-      </div>
+      </div> -->
     </section>
     <section class="section-voucher">
       <Vouchers></Vouchers>
     </section>
     <section class="section-vehicle-for-you">
-      <VehicleForYou></VehicleForYou>
+      <VehicleForYou :vehicleForYou="vehicleChecked"></VehicleForYou>
     </section>
     <section class="section-location-famous">
       <LocationFamous></LocationFamous>
@@ -27,23 +27,31 @@
 </template>
 <script setup>
 import Banner from "@/components/clients/Banner";
-import Header from "@/components/clients/Header";
 import Footer from "@/components/clients/Footer";
-import VehicleSearch from "@/components/clients/VehicleSearch";
-import Vouchers from "@/components/clients/Vouchers";
-import VehicleForYou from "@/components/clients/VehicleForYou";
-import LocationFamous from "@/components/clients/LocationFamous";
+import Header from "@/components/clients/Header";
+// import VehicleSearch from "@/components/clients/VehicleSearch";
 import AdvangtageMiAUTO from "@/components/clients/AdvantageMiAUTO";
-import ModalSignUp from "@/components/clients/ModalSignUp";
+import LocationFamous from "@/components/clients/LocationFamous";
 import ModalSignIn from "@/components/clients/ModalSignIn";
+import ModalSignUp from "@/components/clients/ModalSignUp";
+import VehicleForYou from "@/components/clients/VehicleForYou";
+import Vouchers from "@/components/clients/Vouchers";
 
 // store
 import { useState } from "@/stores/state.store";
+import { useVehicleInfoStore } from "@/stores/vehicle.store";
 import { storeToRefs } from "pinia";
+// vehicleStatus
+import { vehicleStatus } from "@/ultils/constants";
+// store
 
 // access to store
 const stateStore = useState();
 const { isShowModalSignUp, isShowModalSignIn } = storeToRefs(stateStore);
+
+const vehicleStore = useVehicleInfoStore();
+vehicleStore.getVehicleChecked(vehicleStatus.DD);
+const { vehicleChecked } = storeToRefs(vehicleStore);
 </script>
 <style lang="scss" scoped>
 @import url(./responsive.scss);
